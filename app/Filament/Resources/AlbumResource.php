@@ -62,7 +62,14 @@ class AlbumResource extends Resource
                                 ->required()
                                 ->directory('album-photos')
                                 ->image()
-                                ->imageEditor()
+                                ->placeholder('Seret atau klik untuk masukan gambar (maximal 2048kb / 2MB)')
+                                ->imageEditorAspectRatios([
+                                    null,
+                                    '16:9',
+                                    '4:3',
+                                    '1:1',
+                                ])
+                                ->maxSize(2048)
                                 ->imagePreviewHeight('155'),
                             Forms\Components\TextArea::make('caption')
                                 ->label('Keterangan')
@@ -84,11 +91,21 @@ class AlbumResource extends Resource
                 Tables\Columns\ImageColumn::make('cover_image')
                 ->label('Cover'),
                 Tables\Columns\TextColumn::make('title')
+                ->toolTip(fn($record) => $record->title)
                 ->searchable(),
                 Tables\Columns\TextColumn::make('photos_count')
                 ->label('Jumlah Foto')
                 ->counts('photos'),
-                Tables\Columns\TextColumn::make('created_at')->dateTime('d M Y')->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                ->label('Dibuat')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->label('Diubah')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

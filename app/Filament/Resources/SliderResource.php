@@ -128,8 +128,6 @@ class SliderResource extends Resource
                 Tables\Columns\TextColumn::make('button_link2')
                     ->label('Tombol Link')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('position')
-                    ->label('Posisi Teks dan Tombol'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime()

@@ -74,11 +74,14 @@ class KontakResource extends Resource
                 Tables\Columns\TextColumn::make('jam_operasional')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('telepon')
+                    ->toolTip(fn($record) => $record->telepon)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('alamat')
-                    ->searchable()
+                ->toolTip(fn($record) => $record->alamat)
+                ->searchable()
                     ->limit(20),
                 Tables\Columns\TextColumn::make('email')
+                    ->toolTip(fn($record) => $record->email)
                     ->searchable()
                     ->limit(20),
                 Tables\Columns\TextColumn::make('created_at')
