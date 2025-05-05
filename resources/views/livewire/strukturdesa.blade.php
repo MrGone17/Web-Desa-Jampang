@@ -10,72 +10,35 @@
         </section>
         <!-- Struktur Organisasi -->
         <section class="mx-auto py-16 px-5 md:px-16 bg-white">
-            <h1 class="uppercase text-lg md:text-3xl font-bold text-left mb-6">Struktur Desa</h1>
-            <img src="{{ asset('image/berita.jpg') }}" alt="Struktur Organisasi" class="w-full mx-auto">
+            <div class="px-4 py-2 flex items-center justify-center mb-6">
+                <h1 class="bg-primary text-white text-xs md:text-3xl text-center font-bold px-6 py-2 rounded-lg" data-aos="fade-right" data-aos-duration="1000">
+                    Struktur Desa
+                </h1>
+            </div>  
+            <img src="{{ asset('image/struktur.png') }}" alt="Struktur Organisasi" class="w-full max-h-[700px] object-contain mx-auto rounded-lg ">
         </section>
     
         <!-- Daftar Stuktur Utama -->
-        <section class="py-8 px-5 md:px-16 bg-white">
-            <h1 class="uppercase text-lg md:text-3xl font-bold text-center mb-5">Kepala Desa & Wakil Kepala Desa</h1>
-            <div class="flex flex-wrap justify-center gap-2 md:gap-5">
-                <!-- Item 1 -->
-                <div class="relative bg-slate-100 rounded-lg md:rounded-3xl w-[100px] h-40 md:h-96 md:w-80 overflow-hidden">
-                    <img class="object-cover w-full h-full" src="{{ asset('image/6.jpg') }}" alt="Guru 1">
-                    <div class="bg-green-300 rounded-lg md:rounded-3xl z-2 absolute right-0 left-0 bottom-0">
-                        <div class="text-center px-4 py-1">
-                            <p class="font-bold text-[8px] md:text-lg">Budi Santoso</p>
-                            <p class="text-[7px] md:text-sm font-semibold">Kepala Desa</p>
+        @foreach ($divisi as $alpha)
+            <section class="py-6 px-5 md:px-16 bg-white">
+                <h1 class="uppercase text-lg md:text-3xl font-bold text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
+                    {{ $alpha->title }}
+                </h1>
+                <div class="flex flex-wrap justify-center gap-2 md:gap-5">
+                    @foreach ($alpha->aparatur as $item)
+                    <div class="group relative bg-slate-100 rounded-lg md:rounded-3xl w-[100px] h-40 md:h-96 md:w-80 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+                        <img class="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-110" src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->nama }}">
+                        
+                        <div class="bg-green-300 rounded-lg md:rounded-3xl z-10 absolute right-0 left-0 bottom-0">
+                            <div class="text-center px-4 py-1">
+                                <p class="font-bold text-[8px] md:text-lg">{{ $item->nama }}</p>
+                                <p class="text-[7px] md:text-sm font-semibold">{{ $item->jabatan }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </div>                    
+                    @endforeach
                 </div>
-    
-                <!-- Item 2 -->
-                <div class="relative bg-slate-100 rounded-lg md:rounded-3xl w-[100px] h-40 md:h-96 md:w-80 overflow-hidden">
-                    <img class="object-cover w-full h-full" src="{{ asset('image/6.jpg') }}" alt="Guru 1">
-                    <div class="bg-green-300 rounded-lg md:rounded-3xl z-2 absolute right-0 left-0 bottom-0">
-                        <div class="text-center px-4 py-1">
-                            <p class="font-bold text-[8px] md:text-lg">Budi Santoso</p>
-                            <p class="text-[7px] md:text-sm font-semibold">Wakil Kepala Desa</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Daftar Staff -->
-        <section class="py-8 px-5 md:px-16 bg-white">
-            <h1 class="uppercase text-lg md:text-3xl font-bold text-center mb-5">Staff & Aparatur Desa</h1>
-            <div class="flex flex-wrap justify-center gap-2 md:gap-5">
-                <!-- Item 1 -->
-                <div class="relative bg-slate-100 rounded-lg md:rounded-3xl w-[100px] h-40 md:h-96 md:w-80 overflow-hidden">
-                    <img class="object-cover w-full h-full" src="{{ asset('image/6.jpg') }}" alt="Guru 1">
-                    <div class="bg-green-300 rounded-lg md:rounded-3xl z-2 absolute right-0 left-0 bottom-0">
-                        <div class="text-center px-4 py-1">
-                            <p class="font-bold text-[8px] md:text-lg">Budi Santoso</p>
-                            <p class="text-[7px] md:text-sm font-semibold">Kepala Desa</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="relative bg-slate-100 rounded-lg md:rounded-3xl w-[100px] h-40 md:h-96 md:w-80 overflow-hidden">
-                    <img class="object-cover w-full h-full" src="{{ asset('image/6.jpg') }}" alt="Guru 1">
-                    <div class="bg-green-300 rounded-lg md:rounded-3xl z-2 absolute right-0 left-0 bottom-0">
-                        <div class="text-center px-4 py-1">
-                            <p class="font-bold text-[8px] md:text-lg">Budi Santoso</p>
-                            <p class="text-[7px] md:text-sm font-semibold">Wakil Kepala Desa</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="relative bg-slate-100 rounded-lg md:rounded-3xl w-[100px] h-40 md:h-96 md:w-80 overflow-hidden">
-                    <img class="object-cover w-full h-full" src="{{ asset('image/6.jpg') }}" alt="Guru 1">
-                    <div class="bg-green-300 rounded-lg md:rounded-3xl z-2 absolute right-0 left-0 bottom-0">
-                        <div class="text-center px-4 py-1">
-                            <p class="font-bold text-[8px] md:text-lg">Budi Santoso</p>
-                            <p class="text-[7px] md:text-sm font-semibold">Wakil Kepala Desa</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        @endforeach
     </div>    
 </div>

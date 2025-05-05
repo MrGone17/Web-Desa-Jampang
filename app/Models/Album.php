@@ -10,7 +10,7 @@ class Album extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','is_active', 'description', 'cover_image'];
+    protected $fillable = ['title','is_active', 'description', 'cover_image','slug'];
     protected static function booted()
     {
         static::creating(function ($album) {

@@ -299,7 +299,7 @@
         </div>
 
         <div class="text-center mt-2 md:mt-0">
-          <a href="#" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full inline-block text-xs md:text-base">
+          <a href="{{ route('Potensidesa') }}" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full inline-block text-xs md:text-base">
             UMKM Selengkapnya
           </a>
         </div>
@@ -335,35 +335,33 @@
   <!-- Start Galeri -->
   <section class="relative py-5 bg-white">
     <div class="m-auto px-5 md:px-12">
-      <h2 class="text-2xl md:text-4xl font-bold md:mx-28 text-left text-gray-800 mb-12" data-aos="fade-right" data-aos-duration="1000">Galeri</h2>
-      <div class="grid grid-cols-7 gap-2 md:gap-5 h-60 md:h-96 md:mx-10" data-aos="fade-up" data-aos-duration="1000">
-        <div class="overflow-hidden col-span-2 row-span-2">
-            <img src="{{ asset('image/pns.jpg') }}" alt="Foto Kegiatan 1"
-                class="w-full h-full object-cover rounded-lg">
-        </div>
-        <div class="overflow-hidden col-span-2">
-            <img src="{{ asset('image/pns.jpg') }}" alt="Foto Kegiatan 2"
-                class="w-full h-full object-cover rounded-lg">
-        </div>
-        <div class="overflow-hidden col-span-1">
-            <img src="{{ asset('image/pns.jpg') }}" alt="Foto Kegiatan 3"
-                class="w-full h-full object-cover rounded-lg">
-        </div>
-        <div class="overflow-hidden col-span-2 row-span-2">
-            <img src="{{ asset('image/pns.jpg') }}" alt="Foto Kegiatan 4"
-                class="w-full h-full object-cover rounded-lg">
-        </div>
-        <div class="overflow-hidden col-span-3">
-            <img src="{{ asset('image/pns.jpg') }}" alt="Foto Kegiatan 5"
-                class="w-full h-full object-cover rounded-lg">
-        </div>
-      </div> <!-- Tutup grid -->
-    </div>
-    <div class="text-center mt-8 md:mt-10">
-      <div class="text-center">
-        <a href="#" class="bg-green-700 hover:bg-green-600 text-white  font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full inline-block text-xs md:text-base">
-          Galeri Selengkapnya
-        </a>
+      <h2 class="text-2xl md:text-4xl font-bold md:mx-28 text-left text-gray-800 mb-8" data-aos="fade-right" data-aos-duration="1000">Galeri Kegiatan Desa</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mx-10" data-aos="fade-up" data-aos-duration="1000">
+        @foreach($albums as $index=> $album)
+          <div class="relative group overflow-hidden rounded-lg aspect-video" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="{{ $index * 200 }}">
+            <img src="{{ asset('storage/' . $album->cover_image) }}"
+                alt="{{ $album->title }}"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div class="text-center text-white">
+                <svg class="w-10 h-10 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="1.5"
+                      viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 7h2l2-3h10l2 3h2a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V9a2 2 0 012-2z" />
+                    <circle cx="12" cy="13" r="3" />
+                </svg>
+                <div class="text-sm font-semibold">{{ $album->title }}</div>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      </div>
+      <div class="text-center mt-8 md:mt-10">
+          <a href="{{ route('Fotodesa') }}" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-full inline-block text-xs md:text-base">
+              Galeri Selengkapnya
+          </a>
       </div>
     </div>
   </section>

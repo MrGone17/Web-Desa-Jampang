@@ -10,6 +10,7 @@ use App\Filament\Resources\AlurppdbResource;
 use App\Filament\Resources\AnnouncementResource;
 use App\Filament\Resources\BackgroundResource;
 use App\Filament\Resources\BeritaResource;
+use App\Filament\Resources\DivisidesaResource;
 use App\Filament\Resources\EducatorResource;
 use App\Filament\Resources\EskulResource;
 use App\Filament\Resources\ExtracurricularResource;
@@ -32,6 +33,7 @@ use App\Filament\Resources\FacilityResource;
 use App\Filament\Resources\InfoppdbResource;
 use App\Filament\Resources\InstagramPostResource;
 use App\Filament\Resources\JadwalppdbResource;
+use App\Filament\Resources\LayananpublikResource;
 use App\Filament\Resources\MediaBeritaResource;
 use App\Filament\Resources\MediaFotoResource;
 use App\Filament\Resources\MedsosResource;
@@ -149,6 +151,10 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-user')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.rws.index'))
                                 ->url(RwResource::getUrl()),
+                            NavigationItem::make('Layanan Publik')
+                            ->icon('heroicon-o-chat-bubble-left-right')
+                            ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.layananpubliks.index'))
+                            ->url(LayananpublikResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Visi & Misi')
                         ->items([
@@ -164,6 +170,13 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-receipt-percent')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.prinsips.index'))
                                 ->url(PrinsipResource::getUrl()),
+                        ]),
+                    NavigationGroup::make('Page Struktur Desa')
+                        ->items([
+                            NavigationItem::make('Aparatur Desa')
+                                ->icon('heroicon-o-globe-alt')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.divisidesas.index'))
+                                ->url(DivisidesaResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Administrasi Desa')
                         ->items([

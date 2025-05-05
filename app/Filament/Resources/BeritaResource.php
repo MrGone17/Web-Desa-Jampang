@@ -27,7 +27,7 @@ class BeritaResource extends Resource
 
     public static function getLabel(): string
     {
-        return 'Berita ';
+        return 'Berita';
     }
 
     public static function form(Form $form): Form

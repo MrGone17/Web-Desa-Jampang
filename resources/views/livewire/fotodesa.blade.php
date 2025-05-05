@@ -34,7 +34,7 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="text-base md:text-xl text-center w-full font-semibold pt-2 break-words line-clamp-2">
+                                    <div class="text-base md:text-xl font-semibold text-center w-full pt-2 break-words line-clamp-2">
                                         {{ $album->title }}
                                     </div>
                                 </div>

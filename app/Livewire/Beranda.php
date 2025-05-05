@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Album;
 use App\Models\Berita;
 use App\Models\Kontak;
 use App\Models\Rw;
@@ -23,6 +24,7 @@ class Beranda extends Component
     public $kontakdesa;
     public $sosmed;
     public $totalPenduduk = 0;
+    public $albums;
     public function loadslider(){
         $this->slider = Slider::all();
     }
@@ -43,6 +45,9 @@ class Beranda extends Component
         ->orderBy('publish_date', 'desc')
         ->get();
     }
+    public function loadalbum () {
+        $this->albums = Album::latest()->take(6)->get();
+    }
     public function loadkontakdesa () {
         $this->kontakdesa = Kontak::where('is_active', true)->get();
     }
@@ -54,6 +59,7 @@ class Beranda extends Component
     }
     public function mount(){
         $this->loadslider();
+        $this->loadalbum();
         $this->loadsambutan();
         $this->loaddatapenduduk();
         $this->loadsosmed();

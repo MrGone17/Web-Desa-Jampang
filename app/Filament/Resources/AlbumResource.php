@@ -62,6 +62,7 @@ class AlbumResource extends Resource
                                 ->required()
                                 ->directory('album-photos')
                                 ->image()
+                                ->imageEditor()
                                 ->placeholder('Seret atau klik untuk masukan gambar (maximal 2048kb / 2MB)')
                                 ->imageEditorAspectRatios([
                                     null,
