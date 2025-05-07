@@ -9,14 +9,16 @@
             </div>
         </section>
         <!-- Struktur Organisasi -->
-        <section class="mx-auto py-16 px-5 md:px-16 bg-white">
+        @foreach ($struktur as $item)
+        <section class="mx-auto py-5 md:py-16 px-5 md:px-16 bg-white">
             <div class="px-4 py-2 flex items-center justify-center mb-6">
-                <h1 class="bg-primary text-white text-xs md:text-3xl text-center font-bold px-6 py-2 rounded-lg" data-aos="fade-right" data-aos-duration="1000">
-                    Struktur Desa
+                <h1 class="bg-primary text-white text-xs md:text-4xl text-center font-bold px-6 py-2 rounded-lg" data-aos="fade-right" data-aos-duration="1000">
+                    STRUKTUR PEMERINTAHAN DESA JAMPANG
                 </h1>
             </div>  
-            <img src="{{ asset('image/struktur.png') }}" alt="Struktur Organisasi" class="w-full max-h-[700px] object-contain mx-auto rounded-lg ">
+            <img src="{{ asset('storage/' . $item->cover_image) }}" alt="{{ $item->title }}" alt="Struktur Organisasi" class="w-full max-h-[700px] object-contain mx-auto rounded-lg ">
         </section>
+        @endforeach
     
         <!-- Daftar Stuktur Utama -->
         @foreach ($divisi as $alpha)

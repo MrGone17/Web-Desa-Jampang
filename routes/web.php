@@ -8,6 +8,8 @@ use App\Livewire\Beranda;
 
 use App\Livewire\Berita;
 use App\Livewire\Berita\DetailBerita;
+use App\Livewire\Formlayanan;
+use App\Livewire\Formlayanan\Layanansuratnikah;
 use App\Livewire\Fotodesa;
 use App\Livewire\Fotodesa\DetailFotodesa;
 use App\Livewire\Kepengurusansurat;
@@ -45,6 +47,8 @@ Route::get('/Videodesa', Videodesa::class)->name('Videodesa');
 Route::get('/Bansos', Bansos::class)->name('Bansos');
 Route::get('/Layananpublik', Layananpublik::class)->name('Layananpublik');
 Route::get('/Kontak', Kontak::class)->name('Kontak');
+Route::get('/Formlayanan', Formlayanan::class)->name('Formlayanan');
+Route::get('/Formlayanan/Layanansuratnikah', Layanansuratnikah::class)->name('Formsuratnikah');
 
 // Route KalenderAkademik
 

@@ -50,6 +50,7 @@ use App\Filament\Resources\SambutanResource;
 use App\Filament\Resources\SeragamResource;
 use App\Filament\Resources\SliderResource;
 use App\Filament\Resources\SosmedResource;
+use App\Filament\Resources\StrukturpemdesaResource;
 use App\Filament\Resources\StrukturResource;
 use App\Filament\Resources\SyaratketentuanResource;
 use App\Filament\Resources\SyaratppdbResource;
@@ -173,6 +174,10 @@ class AdminPanelProvider extends PanelProvider
                         ]),
                     NavigationGroup::make('Page Struktur Desa')
                         ->items([
+                            NavigationItem::make('Gambar Struktur Desa')
+                                ->icon('heroicon-o-globe-alt')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.strukturpemdesas.index'))
+                                ->url(StrukturpemdesaResource::getUrl()),
                             NavigationItem::make('Aparatur Desa')
                                 ->icon('heroicon-o-globe-alt')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.divisidesas.index'))

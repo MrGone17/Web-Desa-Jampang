@@ -1,4 +1,4 @@
-<div>
+<div class="overflow-hidden">
     <section class="relative bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('image/berita.jpg') }}');">
         <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
         <div class="relative container mx-auto px-6 md:px-20 py-16">
@@ -66,7 +66,13 @@
             <h1 class="text-2xl md:text-4xl px-5 md:ml-10 text-slate-800 font-bold text-left mb-3 md:mb-6 mt-5" data-aos="fade-right" data-aos-duration="1000">
               Persyaratan Pengajuan Surat
             </h1>
-            <div class="hs-carousel overflow-hidden m-auto w-full h-auto">
+            <div data-hs-carousel='{
+              "loadingClasses": "opacity-0",
+              "dotsItemClasses": "hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer dark:border-neutral-600 dark:hs-carousel-active:bg-blue-500 dark:hs-carousel-active:border-blue-500",
+              "isAutoPlay": true,
+              "autoPlayInterval": 5000,
+              "isInfiniteLoop": true,
+              "slidesQty": 1}' >
               <div class="relative min-h-72">
                 <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap opacity-0 cursor-grab hs-carousel-dragging:transition-none hs-carousel-dragging:cursor-grabbing transition-transform duration-700">
                   @foreach ($pengajuan as $index => $item)
@@ -111,7 +117,7 @@
             <h2 class="text-white w-3/5 m-auto font-bold text-xl md:text-2xl mb-6">
                 Buat Surat Online Dapat Melalui Tombol DIbawah Ini !
             </h2>
-            <a href="#"
+            <a href="{{ route('Formlayanan') }}"
                 class="inline-block px-16 py-4 bg-white text-green-700 font-bold text-2xl md:text-lg rounded-xl hover:bg-green-200 transition-all duration-300">
                 BUAT SEKARANG!
             </a>

@@ -13,7 +13,7 @@ class LayananpublikObserver
      */
     public function created(Layananpublik $laporan): void
     {
-        Mail::to('mrunix32@gmail.com')->send(new LaporanMasukMail($laporan));
+        Mail::to('gilangelha277@gmail.com')->send(new LaporanMasukMail($laporan));
     }
 
     /**
