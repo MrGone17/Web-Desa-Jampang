@@ -52,6 +52,7 @@ use App\Filament\Resources\SliderResource;
 use App\Filament\Resources\SosmedResource;
 use App\Filament\Resources\StrukturpemdesaResource;
 use App\Filament\Resources\StrukturResource;
+use App\Filament\Resources\SuratnikahResource;
 use App\Filament\Resources\SyaratketentuanResource;
 use App\Filament\Resources\SyaratppdbResource;
 use App\Filament\Resources\TentangdesaResource;
@@ -137,6 +138,10 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-home')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard'))
                                 ->url(fn(): string => Dashboard::getUrl()),
+                            NavigationItem::make('Surat Nikah')
+                                ->icon('heroicon-o-arrows-right-left')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratnikahs.index'))
+                                ->url(SuratnikahResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Beranda')
                         ->items([
@@ -175,11 +180,11 @@ class AdminPanelProvider extends PanelProvider
                     NavigationGroup::make('Page Struktur Desa')
                         ->items([
                             NavigationItem::make('Gambar Struktur Desa')
-                                ->icon('heroicon-o-globe-alt')
+                                ->icon('heroicon-o-rectangle-group')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.strukturpemdesas.index'))
                                 ->url(StrukturpemdesaResource::getUrl()),
                             NavigationItem::make('Aparatur Desa')
-                                ->icon('heroicon-o-globe-alt')
+                                ->icon('heroicon-o-user-group')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.divisidesas.index'))
                                 ->url(DivisidesaResource::getUrl()),
                         ]),

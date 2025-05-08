@@ -1,4 +1,4 @@
-<div class="">
+<div class="overflow-hidden">
   <!-- Slider -->
   <div data-hs-carousel='{
     "loadingClasses": "opacity-0",

@@ -50,5 +50,7 @@ Route::get('/Kontak', Kontak::class)->name('Kontak');
 Route::get('/Formlayanan', Formlayanan::class)->name('Formlayanan');
 Route::get('/Formlayanan/Layanansuratnikah', Layanansuratnikah::class)->name('Formsuratnikah');
 
+Route::post('/surat-nikah', [Layanansuratnikah::class, 'store'])->name('surat-nikah.store');
+
 // Route KalenderAkademik
 
