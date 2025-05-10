@@ -27,14 +27,14 @@
 <body class="bg-slate-100">
 
     @livewireScripts
-    @if (!request()->routeIs('filament.admin.auth.login'))
+    @if (!request()->routeIs('filament.admin.auth.login') && !request()->routeIs('login') && !request()->routeIs('register'))
         @livewire('navbar')
     @endif
     <div>
         {{ $slot }}
     </div>
 
-    @if (!request()->routeIs('filament.admin.auth.login'))
+    @if (!request()->routeIs('filament.admin.auth.login') && !request()->routeIs('login') && !request()->routeIs('register'))
         @livewire('footer')
     @endif
 

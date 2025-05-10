@@ -61,6 +61,7 @@ use App\Filament\Resources\UmkmResource;
 use App\Filament\Resources\VideoResource;
 use App\Filament\Resources\ViewResource;
 use App\Filament\Resources\VisiMisiResource;
+use App\Filament\Resources\WargaResource;
 use App\Livewire\Auth\Login;
 use App\Models\KalenderAgenda;
 use Filament\Http\Middleware\Authenticate;
@@ -138,8 +139,15 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-home')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard'))
                                 ->url(fn(): string => Dashboard::getUrl()),
+                            NavigationItem::make('Akun Warga')
+                                ->icon('heroicon-o-user-circle')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.wargas.index'))
+                                ->url(WargaResource::getUrl()),
+                        ]),
+                    NavigationGroup::make('Pengajuan Surat Warga')
+                        ->items([
                             NavigationItem::make('Surat Nikah')
-                                ->icon('heroicon-o-arrows-right-left')
+                                ->icon('heroicon-o-wallet')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratnikahs.index'))
                                 ->url(SuratnikahResource::getUrl()),
                         ]),

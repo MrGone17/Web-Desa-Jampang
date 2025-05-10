@@ -1,0 +1,82 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\Profil as ModelsProfil;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class Profil extends Component
+{
+    use WithFileUploads;
+
+    public $nik, $alamat, $tempat_lahir, $tanggal_lahir,$nama;
+    public $telepon, $jenis_kelamin, $foto,$foto_path;
+
+    public function save()
+    {
+        $this->validate([
+            'alamat' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'telepon' => 'nullable',
+            'jenis_kelamin' => 'required|in:L,P',
+            'foto' => 'nullable|image|max:2048',
+        ]);
+
+        $profil = ModelsProfil::firstOrNew(['warga_id' => Auth::guard('warga')->id()]);
+        if ($this->foto) {
+            $this->validate([
+                'foto' => 'image|max:2048',
+            ]);
+            $fotoPath = $this->foto->store('foto-profil', 'public');
+        } else {
+            $fotoPath = $this->foto_path; // gunakan path lama
+        }
+
+        ModelsProfil::updateOrCreate(
+        ['warga_id' => Auth::guard('warga')->id()],
+        [
+            'alamat' => $this->alamat,
+            'tempat_lahir' => $this->tempat_lahir,
+            'tanggal_lahir' => $this->tanggal_lahir,
+            'telepon' => $this->telepon,
+            'jenis_kelamin' => $this->jenis_kelamin,
+            'foto' => $fotoPath,
+        ]
+    );
+
+        session()->flash('message', 'Profil berhasil disimpan.');
+    }
+    public function loadnama(){
+         $user = Auth::guard('warga')->user();
+    
+        if ($user) {
+            $this->nama = $user->name;
+            $this->nik = $user->nik;
+        } else {
+            $this->nama = 'Tidak ditemukan';
+            $this->nik = 'Tidak ditemukan';
+        }
+    }
+    public function mount (){
+        $this->loadnama();
+        if (!Auth::guard('warga')->check()) {
+            return redirect()->route('login'); // Jika belum login, redirect ke login
+        }
+        $profil = ModelsProfil::where('warga_id', Auth::guard('warga')->id())->first();
+        if ($profil) {
+            $this->alamat = $profil->alamat;
+            $this->tempat_lahir = $profil->tempat_lahir;
+            $this->tanggal_lahir = $profil->tanggal_lahir;
+            $this->telepon = $profil->telepon;
+            $this->jenis_kelamin = $profil->jenis_kelamin;
+            $this->foto_path = $profil->foto; 
+        }
+    }
+    public function render()
+    {
+        return view('livewire.profil');
+    }
+}

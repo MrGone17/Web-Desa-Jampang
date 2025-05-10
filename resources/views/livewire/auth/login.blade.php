@@ -1,81 +1,91 @@
-<div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-    <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-xl flex justify-center flex-1">
+<div class="min-h-screen bg-gradient-to-br from-blue-700 to-blue-900 text-white flex justify-center items-center py-10 px-4">
+    <div class="max-w-screen-xl bg-white/10 border border-white/20 backdrop-blur-lg shadow-2xl rounded-xl flex justify-center flex-1 overflow-hidden">
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-            <div class="flex justify-center items-left">
-                <img src="{{ asset('image/bogor.png') }}" class="w-12 h-12 md:w-20 md:h-20" />
+            <div class="flex justify-center items-center mb-6">
+                <img src="{{ asset('image/bogor.png') }}" class="w-16 h-16 md:w-20 md:h-20" />
             </div>
+
             <div class="flex flex-col items-center">
-                <div class="w-full flex-1">
-                    <div class="flex flex-col items-center">
+                <div class="w-full">
+                    <div class="text-center mb-6">
                         @if (session('error'))
-                            <div class="bg-rose-500 text-white p-2 rounded mb-4">
+                            <div class="bg-red-600/80 text-white p-2 rounded mb-4 text-sm shadow">
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <div class="my-6 border-b text-center">
-                            <h1 class="text-4xl font-bold text-center mb-4">
-                                Login CMS Desa Jampang
-                            </h1>
-                            <h3
-                                class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                                Login dengan E-mail Admin
-                            </h3>
-                        </div>
+                        <h1 class="text-3xl font-extrabold mb-2 drop-shadow">Login CMS Desa Jampang</h1>
+                        <p class="text-sm text-blue-200 tracking-wide font-medium">Login dengan E-mail Admin</p>
+                    </div>
 
-                        <form wire:submit.prevent="login" class="mx-auto max-w-xs">
+                    <form wire:submit.prevent="login" class="mx-auto max-w-xs space-y-5">
+                        <div>
                             <input wire:model="email"
-                                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                                class="w-full px-5 py-3 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 text-sm focus:outline-none focus:ring-2 focus:ring-white"
                                 type="email" placeholder="Email" />
                             @error('email')
-                                <span class="text-rose-600 text-sm">{{ $message }}</span>
+                                <span class="text-red-300 text-sm">{{ $message }}</span>
                             @enderror
+                        </div>
 
+                        <div>
                             <input wire:model="password"
-                                class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                                class="w-full px-5 py-3 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 text-sm focus:outline-none focus:ring-2 focus:ring-white"
                                 type="password" placeholder="Password" />
                             @error('password')
-                                <span class="text-rose-600 text-sm">{{ $message }}</span>
+                                <span class="text-red-300 text-sm">{{ $message }}</span>
                             @enderror
+                        </div>
 
-                            <div class="mt-5">
-                                <label for="remember" class="inline-flex items-center">
-                                    <input wire:model="remember" type="checkbox" id="remember" class="form-checkbox">
-                                    <span class="ml-2 text-sm">Ingat saya</span>
-                                </label>
-                            </div>
+                        <div class="flex items-center">
+                            <input wire:model="remember" type="checkbox" id="remember"
+                                class="form-checkbox text-blue-500 bg-white/10 border-white/30 focus:ring-white">
+                            <label for="remember" class="ml-2 text-sm text-white/80">Ingat saya</label>
+                        </div>
 
-                            <button
-                                class="mt-5 tracking-wide font-semibold bg-indigo-500 text-white w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                                <svg class="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                                    <circle cx="8.5" cy="7" r="4" />
-                                    <path d="M20 8v6M23 11h-6" />
-                                </svg>
-                                <span class="ml-2">
-                                    Login
-                                </span>
-                            </button>
-                        </form>
-
-                        {{-- <p class="mt-6 text-xs text-gray-600 text-center">
-                            I agree to abide by Cartesian Kinetics
-                            <a href="#" class="border-b border-gray-500 border-dotted">
-                                Terms of Service
-                            </a>
-                            and its
-                            <a href="#" class="border-b border-gray-500 border-dotted">
-                                Privacy Policy
-                            </a>
-                        </p> --}}
-                    </div>
+                        <button
+                            class="w-full bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white py-3 rounded-lg font-semibold flex items-center justify-center shadow-md">
+                            <svg class="w-6 h-6 -ml-1 mr-2" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                                <circle cx="8.5" cy="7" r="4" />
+                                <path d="M20 8v6M23 11h-6" />
+                            </svg>
+                            Login
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="flex-1 bg-green-50 text-center hidden lg:flex">
-            <div class="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat rounded-xl overflow-hidden"
-                style="background-image: url('{{ asset('image/desadigital.jpg') }}');">
-            </div>
-        </div>
+
+        <div class="flex-1 hidden lg:flex items-center justify-center relative overflow-hidden bg-gradient-to-tr from-blue-700 to-blue-900">
+            <!-- Blob animation -->
+            <div class="absolute w-[600px] h-[600px] bg-blue-300 opacity-30 rounded-full mix-blend-lighten animate-blob animation-delay-2000"></div>
+            <div class="absolute w-[500px] h-[500px] bg-blue-400 opacity-20 rounded-full mix-blend-lighten animate-blob"></div>
+            <div class="absolute w-[400px] h-[400px] bg-blue-500 opacity-25 rounded-full mix-blend-lighten animate-blob animation-delay-4000"></div>
+        </div>        
     </div>
+    <style>
+        @keyframes blob {
+          0%, 100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+        }
+        
+        .animate-blob {
+          animation: blob 8s infinite ease-in-out;
+        }
+        
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+    </style>        
 </div>

@@ -3,6 +3,8 @@
 
 use App\Livewire\Administrasipenduduk;
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\WargaLogin;
+use App\Livewire\Auth\WargaRegister;
 use App\Livewire\Bansos;
 use App\Livewire\Beranda;
 
@@ -18,6 +20,7 @@ use App\Livewire\Layananpublik;
 use App\Livewire\Potensidesa;
 use App\Livewire\Potensidesa\DetailPariwisata;
 use App\Livewire\Potensidesa\DetailUmkm;
+use App\Livewire\Profil;
 use App\Livewire\Strukturdesa;
 use App\Livewire\Videodesa;
 use App\Livewire\Visimisi;
@@ -30,6 +33,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/admin/login', Login::class)->name('filament.admin.auth.login');
+Route::get('/login', WargaLogin::class)->name('login');
+Route::get('/register', WargaRegister::class)->name('register');
+
 
 Route::get('/', Beranda::class)->name('Beranda');
 Route::get('/Visimisi', Visimisi::class)->name('Visimisi');
@@ -45,6 +51,7 @@ Route::get('/Fotodesa', Fotodesa::class)->name('Fotodesa');
 Route::get('/fotodesa/{slug}', DetailFotodesa::class)->name('detail-fotodesa');
 Route::get('/Videodesa', Videodesa::class)->name('Videodesa');
 Route::get('/Bansos', Bansos::class)->name('Bansos');
+Route::get('/Profil', Profil::class)->name('Profil');
 Route::get('/Layananpublik', Layananpublik::class)->name('Layananpublik');
 Route::get('/Kontak', Kontak::class)->name('Kontak');
 Route::get('/Formlayanan', Formlayanan::class)->name('Formlayanan');
