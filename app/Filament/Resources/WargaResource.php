@@ -51,6 +51,53 @@ class WargaResource extends Resource
                     ->autocomplete('new-password')
                     ->extraAttributes(['placeholder' => 'Biarkan kosong jika tidak ingin mengubah'])
                     ->maxLength(255),
+                    Forms\Components\Section::make('Profil Warga')
+                        ->relationship('profil')
+                        ->label('Profil User')
+                        ->schema([
+                            Forms\Components\FileUpload::make('foto')
+                                ->required()
+                                ->label('Foto Profil')
+                                ->directory('foto-profil')
+                                ->image()
+                                ->imageEditor()
+                                ->columnSpan('full')
+                                ->placeholder('Seret atau klik untuk masukan gambar (maximal 2048kb / 2MB)')
+                                ->imageEditorAspectRatios([
+                                    null,
+                                    '16:9',
+                                    '4:3',
+                                    '1:1',
+                                ])
+                                ->maxSize(2048)
+                                ->imagePreviewHeight('155'),
+                            Forms\Components\TextInput::make('warga_id')
+                                ->required()
+                                ->readOnly()
+                                ->label('Warga ID'),
+                            Forms\Components\Textarea::make('alamat')
+                                ->label('Alamat Warga')    
+                                ->required(),
+
+                            Forms\Components\TextInput::make('tempat_lahir')
+                                ->required(),
+
+                            Forms\Components\DatePicker::make('tanggal_lahir')
+                                ->required(),
+
+                            Forms\Components\TextInput::make('telepon')
+                                ->tel()
+                                ->required(),
+
+                            Forms\Components\Select::make('jenis_kelamin')
+                                ->options([
+                                    'L' => 'Laki-laki',
+                                    'P' => 'Perempuan',
+                                ])
+                                ->required(),
+                        ]) 
+                        ->columns(2)
+                        ->columnSpan('full')
             ]);
     }
 

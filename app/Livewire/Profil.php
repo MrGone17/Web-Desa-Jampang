@@ -13,6 +13,7 @@ class Profil extends Component
 
     public $nik, $alamat, $tempat_lahir, $tanggal_lahir,$nama;
     public $telepon, $jenis_kelamin, $foto,$foto_path;
+    public bool $showSuccessModal = false;
 
     public function save()
     {
@@ -35,19 +36,19 @@ class Profil extends Component
             $fotoPath = $this->foto_path; // gunakan path lama
         }
 
-        ModelsProfil::updateOrCreate(
-        ['warga_id' => Auth::guard('warga')->id()],
-        [
-            'alamat' => $this->alamat,
-            'tempat_lahir' => $this->tempat_lahir,
-            'tanggal_lahir' => $this->tanggal_lahir,
-            'telepon' => $this->telepon,
-            'jenis_kelamin' => $this->jenis_kelamin,
-            'foto' => $fotoPath,
-        ]
-    );
+            ModelsProfil::updateOrCreate(
+            ['warga_id' => Auth::guard('warga')->id()],
+            [
+                'alamat' => $this->alamat,
+                'tempat_lahir' => $this->tempat_lahir,
+                'tanggal_lahir' => $this->tanggal_lahir,
+                'telepon' => $this->telepon,
+                'jenis_kelamin' => $this->jenis_kelamin,
+                'foto' => $fotoPath,
+            ]
+        );
 
-        session()->flash('message', 'Profil berhasil disimpan.');
+        $this->showSuccessModal = true;
     }
     public function loadnama(){
          $user = Auth::guard('warga')->user();

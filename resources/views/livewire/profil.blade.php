@@ -8,6 +8,26 @@
         </div>
     </section>
     <div class="px-10 md:px-20 bg-white relative">
+        <div>
+            @if ($showSuccessModal)
+                <div x-data="{ open: true }" x-show="open" x-transition.opacity.duration.300ms class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+                    <div x-show="open" x-transition.scale.duration.300ms class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full text-center">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Profil Berhasil Disimpan</h2>
+                        <p class="text-base sm:text-lg text-gray-600 mb-6">Anda sekarang dapat mengakses halaman <a href="{{ route('Formlayanan') }}" class="text-blue-600 underline hover:text-green-800"> Pembuatan Surat Online</a>.</p>
+                        <button wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            @endif
+        </div>
+
+
         <div wire:loading wire:target="save, foto" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
             <div class="flex flex-col items-center h-full justify-center">
                 <img src="{{ asset('image/bogor.png') }}" alt="Loading..." class="h-32 w-32 animate-pulse mb-4">
@@ -80,10 +100,6 @@
                                     Simpan Data
                                 </button>
                             </div>
-
-                            @if (session()->has('message'))
-                                <div class="text-green-600 mt-2">{{ session('message') }}</div>
-                            @endif
                         </form>
                     </div>
                 </div>
