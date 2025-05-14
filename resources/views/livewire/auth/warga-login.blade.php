@@ -8,6 +8,16 @@
             </div>
         @endfor
     </div>
+    <div wire:loading wire:target="login" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+        <div class="flex flex-col items-center h-full justify-center">
+            <img src="{{ asset('image/bogor.png') }}" alt="Loading..." class="h-32 w-32 animate-pulse mb-4">
+            <div class="flex space-x-2">
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce"></span>
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.2s]"></span>
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.4s]"></span>
+            </div>
+        </div>
+    </div>  
 
     <div class="backdrop-blur-lg bg-white/10 border border-white/30 rounded-2xl shadow-2xl p-8 w-full max-w-md z-10">
         <div class="flex justify-center items-center">

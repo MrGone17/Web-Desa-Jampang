@@ -23,9 +23,14 @@ class WargaLogin extends Component
             'password' => $this->password,
         ])) {
             session()->flash('success', 'Login berhasil!');
-            
-            // Cek apakah pengguna berhasil login, lalu arahkan ke Formlayanan
-            return redirect()->route('Profil');
+             $warga = Auth::guard('warga')->user();
+
+        // Cek apakah sudah ada profil terkait
+            if ($warga->profil) {
+                return redirect()->route('Formlayanan');
+            } else {
+                return redirect()->route('Profil');
+            }
         }
 
         session()->flash('error', 'Email atau password salah');

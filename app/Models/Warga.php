@@ -28,4 +28,8 @@ class Warga extends Authenticatable
     {
         return $this->hasOne(Profil::class);
     }
+    public function suratnikahs()
+    {
+        return $this->hasMany(Suratnikah::class);
+    }
 }

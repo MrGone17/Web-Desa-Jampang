@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('suratnikahs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('warga_id')->constrained('wargas')->onDelete('cascade');
             $table->string('nama_lengkap');
             $table->string('nik');
             $table->date('tgl_lahir');

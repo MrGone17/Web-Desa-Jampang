@@ -8,6 +8,16 @@
         </div>
     </section>
     <section class="bg-white py-12">
+        <div wire:loading wire:target="submit, kk_pdf, kk_foto" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+            <div class="flex flex-col items-center h-full justify-center">
+                <img src="{{ asset('image/bogor.png') }}" alt="Loading..." class="h-32 w-32 animate-pulse mb-4">
+                <div class="flex space-x-2">
+                    <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce"></span>
+                    <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.2s]"></span>
+                    <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.4s]"></span>
+                </div>
+            </div>
+        </div>   
         <div class="container mx-auto px-6 md:px-20">
             <div class="bg-gray-50 shadow-xl rounded-2xl p-8 md:p-12">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Berikut</h3>
@@ -15,13 +25,13 @@
                     <!-- Nama Lengkap -->
                     <div>
                         <label class="block mb-1 text-sm font-medium text-gray-700">Nama Lengkap</label>
-                        <input type="text" name="nama_lengkap" wire:model="nama_lengkap" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama lengkap" required>
+                        <input type="text" name="nama_lengkap" wire:model="nama_lengkap" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama lengkap" readonly>
                     </div>
 
                     <!-- NIK -->
                     <div>
                         <label class="block mb-1 text-sm font-medium text-gray-700">NIK</label>
-                        <input type="text" wire:model="nik" name="nik" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan NIK" required>
+                        <input type="text" wire:model="nik" name="nik" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan NIK" readonly>
                     </div>
 
                     <!-- Tanggal Lahir -->
@@ -137,6 +147,44 @@
                         </div>
                     @endif
                 </form>
+            </div>
+            <div class="mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
+                <h2 class="text-xl font-bold text-white px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-[#0F5C34] to-[#009A4B]">
+                    Riwayat Pengajuan Surat Nikah
+                </h2>
+
+                @if ($suratNikahList->isEmpty())
+                    <div class="px-6 py-4 text-gray-600">Belum ada data pengajuan.</div>
+                @else
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-700">
+                            <thead class="bg-green-100 text-gray-900">
+                                <tr>
+                                    <th class="px-6 py-3 font-semibold">Nama</th>
+                                    <th class="px-6 py-3 font-semibold">NIK</th>
+                                    <th class="px-6 py-3 font-semibold">Tanggal Nikah</th>
+                                    <th class="px-6 py-3 font-semibold">Alamat</th>
+                                    <th class="px-6 py-3 font-semibold">PDF</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-100">
+                                @foreach ($suratNikahList as $surat)
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4">{{ $surat->nama_lengkap }}</td>
+                                        <td class="px-6 py-4">{{ $surat->nik }}</td>
+                                        <td class="px-6 py-4">{{ \Carbon\Carbon::parse($surat->tgl_nikah)->format('d M Y') }}</td>
+                                        <td class="px-6 py-4">{{ $surat->alamat }}</td>
+                                        <td class="px-6 py-4">
+                                            <a href="{{ Storage::url($surat->kk_pdf) }}" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium underline">
+                                                Lihat PDF
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

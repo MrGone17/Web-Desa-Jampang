@@ -11,6 +11,7 @@ class Suratnikah extends Model
     
     protected $fillable = [
         'nama_lengkap',
+        'warga_id',
         'nik',
         'tgl_lahir',
         'alamat',
@@ -19,4 +20,8 @@ class Suratnikah extends Model
         'kk_pdf',
         'kk_foto'
     ];
+    public function warga()
+    {
+        return $this->belongsTo(Warga::class);
+    }
 }

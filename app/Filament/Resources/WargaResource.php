@@ -38,8 +38,8 @@ class WargaResource extends Resource
                 Forms\Components\TextInput::make('nik')
                     ->label('Nomor Induk Kependudukan (NIK)')
                     ->required()
-                    ->unique() 
-                    ->maxLength(16)  
+                    ->maxLength(16) 
+                    ->unique(ignoreRecord: true) 
                     ->numeric() 
                     ->extraAttributes(['placeholder' => 'Masukkan NIK']),
                 Forms\Components\TextInput::make('password')

@@ -17,7 +17,11 @@ class SuratnikahResource extends Resource
 {
     protected static ?string $model = Suratnikah::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $pluralModelLabel = 'Syrat';
+    public static function getLabel(): string
+    {
+        return 'Surat Nikah';
+    }
 
     public static function form(Form $form): Form
     {

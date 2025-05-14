@@ -2,7 +2,10 @@
 
 namespace App\Livewire\Formlayanan;
 
+use App\Mail\KonfirmasiSuratNikahMail;
 use App\Models\Suratnikah;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -12,20 +15,31 @@ class Layanansuratnikah extends Component
 
     public $nama_lengkap, $nik, $tgl_lahir, $alamat, $nama_pasangan, $tgl_nikah, $kk_foto, $kk_pdf;
     public $formKey;
-
-    public function mount()
-    {
-        $this->formKey = now()->timestamp;
+    public $suratNikahList = [];
+    public function loaddata(){
+         $user = Auth::guard('warga')->user();
+    
+        if ($user) {
+            $this->nama_lengkap = $user->name;
+            $this->nik = $user->nik;
+            $this->tgl_lahir = optional($user->profil)->tanggal_lahir ?? 'Belum diisi';
+        } else {
+            $this->nama_lengkap = 'Tidak ditemukan';
+            $this->nik = 'Tidak ditemukan';
+        }
+    }
+    public function loadsuratnikah(){
+        $this->suratNikahList = Suratnikah::where('warga_id', Auth::guard('warga')->id())->latest()->get();
     }
     protected $rules = [
         'nama_lengkap' => 'required|string',
-            'nik' => 'required|string',
-            'tgl_lahir' => 'required|date',
-            'alamat' => 'required|string',
-            'nama_pasangan' => 'required|string',
-            'tgl_nikah' => 'required|date',
-            'kk_foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'kk_pdf' => 'required|file|mimes:pdf|max:2048',
+        'nik' => 'required|string',
+        'tgl_lahir' => 'required|date',
+        'alamat' => 'required|string',
+        'nama_pasangan' => 'required|string',
+        'tgl_nikah' => 'required|date',
+        'kk_foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        'kk_pdf' => 'required|file|mimes:pdf|max:2048',
     ];
     public function formreset(){
         $this->nama_lengkap = null;
@@ -47,6 +61,7 @@ class Layanansuratnikah extends Component
         $pdf = $this->kk_pdf->store('uploads/kk_pdf', 'public');
 
         Suratnikah::create([
+            'warga_id' => Auth::guard('warga')->id(),
             'nama_lengkap' => $this->nama_lengkap,
             'nik' => $this->nik,
             'tgl_lahir' => $this->tgl_lahir,
@@ -56,10 +71,32 @@ class Layanansuratnikah extends Component
             'kk_foto' => $path ,
             'kk_pdf' => $pdf ,
         ]);
+        $user = auth()->guard('warga')->user();
+
+        if ($user?->email) {
+            Mail::to($user->email)->send(
+                new KonfirmasiSuratNikahMail([
+                    'nama' => $this->nama_lengkap,
+                    'nik' => $this->nik,
+                    'pasangan' => $this->nama_pasangan,
+                    'tanggal' => $this->tgl_nikah,
+                ])
+            );
+        }
+
 
         $this->formreset();
 
         session()->flash('message', 'Laporan berhasil dikirim.');      
+    }
+    public function mount()
+    {
+        $this->loaddata();
+        if (!Auth::guard('warga')->check()) {
+            return redirect()->route('login'); // Jika belum login, redirect ke login
+        }
+        $this->formKey = now()->timestamp;
+        $this->loadsuratnikah();
     }
 
     public function render()
