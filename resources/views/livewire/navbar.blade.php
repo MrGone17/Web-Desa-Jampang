@@ -7,14 +7,43 @@
             <h2 class="text-base lg:text-xl font-serif text-white">SID Jampang</h2>
             <!-- End Logo dan Teks -->
         </div>      
-        <div class="flex justify-end items-center gap-1  md:order-3 col-span-2 ">
-            <a href="{{ route('Kontak') }}" class="hidden lg:block">
-                <button type="button"
-                    class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-md bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none focus:text-white disabled:opacity-50 disabled:pointer-events-none">
-                    Kontak
-                </button>
-            </a>
-        </div>  
+        <div class="flex justify-end items-center gap-1 md:order-3 col-span-2">
+            @if(auth('warga')->check())
+                <!-- Sudah login sebagai warga -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-md bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none">
+                        Akun Saya
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+
+                    <div x-show="open" @click.away="open = false" x-transition
+                        class="absolute right-0 mt-2 w-40 bg-[#2e8156] rounded-md shadow-lg z-50">
+                        <a href="{{ route('Profil') }}"
+                        class="block px-4 py-2 text-sm hover:text-yellow-400 text-white ">Profil</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:text-yellow-400 text-white ">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <!-- Belum login -->
+                <a href="{{ route('login') }}" class="hidden lg:block">
+                    <button type="button"
+                            class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-md bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none">
+                        Login
+                    </button>
+                </a>
+            @endif
+        </div>
+  
 
         <!-- Button Group -->
         <div class="lg:hidden flex ml-auto px-4">
@@ -113,19 +142,20 @@
                     </div>
                 </div>
                 <div class="hs-dropdown relative inline-flex">
-                    <a href="{{ route('Layananpublik') }}">
-                        <button  type="button" class="hs-dropdown-toggle w-full p-2 flex items-center font-serif text-white  hover:text-yellow-400 focus:outline-none text-sm">
-                            Layanan Publik
-                        </button>
-                    </a>
-                </div>
-                <div class="lg:hidden">
-                    <a href="{{ route('Kontak') }}">
-                        <button type="button"
-                            class="w-full p-2 flex items-center font-serif text-white  hover:text-yellow-400 focus:outline-none text-sm">
-                            Kontak
-                        </button>
-                    </a>
+                    <button type="button" class="hs-dropdown-toggle w-full p-2 flex items-center font-serif text-white  hover:text-yellow-400 focus:outline-none text-sm">
+                        Layanan Publik
+                    </button>
+            
+                    <div class="text-start hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-44 hidden z-10 mt-2 min-w-20 bg-[#2D8D5C] text-white pl-2 rounded-md" role="menu" aria-labelledby="hs-dropdown-unstyled">
+                        <div class="p-1 space-y-1">
+                            <a href="{{ route('Layananpublik') }}" class="block p-2 font-sans text-sm text-white ">
+                                Laporan Publik
+                            </a>
+                            <a href="{{ route('Kontak') }}" class="block p-2 font-sans text-sm text-white ">
+                                Kontak
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

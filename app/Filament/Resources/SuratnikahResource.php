@@ -7,6 +7,7 @@ use App\Filament\Resources\SuratnikahResource\RelationManagers;
 use App\Models\Suratnikah;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,7 +18,7 @@ class SuratnikahResource extends Resource
 {
     protected static ?string $model = Suratnikah::class;
 
-    protected static ?string $pluralModelLabel = 'Syrat';
+    protected static ?string $pluralModelLabel = 'Surat';
     public static function getLabel(): string
     {
         return 'Surat Nikah';
@@ -27,23 +28,42 @@ class SuratnikahResource extends Resource
     {
         return $form
             ->schema([
-            Forms\Components\TextInput::make('nama_lengkap')->required(),
-            Forms\Components\TextInput::make('nik')->required(),
-            Forms\Components\DatePicker::make('tgl_lahir')->required(),
-            Forms\Components\Textarea::make('alamat')->required(),
-            Forms\Components\TextInput::make('nama_pasangan')->required(),
-            Forms\Components\DatePicker::make('tgl_nikah')->required(),
-            Forms\Components\FileUpload::make('kk_foto')
-                ->image()
-                ->directory('uploads/kk_foto')
-                ->visibility('public')
-                ->imagePreviewHeight('150')
-                ->required(),
-            Forms\Components\FileUpload::make('kk_pdf')
-                ->label('Upload PDF KK')
-                ->acceptedFileTypes(['application/pdf'])
-                ->directory('uploads/kk_pdf')
-                ->visibility('public'),
+                Forms\Components\Select::make('warga_id')
+                    ->label('Nama Warga')
+                    ->relationship('warga', 'name')
+                    ->searchable()
+                    ->disabled(fn ($livewire) => $livewire instanceof EditRecord)
+                    ->reactive() // penting untuk bisa trigger afterStateUpdated
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        $warga = \App\Models\Warga::find($state);
+                        $set('nik', $warga?->nik);
+                    }),
+                Forms\Components\TextInput::make('nik')
+                    ->label('NIK')
+                    ->readOnly()
+                    ->placeholder('Akan terisi automatis sesuai nama warga yang dipilih')
+                    ->dehydrated(false)
+                    ->formatStateUsing(fn ($record) => $record?->warga?->nik),
+                Forms\Components\DatePicker::make('tanggal_lahir')
+                    ->label('Tanggal Lahir')
+                    ->readOnly()
+                    ->placeholder('Akan terisi automatis sesuai nama warga yang dipilih')
+                    ->dehydrated(false)
+                    ->formatStateUsing(fn ($record) => $record?->warga?->profil->tanggal_lahir),
+                Forms\Components\Textarea::make('alamat')->required(),
+                Forms\Components\TextInput::make('nama_pasangan')->required(),
+                Forms\Components\DatePicker::make('tgl_nikah')->required(),
+                Forms\Components\FileUpload::make('kk_foto')
+                    ->image()
+                    ->directory('uploads/kk_foto')
+                    ->visibility('public')
+                    ->imagePreviewHeight('150')
+                    ->required(),
+                Forms\Components\FileUpload::make('kk_pdf')
+                    ->label('Upload PDF KK')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->directory('uploads/kk_pdf')
+                    ->visibility('public'),
         ]);
     }
 
@@ -51,9 +71,12 @@ class SuratnikahResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_lengkap')->searchable(),
-                Tables\Columns\TextColumn::make('nik'),
-                Tables\Columns\TextColumn::make('tgl_lahir'),
+                Tables\Columns\TextColumn::make('warga_id')
+                ->label('Nama Warga')
+                ->formatStateUsing(fn ($state, $record) => $record->warga?->name ?? '-'),
+                Tables\Columns\TextColumn::make('warga.nik')
+                ->label('NIK'),
+                Tables\Columns\TextColumn::make('warga.profil.tanggal_lahir'),
                 Tables\Columns\TextColumn::make('tgl_nikah'),
 
                 // Preview & download KK foto

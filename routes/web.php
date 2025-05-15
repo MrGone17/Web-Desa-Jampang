@@ -24,7 +24,8 @@ use App\Livewire\Profil;
 use App\Livewire\Strukturdesa;
 use App\Livewire\Videodesa;
 use App\Livewire\Visimisi;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -35,6 +36,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin/login', Login::class)->name('filament.admin.auth.login');
 Route::get('/login', WargaLogin::class)->name('login');
 Route::get('/register', WargaRegister::class)->name('register');
+Route::post('/logout', function (Request $request) {
+    Auth::guard('warga')->logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/login'); // arahkan ke halaman home atau login
+})->name('logout');
 
 
 Route::get('/', Beranda::class)->name('Beranda');
