@@ -49,13 +49,15 @@
                         </h1>
                         <!-- Form Profil Warga -->
                         <form wire:submit.prevent="save" class="space-y-4" enctype="multipart/form-data">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                                <input type="text" wire:model="nama" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Nama lengkap warga" readonly>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Nomor Induk Kependudukan</label>
-                                <input type="text" wire:model="nik" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Nama lengkap warga" readonly>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                                    <input type="text" wire:model="nama" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Nama lengkap warga" readonly>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Nomor Induk Kependudukan</label>
+                                    <input type="text" wire:model="nik" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Nama lengkap warga" readonly>
+                                </div>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Alamat</label>
@@ -77,6 +79,41 @@
                                     @error('tanggal_lahir') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                                 </div>
                             </div>
+                             <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
+                                    <select wire:model="jenis_kelamin" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                    @error('jenis_kelamin') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Agama</label>
+                                    <select wire:model="agama" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="islam">Islam</option>
+                                        <option value="kristen">Kristen</option>
+                                    </select>
+                                    @error('agama') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Pekerjaan</label>
+                                    <input type="text" wire:model="pekerjaan" class="mt-1 block w-full border border-gray-300 rounded-md p-2" placeholder="Pekerjaan Warga" >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">kewarganegaraan</label>
+                                    <select wire:model="kewarganegaraan" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="WNI">Warga Negara Indonesia</option>
+                                        <option value="WNA">Warga Negara Asing</option>
+                                    </select>
+                                    @error('kewarganegaraan') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
@@ -84,17 +121,6 @@
                                     placeholder="08xxxxxxxxxx">
                                 @error('telepon') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                             </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
-                                <select wire:model="jenis_kelamin" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
-                                    <option value="">-- Pilih --</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                                @error('jenis_kelamin') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
                             <div>
                                 <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md shadow">
                                     Simpan Data

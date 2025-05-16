@@ -7,7 +7,7 @@
             </div>
         </div>
     </section>
-    <section class="bg-white py-12">
+    <section class="bg-blue-50 py-12">
         <div wire:loading wire:target="submit, kk_pdf, kk_foto" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
             <div class="flex flex-col items-center h-full justify-center">
                 <img src="{{ asset('image/bogor.png') }}" alt="Loading..." class="h-32 w-32 animate-pulse mb-4">
@@ -37,13 +37,13 @@
                     <!-- Tanggal Lahir -->
                     <div>
                         <label class="block mb-1 text-sm font-medium text-gray-700">Tanggal Lahir</label>
-                        <input type="date" wire:model="tgl_lahir" name="tgl_lahir" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <input type="date" wire:model="tgl_lahir" name="tgl_lahir" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
                     </div>
 
                     <!-- Alamat -->
                     <div>
                         <label class="block mb-1 text-sm font-medium text-gray-700">Alamat</label>
-                        <textarea name="alamat" wire:model="alamat" rows="3" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan alamat lengkap" required></textarea>
+                        <textarea name="alamat" wire:model="alamat" rows="2" class="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan alamat lengkap" readonly></textarea>
                     </div>
 
                     <!-- Nama Pasangan -->
@@ -148,8 +148,8 @@
                     @endif
                 </form>
             </div>
-            <div class="mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-                <h2 class="text-xl font-bold text-white px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-[#0F5C34] to-[#009A4B]">
+            <div class="mt-10 bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
+                <h2 class="text-xl font-bold text-white px-6 py-4 bg-gradient-to-r from-[#0F5C34] to-[#009A4B]">
                     Riwayat Pengajuan Surat Nikah
                 </h2>
 
@@ -157,7 +157,7 @@
                     <div class="px-6 py-4 text-gray-600">Belum ada data pengajuan.</div>
                 @else
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 text-sm text-left text-gray-700">
+                        <table class="min-w-full text-sm text-left text-gray-700">
                             <thead class="bg-green-100 text-gray-900">
                                 <tr>
                                     <th class="px-6 py-3 font-semibold">Nama</th>
@@ -165,19 +165,36 @@
                                     <th class="px-6 py-3 font-semibold">Tanggal Nikah</th>
                                     <th class="px-6 py-3 font-semibold">Alamat</th>
                                     <th class="px-6 py-3 font-semibold">PDF</th>
+                                    <th class="px-6 py-3 font-semibold">Status</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-100">
+                            <tbody class="divide-y divide-gray-100 bg-white">
                                 @foreach ($suratNikahList as $surat)
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4">{{ $surat->nama_lengkap }}</td>
-                                        <td class="px-6 py-4">{{ $surat->nik }}</td>
-                                        <td class="px-6 py-4">{{ \Carbon\Carbon::parse($surat->tgl_nikah)->format('d M Y') }}</td>
-                                        <td class="px-6 py-4">{{ $surat->alamat }}</td>
-                                        <td class="px-6 py-4">
-                                            <a href="{{ Storage::url($surat->kk_pdf) }}" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium underline">
+                                    <tr class="hover:bg-gray-50 transition duration-150">
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $surat->warga->name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $surat->warga->nik }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($surat->tgl_nikah)->format('d M Y') }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $surat->warga->profil->alamat }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <a href="{{ Storage::url($surat->kk_pdf) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-800 font-medium underline">
                                                 Lihat PDF
                                             </a>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            @if ($surat->status === 'diproses')
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">
+                                                    Diproses
+                                                </span>
+                                            @elseif ($surat->status === 'selesai')
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+                                                    Selesai
+                                                </span>
+                                            @else
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700">
+                                                    {{ ucfirst($surat->status) }}
+                                                </span>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -186,8 +203,7 @@
                     </div>
                 @endif
             </div>
+
         </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </div>

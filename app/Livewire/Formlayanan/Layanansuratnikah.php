@@ -23,28 +23,24 @@ class Layanansuratnikah extends Component
             $this->nama_lengkap = $user->name;
             $this->nik = $user->nik;
             $this->tgl_lahir = optional($user->profil)->tanggal_lahir ?? 'Belum diisi';
+            $this->alamat = optional($user->profil)->alamat ?? 'Belum diisi';
         } else {
             $this->nama_lengkap = 'Tidak ditemukan';
             $this->nik = 'Tidak ditemukan';
+            $this->tgl_lahir = 'Tidak ditemukan';
+            $this->alamat = 'Tidak ditemukan';
         }
     }
     public function loadsuratnikah(){
         $this->suratNikahList = Suratnikah::where('warga_id', Auth::guard('warga')->id())->latest()->get();
     }
     protected $rules = [
-        'nama_lengkap' => 'required|string',
-        'nik' => 'required|string',
-        'tgl_lahir' => 'required|date',
-        'alamat' => 'required|string',
         'nama_pasangan' => 'required|string',
         'tgl_nikah' => 'required|date',
         'kk_foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         'kk_pdf' => 'required|file|mimes:pdf|max:2048',
     ];
     public function formreset(){
-        $this->nama_lengkap = null;
-        $this->nik = null;
-        $this->alamat = null;
         $this->nama_pasangan = null;
         $this->tgl_lahir = null;
         $this->tgl_nikah = null;
@@ -62,22 +58,19 @@ class Layanansuratnikah extends Component
 
         Suratnikah::create([
             'warga_id' => Auth::guard('warga')->id(),
-            'nama_lengkap' => $this->nama_lengkap,
-            'nik' => $this->nik,
-            'tgl_lahir' => $this->tgl_lahir,
-            'alamat' => $this->alamat,
             'nama_pasangan' => $this->nama_pasangan,
             'tgl_nikah' => $this->tgl_nikah,
             'kk_foto' => $path ,
-            'kk_pdf' => $pdf ,
+            'kk_pdf' => $pdf,
+            'status' => 'diproses',
         ]);
         $user = auth()->guard('warga')->user();
 
         if ($user?->email) {
             Mail::to($user->email)->send(
                 new KonfirmasiSuratNikahMail([
-                    'nama' => $this->nama_lengkap,
-                    'nik' => $this->nik,
+                    'nama' => $user->name,
+                    'nik' => $user->nik,
                     'pasangan' => $this->nama_pasangan,
                     'tanggal' => $this->tgl_nikah,
                 ])

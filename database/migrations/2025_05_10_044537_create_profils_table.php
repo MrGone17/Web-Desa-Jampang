@@ -17,6 +17,9 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
+            $table->string('agama');
+            $table->string('pekerjaan');
+            $table->enum('Kewarganegaraan', ['WNI', 'WNA']);
             $table->string('telepon')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('foto')->nullable();

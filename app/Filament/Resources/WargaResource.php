@@ -44,6 +44,8 @@ class WargaResource extends Resource
                     ->extraAttributes(['placeholder' => 'Masukkan NIK']),
                 Forms\Components\TextInput::make('password')
                     ->label('Password')
+                    ->placeholder('Jika ingin mengubah isi ini jika tidak biarkan saja')
+                    ->hint('password lama tidak bisa dilihat')
                     ->password()
                     ->required(fn ($context) => $context === 'create') // hanya wajib saat create
                     ->dehydrateStateUsing(fn ($state) => filled($state) ? Hash::make($state) : null) // hash jika diisi
@@ -78,13 +80,14 @@ class WargaResource extends Resource
                             Forms\Components\Textarea::make('alamat')
                                 ->label('Alamat Warga')    
                                 ->required(),
-
                             Forms\Components\TextInput::make('tempat_lahir')
                                 ->required(),
-
                             Forms\Components\DatePicker::make('tanggal_lahir')
                                 ->required(),
-
+                            Forms\Components\TextInput::make('agama')
+                                ->required(),
+                            Forms\Components\TextInput::make('pekerjaan')
+                                ->required(),
                             Forms\Components\TextInput::make('telepon')
                                 ->tel()
                                 ->required(),
@@ -93,6 +96,12 @@ class WargaResource extends Resource
                                 ->options([
                                     'L' => 'Laki-laki',
                                     'P' => 'Perempuan',
+                                ])
+                                ->required(),
+                            Forms\Components\Select::make('kewarganegaraan')
+                                ->options([
+                                    'WNI' => 'Warga Negara Indonesia',
+                                    'WNA' => 'Warga Negara Asing',
                                 ])
                                 ->required(),
                         ]) 

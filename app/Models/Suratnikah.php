@@ -10,14 +10,11 @@ class Suratnikah extends Model
     use HasFactory;
     
     protected $fillable = [
-        'nama_lengkap',
         'warga_id',
-        'nik',
-        'tgl_lahir',
-        'alamat',
         'nama_pasangan',
         'tgl_nikah',
         'kk_pdf',
+        'status',
         'kk_foto'
     ];
     public function warga()

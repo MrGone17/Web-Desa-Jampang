@@ -14,6 +14,9 @@ class Profil extends Model
         'tempat_lahir',
         'tanggal_lahir',
         'telepon',
+        'pekerjaan',
+        'kewarganegaraan',
+        'agama',
         'jenis_kelamin',
         'foto',
     ];

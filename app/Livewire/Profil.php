@@ -11,7 +11,7 @@ class Profil extends Component
 {
     use WithFileUploads;
 
-    public $nik, $alamat, $tempat_lahir, $tanggal_lahir,$nama;
+    public $nik, $alamat, $tempat_lahir, $tanggal_lahir,$nama,$pekerjaan,$kewarganegaraan,$agama;
     public $telepon, $jenis_kelamin, $foto,$foto_path;
     public bool $showSuccessModal = false;
 
@@ -21,8 +21,11 @@ class Profil extends Component
             'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
-            'telepon' => 'nullable',
+            'telepon' => 'nullable|required',
+            'pekerjaan' => 'nullable|required',
+            'agama' => 'nullable|required',
             'jenis_kelamin' => 'required|in:L,P',
+            'kewarganegaraan' => 'required|in:WNI,WNA',
             'foto' => 'nullable|image|max:2048',
         ]);
 
@@ -44,6 +47,9 @@ class Profil extends Component
                 'tanggal_lahir' => $this->tanggal_lahir,
                 'telepon' => $this->telepon,
                 'jenis_kelamin' => $this->jenis_kelamin,
+                'pekerjaan' => $this->pekerjaan,
+                'kewarganegaraan' => $this->kewarganegaraan,
+                'agama' => $this->agama,
                 'foto' => $fotoPath,
             ]
         );
@@ -73,6 +79,9 @@ class Profil extends Component
             $this->tanggal_lahir = $profil->tanggal_lahir;
             $this->telepon = $profil->telepon;
             $this->jenis_kelamin = $profil->jenis_kelamin;
+            $this->kewarganegaraan = $profil->kewarganegaraan;
+            $this->pekerjaan = $profil->pekerjaan;
+            $this->agama = $profil->agama;
             $this->foto_path = $profil->foto; 
         }
     }

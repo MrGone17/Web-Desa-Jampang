@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>Halo {{ $data['nama'] }},</h2>
-    <p>Terima kasih telah mengajukan Surat Nikah di sistem kami.</p>
+    <p>Terima kasih telah mengajukan Surat Nikah di Sistem Desa Jampang.</p>
     <p>Berikut ringkasan data Anda:</p>
 
     <ul>

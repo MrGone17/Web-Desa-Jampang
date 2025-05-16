@@ -12,6 +12,7 @@ use App\Livewire\Berita;
 use App\Livewire\Berita\DetailBerita;
 use App\Livewire\Formlayanan;
 use App\Livewire\Formlayanan\Layanansuratnikah;
+use App\Livewire\Formlayanan\Suratkependudukan\Layananbedanama;
 use App\Livewire\Fotodesa;
 use App\Livewire\Fotodesa\DetailFotodesa;
 use App\Livewire\Kepengurusansurat;
@@ -64,6 +65,7 @@ Route::get('/Layananpublik', Layananpublik::class)->name('Layananpublik');
 Route::get('/Kontak', Kontak::class)->name('Kontak');
 Route::get('/Formlayanan', Formlayanan::class)->name('Formlayanan');
 Route::get('/Formlayanan/Layanansuratnikah', Layanansuratnikah::class)->name('Formsuratnikah');
+Route::get('/Formlayanan/Layanan-Surat-Keterangan-Beda-Nama', Layananbedanama::class)->name('Formbedanama');
 
 Route::post('/surat-nikah', [Layanansuratnikah::class, 'store'])->name('surat-nikah.store');
 

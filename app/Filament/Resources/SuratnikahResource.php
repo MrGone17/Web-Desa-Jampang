@@ -50,7 +50,12 @@ class SuratnikahResource extends Resource
                     ->placeholder('Akan terisi automatis sesuai nama warga yang dipilih')
                     ->dehydrated(false)
                     ->formatStateUsing(fn ($record) => $record?->warga?->profil->tanggal_lahir),
-                Forms\Components\Textarea::make('alamat')->required(),
+                Forms\Components\Textarea::make('alamat')
+                    ->label('Alamat')
+                    ->readOnly()
+                    ->placeholder('Akan terisi automatis sesuai nama warga yang dipilih')
+                    ->dehydrated(false)
+                    ->formatStateUsing(fn ($record) => $record?->warga?->profil->alamat),
                 Forms\Components\TextInput::make('nama_pasangan')->required(),
                 Forms\Components\DatePicker::make('tgl_nikah')->required(),
                 Forms\Components\FileUpload::make('kk_foto')
@@ -60,10 +65,22 @@ class SuratnikahResource extends Resource
                     ->imagePreviewHeight('150')
                     ->required(),
                 Forms\Components\FileUpload::make('kk_pdf')
-                    ->label('Upload PDF KK')
+                    ->label('Upload Kartu Keluarga (PDF)')
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('uploads/kk_pdf')
-                    ->visibility('public'),
+                    ->visibility('public')
+                    ->maxSize(2048)    
+                    ->helperText('Unggah file PDF maksimal 2MB') 
+                    ->preserveFilenames() 
+                    ->hint('Hanya file .pdf yang diperbolehkan')
+                    ->hintColor('gray'),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'diproses' => 'Diproses',
+                        'selesai' => 'Selesai',
+                    ])
+                    ->default('diproses')
+                    ->required()
         ]);
     }
 

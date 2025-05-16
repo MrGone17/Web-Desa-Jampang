@@ -7,7 +7,7 @@
             <h2 class="text-base lg:text-xl font-serif text-white">SID Jampang</h2>
             <!-- End Logo dan Teks -->
         </div>      
-        <div class="flex justify-end items-center gap-1 md:order-3 col-span-2">
+        <div class="hidden md:flex justify-end items-center gap-1 md:order-3 col-span-2">
             @if(auth('warga')->check())
                 <!-- Sudah login sebagai warga -->
                 <div class="relative" x-data="{ open: false }">

@@ -9,6 +9,7 @@ use App\Filament\Resources\AlbumResource;
 use App\Filament\Resources\AlurppdbResource;
 use App\Filament\Resources\AnnouncementResource;
 use App\Filament\Resources\BackgroundResource;
+use App\Filament\Resources\BedanamaResource;
 use App\Filament\Resources\BeritaResource;
 use App\Filament\Resources\DivisidesaResource;
 use App\Filament\Resources\EducatorResource;
@@ -150,6 +151,10 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-wallet')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratnikahs.index'))
                                 ->url(SuratnikahResource::getUrl()),
+                            NavigationItem::make('Surat Keterangan Beda Nama')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.bedanamas.index'))
+                                ->url(BedanamaResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Beranda')
                         ->items([

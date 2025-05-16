@@ -8,14 +8,14 @@
             </div>
         </div>
     </section>
-
-    <!-- Daftar Jenis Surat -->
-    <section class="py-12 bg-white">
+    <section class="py-4 bg-white">
         <div class="container mx-auto px-4">
-            <h3 class="text-2xl font-bold mb-8 text-center">Pilih Jenis Surat</h3>
+            <div class="px-4 mb-4 flex items-center justify-center">
+                <h1 class="bg-primary text-white text-xs md:text-3xl text-center font-bold px-6 py-2 rounded-lg" data-aos="fade-right" data-aos-duration="1000">
+                    Pembuatan Surat Kependudukan
+                </h1>
+            </div> 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Card: Surat Nikah -->
                 <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
                     <div>
                         <h4 class="text-xl font-semibold mb-2">Surat Nikah</h4>
@@ -25,19 +25,15 @@
                         Isi Form
                     </a>
                 </div>
-
-                <!-- Card: Surat Domisili -->
                 <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
                     <div>
-                        <h4 class="text-xl font-semibold mb-2">Surat Domisili</h4>
-                        <p class="text-sm text-gray-600 mb-4">Digunakan untuk membuktikan tempat tinggal warga secara sah.</p>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Beda Nama</h4>
+                        <p class="text-sm text-gray-600 mb-4">Digunakan untuk mengonfirmasi perbedaan nama pada dokumen resmi.</p>
                     </div>
-                    <a href="/form-surat-domisili" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                    <a href="{{ route('Formbedanama') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
                         Isi Form
                     </a>
                 </div>
-
-                <!-- Card: Surat Keterangan Usaha -->
                 <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
                     <div>
                         <h4 class="text-xl font-semibold mb-2">Surat Keterangan Usaha</h4>
@@ -47,9 +43,6 @@
                         Isi Form
                     </a>
                 </div>
-
-                <!-- Tambahkan lebih banyak kartu surat jika diperlukan -->
-
             </div>
         </div>
     </section>

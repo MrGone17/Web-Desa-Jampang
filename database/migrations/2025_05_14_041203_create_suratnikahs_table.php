@@ -14,14 +14,11 @@ return new class extends Migration
         Schema::create('suratnikahs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('warga_id')->constrained('wargas')->onDelete('cascade');
-            $table->string('nama_lengkap');
-            $table->string('nik');
-            $table->date('tgl_lahir');
-            $table->text('alamat');
             $table->string('nama_pasangan');
             $table->date('tgl_nikah');
             $table->string('kk_foto');
             $table->string('kk_pdf');
+            $table->enum('status', ['diproses', 'selesai'])->default('diproses');
             $table->timestamps();
         });
     }
