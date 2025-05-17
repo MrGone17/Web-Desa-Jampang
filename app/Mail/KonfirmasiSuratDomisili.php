@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class KonfirmasiSuratKeteranganBedaNama extends Mailable
+class KonfirmasiSuratDomisili extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -25,7 +25,7 @@ class KonfirmasiSuratKeteranganBedaNama extends Mailable
 
     public function build()
     {
-        return $this->subject('Konfirmasi Pengajuan Surat Keterangan Beda Nama')
-                    ->view('emails.konfirmasi-surat-keterangan-beda-nama');
+        return $this->subject('Konfirmasi Pengajuan Surat Domisili')
+                    ->view('emails.konfirmasi-surat-domisili');
     }
 }

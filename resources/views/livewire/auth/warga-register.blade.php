@@ -25,38 +25,62 @@
 
         <form wire:submit.prevent="register" class="space-y-5">
             <div>
-                <label class="block text-sm font-medium text-white mb-1">Nama</label>
+                <label class="block text-sm font-medium text-white mb-1">Nama Lengkap</label>
                 <input type="text" wire:model.defer="name"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" />
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md capitalize" placeholder="Masukan Nama Sesuai Nama Di KTP" />
                 @error('name') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-white mb-1">Email</label>
                 <input type="email" wire:model.defer="email"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" />
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan Email Resmi Yang Anda Punya"/>
                 @error('email') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-white mb-1">Nomor Induk Kependudukan</label>
-                <input type="nik" wire:model.defer="nik"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" />
+                <input type="nik" wire:model.defer="nik" wire:model.lazy="nik"
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan NIK Sesuai KTP Anda" />
                 @error('nik') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-white mb-1">Password</label>
                 <input type="password" wire:model.defer="password"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" />
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan Password"/>
                 @error('password') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 
-            <button type="submit"
-                class="w-full bg-white/20 text-white py-2 rounded-lg hover:bg-white/30 transition duration-200 font-semibold">
-                Daftar
-            </button>
+            @if (!$showConfirmation)
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2 rounded-xl hover:from-blue-600 hover:to-indigo-700 transition duration-300 font-semibold shadow-md">
+                    Daftar
+                </button>
+            @else
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 p-4 rounded-xl shadow-sm mb-4">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13 16h-1v-4h-1m1-4h.01M12 6a9 9 0 110 18 9 9 0 010-18z" />
+                        </svg>
+                        <p class="font-medium">Konfirmasi Data</p>
+                    </div>
+                    <p class="mt-2 text-sm">Pastikan semua data yang Anda masukkan sudah benar. Data tidak dapat diubah setelah dikirim.</p>
+                </div>
 
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button wire:click="submitConfirmed"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-xl font-semibold transition duration-300 shadow-md">
+                        ✅ Konfirmasi & Kirim
+                    </button>
+                    <button wire:click="$set('showConfirmation', false)"
+                        class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 rounded-xl font-semibold transition duration-300 shadow-md">
+                        🔙 Kembali
+                    </button>
+                </div>
+            @endif
             <div class="text-center mt-4">
                 <a href="{{ route('login') }}" class="text-sm text-white hover:underline">
                     Sudah punya akun? Kembali Ke Login

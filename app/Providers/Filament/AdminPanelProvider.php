@@ -53,7 +53,9 @@ use App\Filament\Resources\SliderResource;
 use App\Filament\Resources\SosmedResource;
 use App\Filament\Resources\StrukturpemdesaResource;
 use App\Filament\Resources\StrukturResource;
+use App\Filament\Resources\SuratdomisiliResource;
 use App\Filament\Resources\SuratnikahResource;
+use App\Filament\Resources\SuratpermohonankkResource;
 use App\Filament\Resources\SyaratketentuanResource;
 use App\Filament\Resources\SyaratppdbResource;
 use App\Filament\Resources\TentangdesaResource;
@@ -155,6 +157,14 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-wallet')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.bedanamas.index'))
                                 ->url(BedanamaResource::getUrl()),
+                            NavigationItem::make('Surat Domisili')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratdomisilis.index'))
+                                ->url(SuratdomisiliResource::getUrl()),
+                            NavigationItem::make('Surat Permohonan Kartu Keluarga')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpermohonankks.index'))
+                                ->url(SuratpermohonankkResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Beranda')
                         ->items([

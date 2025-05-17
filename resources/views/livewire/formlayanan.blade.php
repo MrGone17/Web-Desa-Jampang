@@ -36,10 +36,19 @@
                 </div>
                 <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
                     <div>
-                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Usaha</h4>
+                        <h4 class="text-xl font-semibold mb-2">Surat Domisili</h4>
                         <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
                     </div>
-                    <a href="/form-surat-usaha" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                    <a href="{{ route('Formsuratdomisili') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Permohonan Kartu Keluarga</h4>
+                        <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanansuratpermohonankk') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
                         Isi Form
                     </a>
                 </div>

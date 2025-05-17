@@ -86,8 +86,12 @@ class BedanamaResource extends Resource
                 Forms\Components\Select::make('agama')
                     ->label('Agama Benar')
                     ->options([
-                        'islam' => 'Islam',
-                        'kristen' => 'Kristen',
+                       'islam' => 'Islam',
+                        'kristen' => 'Kristen Protestan',
+                        'katolik' => 'Katolik',
+                        'hindu' => 'Hindu',
+                        'buddha' => 'Buddha',
+                        'khonghucu' => 'Khonghucu',
                     ])
                     ->disabled()
                     ->placeholder('Akan terisi automatis sesuai nama warga yang dipilih')
@@ -95,8 +99,12 @@ class BedanamaResource extends Resource
                     ->formatStateUsing(fn ($record) => $record?->warga?->profil->agama),
                 Forms\Components\Select::make('agama_beda')
                     ->options([
-                        'islam' => 'Islam',
-                        'kristen' => 'Kristen',
+                       'islam' => 'Islam',
+                        'kristen' => 'Kristen Protestan',
+                        'katolik' => 'Katolik',
+                        'hindu' => 'Hindu',
+                        'buddha' => 'Buddha',
+                        'khonghucu' => 'Khonghucu',
                     ])
                     ->placeholder('Agama Sudah Benar')
                     ->label('Agama Salah')
