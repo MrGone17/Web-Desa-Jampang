@@ -2,20 +2,19 @@
 
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
-use App\Mail\KonfirmasiStatusSuratDomisili;
-use App\Mail\KonfirmasiSuratDomisili;
-use App\Models\Suratdomisili;
+use App\Mail\KonfirmasiSurattidakpunyadokumenpenduduk;
+use App\Models\Surattidakpunyadokumenpenduduk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Layanansuratdomisili extends Component
+class LayananSurattidakpunyadokumenpenduduk extends Component
 {
     use WithFileUploads;
-
+    
     public $nama_lengkap,$kewarganegaraan, $pekerjaan, $agama, $jenis_kelamin, $nik, $tgl_lahir,$tempat_lahir, $alamat, $pengantar_pdf;
-    public $pendidikan, $status_hubungan, $keperluan, $no_kk, $kepala_kk;
+    public $nama_ibu,$gol_darah;
     public bool $showSuccessModal = false;
     public function permision (){
         if (!Auth::guard('warga')->check()) {
@@ -50,36 +49,30 @@ class Layanansuratdomisili extends Component
     public function save()
     {
         $this->validate([
-            'pendidikan' => 'required|string',
-            'status_hubungan' => 'required|string',
-            'keperluan' => 'required|string',
-            'no_kk' => 'required|numeric|digits:16|string',
-            'kepala_kk' => 'required|string',
+            'nama_ibu' => 'required|string',
+            'gol_darah' => 'required|string',
             'pengantar_pdf' => 'required|file|mimes:pdf|max:2048',
         ]);
+        $user = Auth::guard('warga')->user();
+        
+        $pdfPathpengantar = $this->pengantar_pdf->store('bukti_pengantar_tidak_punya_dokumen_penduduk', 'public');
 
-        $pdfPathpengantar = $this->pengantar_pdf->store('bukti_pengantar_suratdomisili', 'public');
-
-        Suratdomisili::create([
+        Surattidakpunyadokumenpenduduk::create([
             'warga_id' => Auth::guard('warga')->id(),
-            'pendidikan' => $this->pendidikan,
-            'status_hubungan' => $this->status_hubungan,
-            'keperluan' => $this->keperluan,
-            'no_kk' => $this->no_kk,
-            'kepala_kk' => $this->kepala_kk,
+            'nama_ibu' => $this->nama_ibu,
+            'gol_darah' => $this->gol_darah,
             'pengantar_pdf' => $pdfPathpengantar,
             'status' => 'diproses',
         ]);
-        $user = auth()->guard('warga')->user();
 
         if ($user?->email) {
             Mail::to($user->email)->send(
-                new KonfirmasiSuratDomisili([
+                new KonfirmasiSurattidakpunyadokumenpenduduk([
                 'nama' => $this->nama_lengkap,
-                'keperluan' => $this->keperluan,
                 'nik' => $this->nik,
-                'no_kk' => $this->no_kk,
-                'kepala_kk' => $this->kepala_kk,
+                'nama_ibu' => $this->nama_ibu,
+                'jenis_kelamin' => $this->jenis_kelamin,
+                'gol_darah' => $this->gol_darah,
                 'alamat' => $this->alamat,
                 ])
             );
@@ -93,6 +86,6 @@ class Layanansuratdomisili extends Component
     }
     public function render()
     {
-        return view('livewire.formlayanan.suratkependudukan.layanansuratdomisili');
+        return view('livewire.formlayanan.suratkependudukan.layanan-surattidakpunyadokumenpenduduk');
     }
 }

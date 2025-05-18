@@ -54,8 +54,13 @@ use App\Filament\Resources\SosmedResource;
 use App\Filament\Resources\StrukturpemdesaResource;
 use App\Filament\Resources\StrukturResource;
 use App\Filament\Resources\SuratdomisiliResource;
+use App\Filament\Resources\SuratketeranganpendudukResource;
+use App\Filament\Resources\SuratkuasaResource;
 use App\Filament\Resources\SuratnikahResource;
 use App\Filament\Resources\SuratpermohonankkResource;
+use App\Filament\Resources\SuratperubahankkResource;
+use App\Filament\Resources\SuratprosesktpResource;
+use App\Filament\Resources\SurattidakpunyadokumenpendudukResource;
 use App\Filament\Resources\SyaratketentuanResource;
 use App\Filament\Resources\SyaratppdbResource;
 use App\Filament\Resources\TentangdesaResource;
@@ -165,6 +170,26 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-wallet')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpermohonankks.index'))
                                 ->url(SuratpermohonankkResource::getUrl()),
+                            NavigationItem::make('Surat Keterangan KTP Dalam Proses')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratprosesktps.index'))
+                                ->url(SuratprosesktpResource::getUrl()),
+                            NavigationItem::make('Surat Keterangan Penduduk')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratketeranganpenduduks.index'))
+                                ->url(SuratketeranganpendudukResource::getUrl()),
+                            NavigationItem::make('Surat Perubahan Kartu Keluarga')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratperubahankks.index'))
+                                ->url(SuratperubahankkResource::getUrl()),
+                            NavigationItem::make('Surat Tidak Memiliki Dokumen Penduduk')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surattidakpunyadokumenpenduduks.index'))
+                                ->url(SurattidakpunyadokumenpendudukResource::getUrl()),
+                            NavigationItem::make('Surat Kuasa Layanan Pneduduk')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratkuasa.index'))
+                                ->url(SuratkuasaResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Beranda')
                         ->items([

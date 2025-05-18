@@ -2,20 +2,20 @@
 
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
-use App\Mail\KonfirmasiStatusSuratDomisili;
-use App\Mail\KonfirmasiSuratDomisili;
-use App\Models\Suratdomisili;
+use App\Mail\KonfirmasiSuratkuasa;
+use App\Models\Suratkuasa;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Layanansuratdomisili extends Component
+class LayananSuratkuasa extends Component
 {
     use WithFileUploads;
-
+    
     public $nama_lengkap,$kewarganegaraan, $pekerjaan, $agama, $jenis_kelamin, $nik, $tgl_lahir,$tempat_lahir, $alamat, $pengantar_pdf;
-    public $pendidikan, $status_hubungan, $keperluan, $no_kk, $kepala_kk;
+    public $nama_kuasa,$kewarganegaraan_kuasa, $pekerjaan_kuasa, $jenis_kelamin_kuasa, $nik_kuasa,$alasan_kuasa, $tgl_lahir_kuasa,$tempat_lahir_kuasa, $alamat_kuasa;
     public bool $showSuccessModal = false;
     public function permision (){
         if (!Auth::guard('warga')->check()) {
@@ -50,37 +50,47 @@ class Layanansuratdomisili extends Component
     public function save()
     {
         $this->validate([
-            'pendidikan' => 'required|string',
-            'status_hubungan' => 'required|string',
-            'keperluan' => 'required|string',
-            'no_kk' => 'required|numeric|digits:16|string',
-            'kepala_kk' => 'required|string',
+            'nama_kuasa' => 'required|string',
+            'nik_kuasa' => 'required|numeric|digits:16|string',
+            'tempat_lahir_kuasa' => 'required|string',
+            'jenis_kelamin_kuasa' => 'required|string',
+            'pekerjaan_kuasa' => 'required|string',
+            'kewarganegaraan_kuasa' => 'required|string',
+            'alamat_kuasa' => 'required|string',
+            'tgl_lahir_kuasa' => 'date|required',
+            'alasan_kuasa' => 'required|string',
             'pengantar_pdf' => 'required|file|mimes:pdf|max:2048',
         ]);
+        $user = Auth::guard('warga')->user();
 
-        $pdfPathpengantar = $this->pengantar_pdf->store('bukti_pengantar_suratdomisili', 'public');
+        $pdfPathpengantar = $this->pengantar_pdf->store('bukti_pengantar_kuasa', 'public');
 
-        Suratdomisili::create([
+        Suratkuasa::create([
             'warga_id' => Auth::guard('warga')->id(),
-            'pendidikan' => $this->pendidikan,
-            'status_hubungan' => $this->status_hubungan,
-            'keperluan' => $this->keperluan,
-            'no_kk' => $this->no_kk,
-            'kepala_kk' => $this->kepala_kk,
+            'nama_kuasa' => $this->nama_kuasa,
+            'nik_kuasa' => $this->nik_kuasa,
+            'tempat_lahir_kuasa' => $this->tempat_lahir_kuasa,
+            'tanggal_lahir_kuasa' => $this->tgl_lahir_kuasa,
+            'jenis_kelamin_kuasa' => $this->jenis_kelamin_kuasa,
+            'pekerjaan_kuasa' => $this->pekerjaan_kuasa,
+            'kewarganegaraan_kuasa' => $this->kewarganegaraan_kuasa,
+            'alamat_kuasa' => $this->alamat_kuasa,
+            'alasan_kuasa' => $this->alasan_kuasa,
             'pengantar_pdf' => $pdfPathpengantar,
             'status' => 'diproses',
         ]);
-        $user = auth()->guard('warga')->user();
 
         if ($user?->email) {
             Mail::to($user->email)->send(
-                new KonfirmasiSuratDomisili([
+                new KonfirmasiSuratkuasa([
                 'nama' => $this->nama_lengkap,
-                'keperluan' => $this->keperluan,
                 'nik' => $this->nik,
-                'no_kk' => $this->no_kk,
-                'kepala_kk' => $this->kepala_kk,
+                'nama_kuasa' => $this->nama_kuasa,
+                'nik_kuasa' => $this->nik_kuasa,
+                'jenis_kelamin' => $this->jenis_kelamin,
+                'alamat_kuasa' => $this->alamat_kuasa,
                 'alamat' => $this->alamat,
+                'alasan_kuasa' => $this->alasan_kuasa,
                 ])
             );
         }
@@ -93,6 +103,6 @@ class Layanansuratdomisili extends Component
     }
     public function render()
     {
-        return view('livewire.formlayanan.suratkependudukan.layanansuratdomisili');
+        return view('livewire.formlayanan.suratkependudukan.layanan-suratkuasa');
     }
 }

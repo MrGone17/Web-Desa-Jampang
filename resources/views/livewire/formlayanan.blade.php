@@ -52,6 +52,51 @@
                         Isi Form
                     </a>
                 </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan KTP Dalam Proses</h4>
+                        <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanansuratprosesktp') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Penduduk</h4>
+                        <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanansuratketeranganpenduduk') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Permohonan Perubahan Kartu Keluarga</h4>
+                        <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanansuratperubahankk') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Tidak Memiliki Dokumen Penduduk</h4>
+                        <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanantidakmemilikidokumen') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                 <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Kuasa Layanan Kependudukan</h4>
+                        <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanankuasa') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
             </div>
         </div>
     </section>

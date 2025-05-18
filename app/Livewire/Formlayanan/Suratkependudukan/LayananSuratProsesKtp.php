@@ -2,15 +2,14 @@
 
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
-use App\Mail\KonfirmasiStatusSuratDomisili;
-use App\Mail\KonfirmasiSuratDomisili;
-use App\Models\Suratdomisili;
+use App\Mail\KonfirmasiSuratProsesKtp;
+use App\Models\Suratprosesktp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Layanansuratdomisili extends Component
+class LayananSuratProsesKtp extends Component
 {
     use WithFileUploads;
 
@@ -50,23 +49,15 @@ class Layanansuratdomisili extends Component
     public function save()
     {
         $this->validate([
-            'pendidikan' => 'required|string',
             'status_hubungan' => 'required|string',
-            'keperluan' => 'required|string',
-            'no_kk' => 'required|numeric|digits:16|string',
-            'kepala_kk' => 'required|string',
             'pengantar_pdf' => 'required|file|mimes:pdf|max:2048',
         ]);
 
-        $pdfPathpengantar = $this->pengantar_pdf->store('bukti_pengantar_suratdomisili', 'public');
+        $pdfPathpengantar = $this->pengantar_pdf->store('bukti_pengantar_suratprosesktp', 'public');
 
-        Suratdomisili::create([
+        Suratprosesktp::create([
             'warga_id' => Auth::guard('warga')->id(),
-            'pendidikan' => $this->pendidikan,
             'status_hubungan' => $this->status_hubungan,
-            'keperluan' => $this->keperluan,
-            'no_kk' => $this->no_kk,
-            'kepala_kk' => $this->kepala_kk,
             'pengantar_pdf' => $pdfPathpengantar,
             'status' => 'diproses',
         ]);
@@ -74,12 +65,12 @@ class Layanansuratdomisili extends Component
 
         if ($user?->email) {
             Mail::to($user->email)->send(
-                new KonfirmasiSuratDomisili([
+                new KonfirmasiSuratProsesKtp([
                 'nama' => $this->nama_lengkap,
-                'keperluan' => $this->keperluan,
                 'nik' => $this->nik,
-                'no_kk' => $this->no_kk,
-                'kepala_kk' => $this->kepala_kk,
+                'tempat_lahir' => $this->tempat_lahir,
+                'tgl_lahir' => $this->tgl_lahir,
+                'jenis_kelamin' => $this->jenis_kelamin,
                 'alamat' => $this->alamat,
                 ])
             );
@@ -93,6 +84,6 @@ class Layanansuratdomisili extends Component
     }
     public function render()
     {
-        return view('livewire.formlayanan.suratkependudukan.layanansuratdomisili');
+        return view('livewire.formlayanan.suratkependudukan.layanan-surat-proses-ktp');
     }
 }

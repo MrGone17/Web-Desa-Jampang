@@ -14,7 +14,12 @@ use App\Livewire\Formlayanan;
 use App\Livewire\Formlayanan\Layanansuratnikah;
 use App\Livewire\Formlayanan\Suratkependudukan\Layananbedanama;
 use App\Livewire\Formlayanan\Suratkependudukan\Layanansuratdomisili;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKeteranganPenduduk;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratkuasa;
 use App\Livewire\Formlayanan\Suratkependudukan\Layanansuratpermohonankk;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPerubahankk;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratProsesKtp;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSurattidakpunyadokumenpenduduk;
 use App\Livewire\Fotodesa;
 use App\Livewire\Fotodesa\DetailFotodesa;
 use App\Livewire\Kepengurusansurat;
@@ -70,6 +75,11 @@ Route::get('/Formlayanan/Layanansuratnikah', Layanansuratnikah::class)->name('Fo
 Route::get('/Formlayanan/Layanan-Surat-Keterangan-Beda-Nama', Layananbedanama::class)->name('Formbedanama');
 Route::get('/Formlayanan/Layanan-Surat-Domisili', Layanansuratdomisili::class)->name('Formsuratdomisili');
 Route::get('/Formlayanan/Layanan-Surat-Permohonan-KK', Layanansuratpermohonankk::class)->name('FormsuratLayanansuratpermohonankk');
+Route::get('/Formlayanan/Layanan-Surat-Prose-KTP', LayananSuratProsesKtp::class)->name('FormsuratLayanansuratprosesktp');
+Route::get('/Formlayanan/Layanan-Surat-Keterangan-Penduduk', LayananSuratKeteranganPenduduk::class)->name('FormsuratLayanansuratketeranganpenduduk');
+Route::get('/Formlayanan/Layanan-Surat-Perubahan-KK', LayananSuratPerubahankk::class)->name('FormsuratLayanansuratperubahankk');
+Route::get('/Formlayanan/Layanan-Surat-Tidak-Memiliki-Dokumen-Penduduk', LayananSurattidakpunyadokumenpenduduk::class)->name('FormsuratLayanantidakmemilikidokumen');
+Route::get('/Formlayanan/Layanan-Surat-Kuasa', LayananSuratkuasa::class)->name('FormsuratLayanankuasa');
 
 Route::post('/surat-nikah', [Layanansuratnikah::class, 'store'])->name('surat-nikah.store');
 

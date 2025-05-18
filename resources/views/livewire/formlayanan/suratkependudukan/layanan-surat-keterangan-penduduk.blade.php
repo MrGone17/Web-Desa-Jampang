@@ -3,7 +3,7 @@
         <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
         <div class="relative container mx-auto px-6 md:px-20 py-16">
             <div class="text-center md:text-start text-white">
-                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Domisili</h2>
+                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Keterangan Penduduk</h2>
             </div>
         </div>
     </section>
@@ -17,7 +17,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Domisili Berhasil Dikirim</h2>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Keterangan Penduduk Berhasil Dikirim</h2>
                         <p class="text-base sm:text-lg text-gray-600 mb-6">data akan diproses terlebih dahulu dan diharapkan mengecheck email secara berkala untuk mengetahui perkembangan proses pembuatan surat</p>
                         <button wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
                             Tutup
@@ -41,25 +41,19 @@
                 <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Berikut</h3>
                 <form wire:submit.prevent="save" class="space-y-4" enctype="multipart/form-data">
                     <!-- Nama Lengkap -->
+                    <div>
+                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama Lengkap </label>
+                        <input type="text" name="nama_lengkap" wire:model="nama_lengkap" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
+                    </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama Lengkap </label>
-                            <input type="text" name="nama_lengkap" wire:model="nama_lengkap" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
-                        </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Induk Keluarga</label>
                             <input type="text" name="nik" wire:model="nik" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
                         </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Kartu Keluarga</label>
                             <input type="text" name="no_kk" wire:model="no_kk" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukan Nomor KK">
                             @error('no_kk') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nama Kepala Keluarga</label>
-                            <input type="text" name="kepala_kk" wire:model="kepala_kk" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukan Nama Kepala Keluarga">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -70,32 +64,6 @@
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tanggal Lahir</label>
                             <input type="date" name="tgl_lahir" wire:model="tgl_lahir" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Status Perkawinan</label>
-                            <select name="status_hubungan" wire:model="status_hubungan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">-- Pilih Status Perkawinan --</option>
-                                <option value="Belum Kawin">Belum Kawin</option>
-                                <option value="Kawin">Kawin</option>
-                                <option value="Cerai Hidup">Cerai Hidup</option>
-                                <option value="Cerai Mati">Cerai Mati</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Pendidikan Terakhir</label>
-                            <select name="pendidikan" wire:model="pendidikan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">-- Pilih Pendidikan Terakhir --</option>
-                                <option value="tidak_sekolah">Tidak Sekolah</option>
-                                <option value="sd">SD / Sederajat</option>
-                                <option value="smp">SMP / Sederajat</option>
-                                <option value="sma">SMA / Sederajat</option>
-                                <option value="diploma">Diploma (D1/D2/D3)</option>
-                                <option value="sarjana">Sarjana (S1)</option>
-                                <option value="magister">Magister (S2)</option>
-                                <option value="doktor">Doktor (S3)</option>
-                            </select>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -137,7 +105,7 @@
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Keperluan</label>
-                            <input type="text" name="keperluan" wire:model="keperluan" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Isi Alasan Pembuatan Surat)">
+                            <input type="text" name="keperluan" wire:model="keperluan" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Isi Alasan Pembuatan Surat">
                         </div>
                     </div>
                     <div>
@@ -167,7 +135,19 @@
                         @error('pengantar_pdf')
                             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                         @enderror
-                    </div>                                                                                   
+                    </div> 
+                    <div class="mt-6 flex items-start p-4 bg-blue-50 border border-blue-300 rounded-xl shadow-sm">
+                        <svg class="w-5 h-5 text-blue-600 mt-1 mr-3" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                        <p class="text-sm text-blue-800 leading-relaxed">
+                            <strong>Perhatian:</strong> Saat pengambilan surat, <strong>harap membawa foto formal ukuran 2x3</strong>
+                            dengan latar belakang merah atau biru sesuai ketentuan. Pastikan foto dalam kondisi rapi dan terbaru.
+                        </p>
+                    </div>                                                                                    
                     <!-- Tombol Kirim -->
                     <div class="text-center md:text-end">
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-xl transition duration-300">Kirim Formulir</button>

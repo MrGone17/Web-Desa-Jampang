@@ -32,8 +32,13 @@ class Layananbedanama extends Component
         } else {
             $this->nama_lengkap = 'Tidak ditemukan';
             $this->nik = 'Tidak ditemukan';
+            $this->tempat_lahir = 'Tidak ditemukan';
             $this->tgl_lahir = 'Tidak ditemukan';
             $this->alamat = 'Tidak ditemukan';
+            $this->jenis_kelamin = 'Tidak ditemukan';
+            $this->agama = 'Tidak ditemukan';
+            $this->pekerjaan = 'Tidak ditemukan';
+            $this->kewarganegaraan = 'Tidak ditemukan';
         }
     }
     public function save()
