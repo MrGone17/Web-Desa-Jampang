@@ -13,11 +13,16 @@ use App\Livewire\Berita\DetailBerita;
 use App\Livewire\Formlayanan;
 use App\Livewire\Formlayanan\Layanansuratnikah;
 use App\Livewire\Formlayanan\Suratkependudukan\Layananbedanama;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratAhliWaris;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratbuataktalahir;
 use App\Livewire\Formlayanan\Suratkependudukan\Layanansuratdomisili;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKeteranganPenduduk;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratkuasa;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratmatidanlahir;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratnoaktalahir;
 use App\Livewire\Formlayanan\Suratkependudukan\Layanansuratpermohonankk;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPerubahankk;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPindahPenduduk;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratProsesKtp;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSurattidakpunyadokumenpenduduk;
 use App\Livewire\Fotodesa;
@@ -80,7 +85,11 @@ Route::get('/Formlayanan/Layanan-Surat-Keterangan-Penduduk', LayananSuratKeteran
 Route::get('/Formlayanan/Layanan-Surat-Perubahan-KK', LayananSuratPerubahankk::class)->name('FormsuratLayanansuratperubahankk');
 Route::get('/Formlayanan/Layanan-Surat-Tidak-Memiliki-Dokumen-Penduduk', LayananSurattidakpunyadokumenpenduduk::class)->name('FormsuratLayanantidakmemilikidokumen');
 Route::get('/Formlayanan/Layanan-Surat-Kuasa', LayananSuratkuasa::class)->name('FormsuratLayanankuasa');
-
+Route::get('/Formlayanan/Layanan-Surat-Pindah-Kependudukan', LayananSuratPindahPenduduk::class)->name('FormsuratLayananpindahkependudukan');
+Route::get('/Formlayanan/Layanan-Surat-Ahli-Waris', LayananSuratAhliWaris::class)->name('FormsuratLayananahliwaris');
+Route::get('/Formlayanan/Layanan-Surat-Tidak-Punya-Akta-Kelahiran', LayananSuratnoaktalahir::class)->name('FormsuratLayanannoaktalahir');
+Route::get('/Formlayanan/Layanan-Surat-Keterangan-Lahir-Dan-Mati', LayananSuratmatidanlahir::class)->name('FormsuratLayananmatidanlahir');
+Route::get('/Formlayanan/Layanan-Surat-Buat-Akta-Kelahiran', LayananSuratbuataktalahir::class)->name('FormsuratLayananbuataktalahir');
 Route::post('/surat-nikah', [Layanansuratnikah::class, 'store'])->name('surat-nikah.store');
 
 // Route KalenderAkademik

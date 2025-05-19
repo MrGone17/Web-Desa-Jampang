@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class KonfirmasiSuratProsesKtp extends Mailable
+class KonfirmasiSuratBuataktalahir extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -25,7 +25,7 @@ class KonfirmasiSuratProsesKtp extends Mailable
 
     public function build()
     {
-        return $this->subject('Konfirmasi Pengajuan Surat Proses kTP')
-                    ->view('emails.konfirmasi-surat-prosesktp');
+        return $this->subject('Konfirmasi Pengajuan Surat Keterangan Kelahiran')
+                    ->view('emails.konfirmasi-surat-buataktalahir');
     }
 }

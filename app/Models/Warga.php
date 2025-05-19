@@ -64,4 +64,20 @@ class Warga extends Authenticatable
     {
         return $this->hasMany(Suratkuasa::class);
     }
+    public function suratpindahpenduduk()
+    {
+        return $this->hasMany(Suratpindahpenduduk::class);
+    }
+    public function suratnoaktalahir()
+    {
+        return $this->hasMany(Suratnoaktalahir::class);
+    }
+    public function suratbuataktalahir()
+    {
+        return $this->hasMany(Suratbuataktalahir::class);
+    }
+    public function suratmattidanlahir()
+    {
+        return $this->hasMany(Suratmatidanlahir::class);
+    }
 }

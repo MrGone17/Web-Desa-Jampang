@@ -9,9 +9,9 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class KonfirmasiSuratProsesKtp extends Mailable
+class KonfirmasiStatusmatidanlahir extends Mailable
 {
-    use Queueable, SerializesModels;
+     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
@@ -25,7 +25,7 @@ class KonfirmasiSuratProsesKtp extends Mailable
 
     public function build()
     {
-        return $this->subject('Konfirmasi Pengajuan Surat Proses kTP')
-                    ->view('emails.konfirmasi-surat-prosesktp');
+        return $this->subject('Konfirmasi Pengajuan Surat Keterangan Mati Dan Lahir')
+                    ->view('emails.konfirmasi-status-surat-matidanlahir');
     }
 }

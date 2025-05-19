@@ -53,12 +53,17 @@ use App\Filament\Resources\SliderResource;
 use App\Filament\Resources\SosmedResource;
 use App\Filament\Resources\StrukturpemdesaResource;
 use App\Filament\Resources\StrukturResource;
+use App\Filament\Resources\SuratahliwarisResource;
+use App\Filament\Resources\SuratbuataktalahirResource;
 use App\Filament\Resources\SuratdomisiliResource;
 use App\Filament\Resources\SuratketeranganpendudukResource;
 use App\Filament\Resources\SuratkuasaResource;
+use App\Filament\Resources\SuratmatidanlahirResource;
 use App\Filament\Resources\SuratnikahResource;
+use App\Filament\Resources\SuratnoaktalahirResource;
 use App\Filament\Resources\SuratpermohonankkResource;
 use App\Filament\Resources\SuratperubahankkResource;
+use App\Filament\Resources\SuratpindahpendudukResource;
 use App\Filament\Resources\SuratprosesktpResource;
 use App\Filament\Resources\SurattidakpunyadokumenpendudukResource;
 use App\Filament\Resources\SyaratketentuanResource;
@@ -186,10 +191,30 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-wallet')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surattidakpunyadokumenpenduduks.index'))
                                 ->url(SurattidakpunyadokumenpendudukResource::getUrl()),
-                            NavigationItem::make('Surat Kuasa Layanan Pneduduk')
+                            NavigationItem::make('Surat Kuasa Layanan Penduduk')
                                 ->icon('heroicon-o-wallet')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratkuasa.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratkuasas.index'))
                                 ->url(SuratkuasaResource::getUrl()),
+                            NavigationItem::make('Surat Pindah Penduduk')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpindahpenduduks.index'))
+                                ->url(SuratpindahpendudukResource::getUrl()),
+                            NavigationItem::make('Surat Ahli Waris')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratahliwariss.index'))
+                                ->url(SuratahliwarisResource::getUrl()),
+                            NavigationItem::make('Surat Tidak Punya Akta Lahir')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratnoaktalahirs.index'))
+                                ->url(SuratnoaktalahirResource::getUrl()),
+                            NavigationItem::make('Surat Buat Akta Lahir')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratbuataktalahirs.index'))
+                                ->url(SuratbuataktalahirResource::getUrl()),
+                             NavigationItem::make('Surat Keterangan Lahir & Mati')
+                                ->icon('heroicon-o-wallet')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratmatidanlahirs.index'))
+                                ->url(SuratmatidanlahirResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Beranda')
                         ->items([

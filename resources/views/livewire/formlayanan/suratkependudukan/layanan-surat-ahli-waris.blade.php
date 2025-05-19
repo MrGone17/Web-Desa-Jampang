@@ -3,7 +3,7 @@
         <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
         <div class="relative container mx-auto px-6 md:px-20 py-16">
             <div class="text-center md:text-start text-white">
-                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Kuasa Layanan Penduduk Dalam Proses</h2>
+                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Ahli Waris Dalam Proses</h2>
             </div>
         </div>
     </section>
@@ -17,7 +17,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Kuasa Layanan Penduduk Berhasil Dikirim</h2>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Ahli Waris Berhasil Dikirim</h2>
                         <p class="text-base sm:text-lg text-gray-600 mb-6">data akan diproses terlebih dahulu dan diharapkan mengecheck email secara berkala untuk mengetahui perkembangan proses pembuatan surat</p>
                         <button wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
                             Tutup
@@ -38,7 +38,7 @@
         </div>   
         <div class="container mx-auto px-1 md:px-20">
             <div class="bg-gray-50 shadow-xl rounded-2xl p-8 md:p-12">
-                <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Pemberi Kuasa Berikut</h3>
+                <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Penerima waris Berikut :</h3>
                 <form wire:submit.prevent="save" class="space-y-4" enctype="multipart/form-data">
                     <!-- Nama Lengkap -->
                     <div class="grid grid-cols-2 gap-4">
@@ -85,62 +85,92 @@
                             <input type="text" name="pekerjaan" wire:model="pekerjaan" class="w-full px-4 py-2 border capitalize text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
                         </div>     
                         <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat Rumah</label>
-                            <input type="text" name="alamat" wire:model="alamat" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Agama</label>
+                            <select wire:model="agama" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+                                <option value="">-- Pilih Salah Satu --</option>
+                                <option value="islam">Islam</option>
+                                <option value="kristen">Kristen</option>
+                                <option value="katolik">Katolik</option>
+                                <option value="hindu">Hindu</option>
+                                <option value="buddha">Buddha</option>
+                                <option value="konghucu">Konghucu</option>
+                            </select>
                         </div>
                     </div>  
-                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Yang Diberi Kuasa</h3>   
+                    <div>
+                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat Rumah</label>
+                        <input type="text" name="alamat" wire:model="alamat" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Pemberi Waris Berikut :</h3>   
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama Lengkap </label>
-                            <input type="text" name="nama_kuasa" wire:model="nama_kuasa" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Yang Diberi Kuasa">
+                            <input type="text" name="nama_waris" wire:model="nama_waris" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama">
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Induk Keluarga</label>
-                            <input type="text" name="nik_kuasa" wire:model="nik_kuasa" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk Yang Diberi Kuasa">
+                            <input type="text" name="nik_waris" wire:model="nik_waris" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Lahir</label>
-                            <input type="text" name="tempat_lahir_kuasa" wire:model="tempat_lahir_kuasa" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="contoh : Bogor, Semarang Dan Lainnya">
+                            <input type="text" name="tempat_lahir_waris" wire:model="tempat_lahir_waris" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="contoh : Bogor, Semarang Dan Lainnya">
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tanggal Lahir</label>
-                            <input type="date" name="tgl_lahir_kuasa" wire:model="tgl_lahir_kuasa" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" name="tanggal_lahir_waris" wire:model="tanggal_lahir_waris" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                          <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Jenis Kelamin</label>
-                            <select wire:model="jenis_kelamin_kuasa" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <select wire:model="jenis_kelamin_waris" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">-- Pilih Salah Satu --</option>
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Agama</label>
+                            <select wire:model="agama_waris" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="">-- Pilih Salah Satu --</option>
+                                <option value="islam">Islam</option>
+                                <option value="kristen">Kristen</option>
+                                <option value="katolik">Katolik</option>
+                                <option value="hindu">Hindu</option>
+                                <option value="buddha">Buddha</option>
+                                <option value="konghucu">Konghucu</option>
+                            </select>
+                        </div>
+                    </div>   
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Meninggal</label>
+                            <input type="text" name="tempat_meninggal" wire:model="tempat_meninggal" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="contoh : Bogor, Semarang Dan Lainnya">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tanggal Meninggal</label>
+                            <input type="date" name="tanggal_meninggal" wire:model="tanggal_meninggal" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                         <div>
+                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Pekerjaan</label>
+                            <input type="text" name="pekerjaan_waris" wire:model="pekerjaan_waris" class="w-full px-4 py-2 border capitalize text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan">
+                        </div>     
+                        <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Kewarganegaraan</label>
-                            <select wire:model="kewarganegaraan_kuasa" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <select wire:model="kewarganegaraan_waris" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">-- Pilih Salah Satu --</option>
                                 <option value="WNI">Warga Negara Indonesia</option>
                                 <option value="WNA">Warga Negara Asing</option>
                             </select>
                         </div>
-                    </div>   
-                    <div class="grid grid-cols-2 gap-4">
-                         <div>
-                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Pekerjaan</label>
-                            <input type="text" name="pekerjaan_kuasa" wire:model="pekerjaan_kuasa" class="w-full px-4 py-2 border capitalize text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan Yang Diberi Kuasa">
-                        </div>     
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat Rumah</label>
-                            <input type="text" name="alamat_kuasa" wire:model="alamat_kuasa" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Alamat Rumah Yang Diberi Kuasa">
-                        </div>
                     </div>
                      <div>
-                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alasan Memberikan Kuasa</label>
-                        <input type="text" name="alasan_kuasa" wire:model="alasan_kuasa" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Alasan Memberikan Kuasa">
+                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat Rumah</label>
+                        <input type="text" name="alamat_waris" wire:model="alamat_waris" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Alasan Memberikan waris">
                     </div>      
                     <div>
                         <label class="block mb-1 text-sm font-medium text-gray-700">Upload Surat Pengantar Dari RT</label>

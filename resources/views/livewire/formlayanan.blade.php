@@ -88,12 +88,64 @@
                         Isi Form
                     </a>
                 </div>
-                 <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
                     <div>
                         <h4 class="text-xl font-semibold mb-2">Surat Kuasa Layanan Kependudukan</h4>
                         <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
                     </div>
                     <a href="{{ route('FormsuratLayanankuasa') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Pindah Kependudukan</h4>
+                        <p class="text-sm text-gray-600 mb-4">Dibutuhkan untuk keperluan legalitas usaha di wilayah desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananpindahkependudukan') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+            </div>
+            <div class="px-4 py-4 flex items-center justify-center">
+                <h1 class="bg-primary text-white text-xs md:text-3xl text-center font-bold px-6 py-2 rounded-lg" data-aos="fade-up" data-aos-duration="1000">
+                    Pembuatan Surat Layanan Catatan Sipil
+                </h1>
+            </div> 
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Ahli Waris</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananahliwaris') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Tidak Punya Akta Lahir</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanannoaktalahir') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Buat Akta Lahir</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananbuataktalahir') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                 <div class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Lahir & Mati</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananmatidanlahir') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
                         Isi Form
                     </a>
                 </div>
