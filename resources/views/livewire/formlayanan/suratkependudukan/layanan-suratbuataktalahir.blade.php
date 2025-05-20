@@ -3,7 +3,7 @@
         <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
         <div class="relative container mx-auto px-6 md:px-20 py-16">
             <div class="text-center md:text-start text-white">
-                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Tidak Punya Akta Kelahiran</h2>
+                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Keterangan Kelahiran</h2>
             </div>
         </div>
     </section>

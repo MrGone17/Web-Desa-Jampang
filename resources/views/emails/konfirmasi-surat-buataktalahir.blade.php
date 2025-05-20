@@ -2,18 +2,18 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Konfirmasi Surat Akta Lahir</title>
+    <title>Konfirmasi Surat Keterangan Kelahiran</title>
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #f3f4f6; padding: 40px;">
     <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 30px;">
         <div style="text-align: center; margin-bottom: 30px;">
-            <h2 style="color: #1f2937; font-size: 22px; margin-bottom: 8px;">Konfirmasi Pengajuan Surat Akta Lahir</h2>
+            <h2 style="color: #1f2937; font-size: 22px; margin-bottom: 8px;">Konfirmasi Pengajuan Surat Keterangan Kelahiran</h2>
             <p style="color: #6b7280; font-size: 14px;">Desa Jampang</p>
         </div>
 
         <p style="font-size: 16px; color: #111827;">Halo <strong>{{ $data['nama'] }}</strong>,</p>
         <p style="font-size: 15px; color: #374151; margin-bottom: 24px;">
-            Terima kasih telah mengajukan <strong>Surat Akta Kelahiran</strong>. Berikut ini adalah data permohonan Anda yang kami terima:
+            Terima kasih telah mengajukan <strong>Surat Keterangan Kelahiran</strong>. Berikut ini adalah data permohonan Anda yang kami terima:
         </p>
 
         <table style="width: 100%; font-size: 15px; color: #374151; border-spacing: 0 10px;">
@@ -22,24 +22,16 @@
                 <td>: {{ $data['nama_anak'] }}</td>
             </tr>
             <tr>
-                <td><strong>Anak ke</strong></td>
-                <td>: {{ $data['anak_ke'] }}</td>
-            </tr>
-            <tr>
                 <td><strong>Tanggal Lahir</strong></td>
                 <td>: {{ \Carbon\Carbon::parse($data['tgl_lahir_anak'])->translatedFormat('l, d F Y') }}</td>
             </tr>
             <tr>
-                <td><strong>Waktu Lahir</strong></td>
+                <td><strong>Waktu Lahir Anak</strong></td>
                 <td>: {{ $data['waktu_lahir_anak'] }}</td>
             </tr>
             <tr>
                 <td><strong>Jenis Kelamin</strong></td>
                 <td>: {{ $data['jenis_kelamin_anak'] }}</td>
-            </tr>
-            <tr>
-                <td><strong>Alamat Keluarga</strong></td>
-                <td>: {{ $data['alamat_keluarga'] }}</td>
             </tr>
         </table>
 
@@ -63,7 +55,6 @@
                 <td>: {{ $data['nik_ibu'] }}</td>
             </tr>
         </table>
-
         <p style="margin-top: 30px; font-size: 15px; color: #374151;">
             Permohonan Anda saat ini berstatus: <strong>{{ ucfirst($data['status']) }}</strong>. Kami akan menghubungi Anda kembali jika surat sudah selesai.
         </p>

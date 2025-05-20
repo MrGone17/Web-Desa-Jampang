@@ -18,7 +18,11 @@ class SuratperubahankkResource extends Resource
 {
     protected static ?string $model = Suratperubahankk::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $pluralModelLabel = 'Surat rubahan KK';
+    public static function getLabel(): string
+    {
+        return 'Surat Perubahan KK';
+    }
 
     public static function form(Form $form): Form
     {

@@ -27,7 +27,7 @@ class SuratbuataktalahirResource extends Resource
     {
         return $form
             ->schema([
-                 Forms\Components\Select::make('warga_id')
+                Forms\Components\Select::make('warga_id')
                     ->label('Nama Pembuat Surat')
                     ->relationship('warga', 'name')
                     ->searchable()

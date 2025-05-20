@@ -97,14 +97,12 @@ class LayananSuratbuataktalahir extends Component
                     'nama' => $this->nama_pembuat,
                     'nama_anak' => $this->nama_anak,
                     'jenis_kelamin_anak' => $this->jenis_kelamin_anak,
-                    'anak_ke' => $this->anak_ke,
                     'tgl_lahir_anak' => $this->tgl_lahir_anak,
                     'waktu_lahir_anak' => $this->waktu_lahir_anak,
                     'nik_ayah' => $this->nik_ayah,
                     'nik_ibu' => $this->nik_ibu,
                     'nama_ayah' => $this->nama_ayah,
                     'nama_ibu' => $this->nama_ibu,
-                    'alamat_keluarga' => $this->alamat_keluarga,
                     'status' => 'diproses',
                 ])
             );
