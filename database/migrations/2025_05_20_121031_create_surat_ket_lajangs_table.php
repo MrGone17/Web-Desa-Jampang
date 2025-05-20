@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('surat_pengantar_nikahs', function (Blueprint $table) {
+        Schema::create('surat_ket_lajangs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('warga_id')->constrained('wargas')->onDelete('cascade');
             $table->string('nama_lengkap');
@@ -19,34 +19,19 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('status_kawin');
             $table->string('agama');
             $table->string('pekerjaan');
-            $table->enum('kewarganegaraan', ['WNI', 'WNA']);
             $table->text('alamat');
             $table->string('nama_lengkap_pasangan');
             $table->string('nik_pasangan');
             $table->string('tempat_lahir_pasangan');
             $table->date('tgl_lahir_pasangan');
+            $table->enum('jenis_kelamin_pasangan', ['L', 'P']);
+            $table->string('status_kawin_pasangan');
             $table->string('agama_pasangan');
             $table->string('pekerjaan_pasangan');
-            $table->enum('kewarganegaraan_pasangan', ['WNI', 'WNA']);
             $table->text('alamat_pasangan');
-            $table->string('nama_lengkap_ayah');
-            $table->string('nik_ayah');
-            $table->string('tempat_lahir_ayah');
-            $table->date('tgl_lahir_ayah');
-            $table->string('agama_ayah');
-            $table->string('pekerjaan_ayah');
-            $table->enum('kewarganegaraan_ayah', ['WNI', 'WNA']);
-            $table->text('alamat_ayah');
-            $table->string('nama_lengkap_ibu');
-            $table->string('nik_ibu');
-            $table->string('tempat_lahir_ibu');
-            $table->date('tgl_lahir_ibu');
-            $table->string('agama_ibu');
-            $table->string('pekerjaan_ibu');
-            $table->enum('kewarganegaraan_ibu', ['WNI', 'WNA']);
-            $table->text('alamat_ibu');
             $table->enum('status', ['diproses', 'ditolak', 'selesai'])->default('diproses');
             $table->text('catatan')->nullable();
             $table->string('pengantar_pdf');
@@ -59,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('surat_pengantar_nikahs');
+        Schema::dropIfExists('surat_ket_lajangs');
     }
 };

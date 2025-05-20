@@ -1,4 +1,4 @@
-<div>
+<div class="overflow-hidden">
     <!-- Hero Section -->
     <section class="relative bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('image/berita.jpg') }}');">
         <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
@@ -257,10 +257,72 @@
                 </div>
                 <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
                     <div>
-                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Pengantar Nikah</h4>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Pengantar Nikah
+                        </h4>
                         <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
                     </div>
                     <a href="{{ route('FormsuratLayananketeranganpengantarnikah') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Permohonan Cerai</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananketeranganpermohonancerai') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Permohonan Duplikasi Surat Nikah</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananketeranganduplikatsuratnikah') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Janda Duda</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananketeranganketjandaduda') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Lajang</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananketeranganketlajang') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Pernah Menikah</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananketeranganketpernahmenikah') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+            </div>
+            <div class="px-4 py-4 flex items-center justify-center">
+                <h1 class="bg-primary text-white text-xs md:text-3xl text-center font-bold px-6 py-2 rounded-lg" data-aos="fade-up" data-aos-duration="1000">
+                    Pembuatan Surat Layanan Umum
+                </h1>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Izin Keramaian</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananketeranganizinkeramaian') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
                         Isi Form
                     </a>
                 </div>

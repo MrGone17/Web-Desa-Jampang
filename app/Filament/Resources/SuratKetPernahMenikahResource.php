@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SuratPengantarNikahResource\Pages;
-use App\Filament\Resources\SuratPengantarNikahResource\RelationManagers;
-use App\Models\SuratPengantarNikah;
+use App\Filament\Resources\SuratKetPernahMenikahResource\Pages;
+use App\Filament\Resources\SuratKetPernahMenikahResource\RelationManagers;
+use App\Models\SuratKetPernahMenikah;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,15 +13,16 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SuratPengantarNikahResource extends Resource
+class SuratKetPernahMenikahResource extends Resource
 {
-    protected static ?string $model = SuratPengantarNikah::class;
+    protected static ?string $model = SuratKetPernahMenikah::class;
 
-    protected static ?string $pluralModelLabel = 'Surat Pengantar Nikah';
+    protected static ?string $pluralModelLabel = 'Surat Keterangan Pernah Menikah';
     public static function getLabel(): string
     {
-        return 'Surat Pengantar Nikah';
+        return 'Surat Keterangan Pernah Menikah';
     }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -31,7 +32,7 @@ class SuratPengantarNikahResource extends Resource
                     ->relationship('warga', 'name')
                     ->searchable()
                     ->disabled(),
-                Forms\Components\Section::make('Data Warga Jampang')
+                Forms\Components\Section::make('Data Yang Mengkawinkan')
                 ->columns(2)
                 ->schema([
                     Forms\Components\TextInput::make('nama_lengkap')
@@ -46,7 +47,7 @@ class SuratPengantarNikahResource extends Resource
                     Forms\Components\DatePicker::make('tgl_lahir')
                         ->required()
                         ->format('Y-m-d')
-                        ->closeOnDateSelection() // disimpan di DB: 2025-05-20
+                        ->closeOnDateSelection() 
                         ->displayFormat('d F Y'),
                     Forms\Components\Select::make('jenis_kelamin')
                     ->options([
@@ -68,37 +69,38 @@ class SuratPengantarNikahResource extends Resource
                             'buddha' => 'Buddha',
                             'khonghucu' => 'Khonghucu',
                         ]),
-                    Forms\Components\Select::make('kewarganegaraan')
-                    ->required()
-                    ->options([
-                        'WNI' => 'Warga Negara Indonesia',
-                        'WNA' => 'Warga Negara Asing',
-                    ]),
                     Forms\Components\Textarea::make('alamat')
                         ->required()
                         ->columnSpanFull(),
                 ]),
-                Forms\Components\Section::make('Data Pasangan')
+                Forms\Components\Section::make('Data pria')
                 ->columns(2)
                 ->schema([
-                    Forms\Components\TextInput::make('nama_lengkap_pasangan')
+                    Forms\Components\TextInput::make('nama_lengkap_pria')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('nik_pasangan')
+                    Forms\Components\TextInput::make('nik_pria')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('tempat_lahir_pasangan')
+                    Forms\Components\TextInput::make('tempat_lahir_pria')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\DatePicker::make('tgl_lahir_pasangan')
+                    Forms\Components\DatePicker::make('tgl_lahir_pria')
                         ->required()
                         ->format('Y-m-d')
                         ->closeOnDateSelection()
                         ->displayFormat('d F Y'),
-                    Forms\Components\TextInput::make('pekerjaan_pasangan')
+                    Forms\Components\Select::make('jenis_kelamin_pria')
+                        ->options([
+                            'L' => 'Laki-Laki',
+                            'P' => 'Perempuan',
+                        ])
+                        ->required()
+                        ->label('Jenis Kelamin'),
+                    Forms\Components\TextInput::make('pekerjaan_pria')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\Select::make('agama_pasangan')
+                    Forms\Components\Select::make('agama_pria')
                         ->label('Agama')
                         ->options([
                         'islam' => 'Islam',
@@ -108,37 +110,38 @@ class SuratPengantarNikahResource extends Resource
                             'buddha' => 'Buddha',
                             'khonghucu' => 'Khonghucu',
                         ]),
-                    Forms\Components\Select::make('kewarganegaraan_pasangan')
-                        ->required()
-                        ->options([
-                            'WNI' => 'Warga Negara Indonesia',
-                            'WNA' => 'Warga Negara Asing',
-                        ]),
-                    Forms\Components\Textarea::make('alamat_pasangan')
+                    Forms\Components\Textarea::make('alamat_pria')
                         ->required()
                         ->columnSpanFull(),
                 ]),
-                Forms\Components\Section::make('Data ayah')
+                Forms\Components\Section::make('Data perempuan')
                 ->columns(2)
                 ->schema([
-                    Forms\Components\TextInput::make('nama_lengkap_ayah')
+                    Forms\Components\TextInput::make('nama_lengkap_perempuan')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('nik_ayah')
+                    Forms\Components\TextInput::make('nik_perempuan')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('tempat_lahir_ayah')
+                    Forms\Components\TextInput::make('tempat_lahir_perempuan')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\DatePicker::make('tgl_lahir_ayah')
+                    Forms\Components\DatePicker::make('tgl_lahir_perempuan')
                         ->required()
                         ->format('Y-m-d')
                         ->closeOnDateSelection()
                         ->displayFormat('d F Y'),
-                    Forms\Components\TextInput::make('pekerjaan_ayah')
+                    Forms\Components\Select::make('jenis_kelamin_perempuan')
+                        ->options([
+                            'L' => 'Laki-Laki',
+                            'P' => 'Perempuan',
+                        ])
+                        ->required()
+                        ->label('Jenis Kelamin'),
+                    Forms\Components\TextInput::make('pekerjaan_perempuan')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\Select::make('agama_ayah')
+                    Forms\Components\Select::make('agama_perempuan')
                         ->label('Agama')
                         ->options([
                         'islam' => 'Islam',
@@ -148,53 +151,7 @@ class SuratPengantarNikahResource extends Resource
                             'buddha' => 'Buddha',
                             'khonghucu' => 'Khonghucu',
                         ]),
-                    Forms\Components\Select::make('kewarganegaraan_ayah')
-                        ->required()
-                        ->options([
-                            'WNI' => 'Warga Negara Indonesia',
-                            'WNA' => 'Warga Negara Asing',
-                        ]),
-                    Forms\Components\Textarea::make('alamat_ayah')
-                        ->required()
-                        ->columnSpanFull(),
-                ]),
-                Forms\Components\Section::make('Data ibu')
-                ->columns(2)
-                ->schema([
-                    Forms\Components\TextInput::make('nama_lengkap_ibu')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('nik_ibu')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('tempat_lahir_ibu')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\DatePicker::make('tgl_lahir_ibu')
-                        ->required()
-                        ->format('Y-m-d')
-                        ->closeOnDateSelection()
-                        ->displayFormat('d F Y'),
-                    Forms\Components\TextInput::make('pekerjaan_ibu')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\Select::make('agama_ibu')
-                        ->label('Agama')
-                        ->options([
-                        'islam' => 'Islam',
-                            'kristen' => 'Kristen Protestan',
-                            'katolik' => 'Katolik',
-                            'hindu' => 'Hindu',
-                            'buddha' => 'Buddha',
-                            'khonghucu' => 'Khonghucu',
-                        ]),
-                    Forms\Components\Select::make('kewarganegaraan_ibu')
-                        ->required()
-                        ->options([
-                            'WNI' => 'Warga Negara Indonesia',
-                            'WNA' => 'Warga Negara Asing',
-                        ]),
-                    Forms\Components\Textarea::make('alamat_ibu')
+                    Forms\Components\Textarea::make('alamat_perempuan')
                         ->required()
                         ->columnSpanFull(),
                 ]),
@@ -267,9 +224,9 @@ class SuratPengantarNikahResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSuratPengantarNikahs::route('/'),
-            'create' => Pages\CreateSuratPengantarNikah::route('/create'),
-            'edit' => Pages\EditSuratPengantarNikah::route('/{record}/edit'),
+            'index' => Pages\ListSuratKetPernahMenikahs::route('/'),
+            'create' => Pages\CreateSuratKetPernahMenikah::route('/create'),
+            'edit' => Pages\EditSuratKetPernahMenikah::route('/{record}/edit'),
         ];
     }
 }

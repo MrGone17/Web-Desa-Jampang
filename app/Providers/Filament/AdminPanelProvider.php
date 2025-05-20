@@ -57,12 +57,17 @@ use App\Filament\Resources\SuratahliwarisResource;
 use App\Filament\Resources\SuratBelumMenikahResource;
 use App\Filament\Resources\SuratbuataktalahirResource;
 use App\Filament\Resources\SuratdomisiliResource;
+use App\Filament\Resources\SuratDuplikatSuratNikahResource;
+use App\Filament\Resources\SuratIzinKeramaianResource;
 use App\Filament\Resources\SuratKematianResource;
 use App\Filament\Resources\SuratKeteranganMenikahResource;
 use App\Filament\Resources\SuratketeranganpendudukResource;
 use App\Filament\Resources\SuratKeteranganTelahMenikahResource;
 use App\Filament\Resources\SuratKeteranganWaliHakimResource;
 use App\Filament\Resources\SuratKeteranganWaliResource;
+use App\Filament\Resources\SuratKetJandaDudaResource;
+use App\Filament\Resources\SuratKetLajangResource;
+use App\Filament\Resources\SuratKetPernahMenikahResource;
 use App\Filament\Resources\SuratKuasaPengasuhanAnakResource;
 use App\Filament\Resources\SuratkuasaResource;
 use App\Filament\Resources\SuratmatidanlahirResource;
@@ -72,6 +77,7 @@ use App\Filament\Resources\SuratNumpangNikahResource;
 use App\Filament\Resources\SuratPembuatanAktaLahirResource;
 use App\Filament\Resources\SuratPembuatanPengakuanAnakResource;
 use App\Filament\Resources\SuratPengantarNikahResource;
+use App\Filament\Resources\SuratPermohonanCeraiResource;
 use App\Filament\Resources\SuratpermohonankkResource;
 use App\Filament\Resources\SuratperubahankkResource;
 use App\Filament\Resources\SuratpindahpendudukResource;
@@ -281,6 +287,33 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-document-text')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpengantarnikahs.index'))
                                 ->url(SuratPengantarNikahResource::getUrl()),
+                            NavigationItem::make('Surat Permohonan Cerai')
+                                ->icon('heroicon-o-document-text')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpermohonancerais.index'))
+                                ->url(SuratPermohonanCeraiResource::getUrl()),
+                            NavigationItem::make('Surat Duplikat Surat Nikah')
+                                ->icon('heroicon-o-document-text')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratduplikatsuratnikahs.index'))
+                                ->url(SuratDuplikatSuratNikahResource::getUrl()),
+                            NavigationItem::make('Surat Keterangan Janda Duda')
+                                ->icon('heroicon-o-document-text')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratketjandadudas.index'))
+                                ->url(SuratKetJandaDudaResource::getUrl()),
+                            NavigationItem::make('Surat Keterangan Lajang')
+                                ->icon('heroicon-o-document-text')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-ket-lajangs.index'))
+                                ->url(SuratKetLajangResource::getUrl()),
+                            NavigationItem::make('Surat Keterangan Pernah Menikah')
+                                ->icon('heroicon-o-document-text')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-ket-pernah-menikahs.index'))
+                                ->url(SuratKetPernahMenikahResource::getUrl()),
+                        ]),
+                    NavigationGroup::make('Layanan Umum')
+                        ->items([
+                            NavigationItem::make('Surat Izin Keramaian')
+                                ->icon('heroicon-o-document-text')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-izin-keramaians.index'))
+                                ->url(SuratIzinKeramaianResource::getUrl()),
                         ]),
                     NavigationGroup::make('Page Beranda')
                         ->items([

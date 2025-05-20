@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratPengantarNikah extends Model
+class SuratKetJandaDuda extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'warga_id',
+        'status_hubungan',
         'nama_lengkap',
         'nik',
         'tempat_lahir',
@@ -17,6 +19,7 @@ class SuratPengantarNikah extends Model
         'jenis_kelamin',
         'agama',
         'pekerjaan',
+        'kewarganegaraan',
         'alamat',
         'nama_lengkap_pasangan',
         'nik_pasangan',
@@ -24,6 +27,7 @@ class SuratPengantarNikah extends Model
         'tgl_lahir_pasangan',
         'agama_pasangan',
         'pekerjaan_pasangan',
+        'kewarganegaraan_pasangan',
         'alamat_pasangan',
         'status',
         'catatan',

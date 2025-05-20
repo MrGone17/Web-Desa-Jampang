@@ -9,8 +9,9 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class KonfirmasiSuratPengantarNikah extends Mailable
+class KonfirmasiStatusPermohonanCerai extends Mailable
 {
+    
     use Queueable, SerializesModels;
 
     /**
@@ -25,7 +26,7 @@ class KonfirmasiSuratPengantarNikah extends Mailable
 
     public function build()
     {
-        return $this->subject('Konfirmasi Pengajuan Surat Pengantar Nikah')
-                    ->view('emails.konfirmasi-surat-pengantarnikah');
+        return $this->subject('Konfirmasi Pengajuan Status Permohonan Cerai')
+                    ->view('emails.konfirmasi-status-surat-permohonancerai');
     }
 }

@@ -17,12 +17,17 @@ use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratAhliWaris;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratBelumMenikah;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratbuataktalahir;
 use App\Livewire\Formlayanan\Suratkependudukan\Layanansuratdomisili;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratDuplikatSuratNikah;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratIzinKeramaian;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKematian;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKeteranganMenikah;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKeteranganPenduduk;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKeteranganTelahMenikah;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKeteranganWali;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKeteranganWaliHakim;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKetJandaDuda;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKetLajang;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKetPernahMenikah;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratkuasa;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratKuasaPengasuhAnak;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratmatidanlahir;
@@ -31,6 +36,7 @@ use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratNumpangMenikah;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPembuatanAktaLahir;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPembuatanPengakuanAnak;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPengantarNikah;
+use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPermohonanCerai;
 use App\Livewire\Formlayanan\Suratkependudukan\Layanansuratpermohonankk;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPerubahankk;
 use App\Livewire\Formlayanan\Suratkependudukan\LayananSuratPindahPenduduk;
@@ -114,6 +120,12 @@ Route::get('/Formlayanan/Layanan-Surat-Keterangan-Telah-Menikah', LayananSuratKe
 Route::get('/Formlayanan/Layanan-Surat-Keterangan-Wali', LayananSuratKeteranganWali::class)->name('FormsuratLayananketeranganwali');
 Route::get('/Formlayanan/Layanan-Surat-Keterangan-Wali-Hakim', LayananSuratKeteranganWaliHakim::class)->name('FormsuratLayananketeranganwalihakim');
 Route::get('/Formlayanan/Layanan-Surat-Keterangan-Pengantar-Nikah', LayananSuratPengantarNikah::class)->name('FormsuratLayananketeranganpengantarnikah');
+Route::get('/Formlayanan/Layanan-Surat-Permohonan-Cerai', LayananSuratPermohonanCerai::class)->name('FormsuratLayananketeranganpermohonancerai');
+Route::get('/Formlayanan/Layanan-Surat-Duplikat-Surat-Nikah', LayananSuratDuplikatSuratNikah::class)->name('FormsuratLayananketeranganduplikatsuratnikah');
+Route::get('/Formlayanan/Layanan-Surat-Keterangan-Janda-Duda', LayananSuratKetJandaDuda::class)->name('FormsuratLayananketeranganketjandaduda');
+Route::get('/Formlayanan/Layanan-Surat-Keterangan-Lajang', LayananSuratKetLajang::class)->name('FormsuratLayananketeranganketlajang');
+Route::get('/Formlayanan/Layanan-Surat-Keterangan-Pernah-Menikah', LayananSuratKetPernahMenikah::class)->name('FormsuratLayananketeranganketpernahmenikah');
+Route::get('/Formlayanan/Layanan-Surat-Izin-Keramaian', LayananSuratIzinKeramaian::class)->name('FormsuratLayananketeranganizinkeramaian');
 
 Route::post('/surat-nikah', [Layanansuratnikah::class, 'store'])->name('surat-nikah.store');
 

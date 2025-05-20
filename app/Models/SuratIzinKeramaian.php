@@ -5,26 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratPengantarNikah extends Model
+class SuratIzinKeramaian extends Model
 {
+    use HasFactory;
     use HasFactory;
     protected $fillable = [
         'warga_id',
         'nama_lengkap',
         'nik',
+        'no_kk',
+        'kepala_kk',
         'tempat_lahir',
         'tgl_lahir',
         'jenis_kelamin',
         'agama',
         'pekerjaan',
+        'kewarganegaraan',
+        'pendidikan',
         'alamat',
-        'nama_lengkap_pasangan',
-        'nik_pasangan',
-        'tempat_lahir_pasangan',
-        'tgl_lahir_pasangan',
-        'agama_pasangan',
-        'pekerjaan_pasangan',
-        'alamat_pasangan',
+        'berlaku_dari',
+        'berlaku_sampai',
+        'jenis_keramaian',
+        'keperluan',
         'status',
         'catatan',
         'pengantar_pdf'

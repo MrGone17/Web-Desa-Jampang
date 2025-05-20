@@ -3,7 +3,7 @@
         <div class="absolute inset-0 bg-gray-900 bg-opacity-70"></div>
         <div class="relative container mx-auto px-6 md:px-20 py-16">
             <div class="text-center md:text-start text-white">
-                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Keterangan Pengantar Menikah</h2>
+                <h2 class="text-3xl md:text-5xl font-bold">Form Surat Keterangan Pernah Menikah</h2>
             </div>
         </div>
     </section>
@@ -17,7 +17,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Keterangan Pengantar Menikah Berhasil Dikirim</h2>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Keterangan Pernah Menikah Berhasil Dikirim</h2>
                         <p class="text-base sm:text-lg text-gray-600 mb-6">data akan diproses terlebih dahulu dan diharapkan mengecheck email secara berkala untuk mengetahui perkembangan proses pembuatan surat</p>
                         <button wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
                             Tutup
@@ -38,7 +38,7 @@
         </div>   
         <div class="container mx-auto px-1 md:px-20">
             <div class="bg-gray-50 shadow-xl rounded-2xl p-8 md:p-12">
-                <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Warga Jampang Berikut</h3>
+                <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Yang Menikahkan</h3>
                 <form wire:submit.prevent="save" class="space-y-4" enctype="multipart/form-data">
                     <!-- Nama Lengkap -->
                     <div class="grid grid-cols-2 gap-4">
@@ -63,11 +63,11 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">kewarganegaraan</label>
-                            <select wire:model="kewarganegaraan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Jenis Kelamin</label>
+                            <select wire:model="jenis_kelamin" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">-- Pilih Salah Satu --</option>
-                                <option value="WNI">Warga Negara Indonesia</option>
-                                <option value="WNA">Warga Negara Asing</option>
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div>
@@ -89,51 +89,43 @@
                             <input type="text" name="pekerjaan" wire:model="pekerjaan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan">
                         </div>
                         <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat</label>
+                            <input type="text" name="alamat" wire:model="alamat" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
+                        </div> 
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Pria Yang Dinikahkan</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                         <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama </label>
+                            <input type="text" name="nama_lengkap_pria" wire:model="nama_lengkap_pria" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Lengkap Sesuai KTP">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Induk</label>
+                            <input type="text" name="nik_pria" wire:model="nik_pria" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Lahir</label>
+                            <input type="text" wire:model="tempat_lahir_pria" name="tempat_lahir_pria" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Tempat Lahir">
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tanggal Lahir</label>
+                            <input type="date" name="tgl_lahir_pria" wire:model="tgl_lahir_pria" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Jenis Kelamin</label>
-                            <select wire:model="jenis_kelamin" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <select wire:model="jenis_kelamin_pria" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">-- Pilih Salah Satu --</option>
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
-                    </div>
-                     <div>
-                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat</label>
-                        <input type="text" name="alamat" wire:model="alamat" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
-                    </div> 
-                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Pasangan</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                         <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama </label>
-                            <input type="text" name="nama_lengkap_pasangan" wire:model="nama_lengkap_pasangan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Lengkap Sesuai KTP">
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Induk</label>
-                            <input type="text" name="nik_pasangan" wire:model="nik_pasangan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Lahir</label>
-                            <input type="text" wire:model="tempat_lahir_pasangan" name="tempat_lahir_pasangan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Tempat Lahir">
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tanggal Lahir</label>
-                            <input type="date" name="tgl_lahir_pasangan" wire:model="tgl_lahir_pasangan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">kewarganegaraan</label>
-                            <select wire:model="kewarganegaraan_pasangan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                                <option value="">-- Pilih Salah Satu --</option>
-                                <option value="WNI">Warga Negara Indonesia</option>
-                                <option value="WNA">Warga Negara Asing</option>
-                            </select>
-                        </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Agama</label>
-                            <select wire:model="agama_pasangan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <select wire:model="agama_pria" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">-- Pilih Salah Satu --</option>
                                 <option value="islam">Islam</option>
                                 <option value="kristen">Kristen</option>
@@ -144,49 +136,49 @@
                             </select>
                         </div> 
                     </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Pekerjaan</label>
-                            <input type="text" name="pekerjaan_pasangan" wire:model="pekerjaan_pasangan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan">
+                            <input type="text" name="pekerjaan_pria" wire:model="pekerjaan_pria" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan">
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat</label>
-                            <input type="text" name="alamat_pasangan" wire:model="alamat_pasangan" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
-                        </div>
+                            <input type="text" name="alamat_pria" wire:model="alamat_pria" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
+                        </div> 
                     </div>
-                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Ayah Pembuat Surat</h3>
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Pria Yang Dinikahkan</h3>
                     <div class="grid grid-cols-2 gap-4">
                          <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama </label>
-                            <input type="text" name="nama_lengkap_ayah" wire:model="nama_lengkap_ayah" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Lengkap Sesuai KTP">
+                            <input type="text" name="nama_lengkap_perempuan" wire:model="nama_lengkap_perempuan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Lengkap Sesuai KTP">
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Induk</label>
-                            <input type="text" name="nik_ayah" wire:model="nik_ayah" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk">
+                            <input type="text" name="nik_perempuan" wire:model="nik_perempuan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Lahir</label>
-                            <input type="text" wire:model="tempat_lahir_ayah" name="tempat_lahir_ayah" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Tempat Lahir">
+                            <input type="text" wire:model="tempat_lahir_perempuan" name="tempat_lahir_perempuan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Tempat Lahir">
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tanggal Lahir</label>
-                            <input type="date" name="tgl_lahir_ayah" wire:model="tgl_lahir_ayah" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" name="tgl_lahir_perempuan" wire:model="tgl_lahir_perempuan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">kewarganegaraan</label>
-                            <select wire:model="kewarganegaraan_ayah" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Jenis Kelamin</label>
+                            <select wire:model="jenis_kelamin_perempuan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">-- Pilih Salah Satu --</option>
-                                <option value="WNI">Warga Negara Indonesia</option>
-                                <option value="WNA">Warga Negara Asing</option>
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
                             </select>
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Agama</label>
-                            <select wire:model="agama_ayah" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <select wire:model="agama_perempuan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">-- Pilih Salah Satu --</option>
                                 <option value="islam">Islam</option>
                                 <option value="kristen">Kristen</option>
@@ -197,69 +189,16 @@
                             </select>
                         </div> 
                     </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Pekerjaan</label>
-                            <input type="text" name="pekerjaan_ayah" wire:model="pekerjaan_ayah" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan">
+                            <input type="text" name="pekerjaan_perempuan" wire:model="pekerjaan_perempuan" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan">
                         </div>
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat</label>
-                            <input type="text" name="alamat_ayah" wire:model="alamat_ayah" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
-                        </div>
-                    </div> 
-                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Ibu Pembuat Surat</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                         <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama </label>
-                            <input type="text" name="nama_lengkap_ibu" wire:model="nama_lengkap_ibu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Lengkap Sesuai KTP">
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Induk</label>
-                            <input type="text" name="nik_ibu" wire:model="nik_ibu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Lahir</label>
-                            <input type="text" wire:model="tempat_lahir_ibu" name="tempat_lahir_ibu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Tempat Lahir">
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tanggal Lahir</label>
-                            <input type="date" name="tgl_lahir_ibu" wire:model="tgl_lahir_ibu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">kewarganegaraan</label>
-                            <select wire:model="kewarganegaraan_ibu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                                <option value="">-- Pilih Salah Satu --</option>
-                                <option value="WNI">Warga Negara Indonesia</option>
-                                <option value="WNA">Warga Negara Asing</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Agama</label>
-                            <select wire:model="agama_ibu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                                <option value="">-- Pilih Salah Satu --</option>
-                                <option value="islam">Islam</option>
-                                <option value="kristen">Kristen</option>
-                                <option value="katolik">Katolik</option>
-                                <option value="hindu">Hindu</option>
-                                <option value="buddha">Buddha</option>
-                                <option value="konghucu">Konghucu</option>
-                            </select>
+                            <input type="text" name="alamat_perempuan" wire:model="alamat_perempuan" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
                         </div> 
                     </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Pekerjaan</label>
-                            <input type="text" name="pekerjaan_ibu" wire:model="pekerjaan_ibu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan">
-                        </div>
-                        <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat</label>
-                            <input type="text" name="alamat_ibu" wire:model="alamat_ibu" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
-                        </div>
-                    </div> 
                     <div>
                         <label class="block mb-1 text-sm font-medium text-gray-700">Upload Surat Pengantar Dari RT</label>
                         <div class="flex items-center space-x-4">
@@ -298,16 +237,6 @@
                             </svg>
                             <div class="text-sm text-blue-800 leading-relaxed space-y-2">
                                 <p><strong>Perhatian:</strong> Saat pengambilan surat, <strong>harap cek email secara berkala</strong> dan <strong>periksa folder spam/junk</strong> untuk memastikan tidak ada informasi penting yang terlewat.</p>
-                                <p><strong>Bersama ini kami sampaikan surat-surat yang diperlukan untuk diperiksa sebagai berikut:</strong></p>
-                                <ol class="list-decimal list-inside space-y-1">
-                                    <li>Surat pengantar perkawinan dari Desa / Kelurahan</li>
-                                    <li>Persetujuan Calon Mempelai</li>
-                                    <li>Fotocopy KTP</li>
-                                    <li>Fotocopy Akte Kelahiran / Fotocopy Ijazah Terakhir</li>
-                                    <li>Fotocopy Kartu Keluarga</li>
-                                    <li>Pas Foto 2 x 3 = 4 lembar background biru</li>
-                                    <li>Pas Foto 4 x 6 = 1 lembar background biru</li>
-                                </ol>
                             </div>
                         </div>
                     </div>
