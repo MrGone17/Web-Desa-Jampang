@@ -49,8 +49,6 @@ class WargaRegister extends Component
         $this->reset();
     }
 
-
-
     public function render()
     {
         return view('livewire.auth.warga-register');

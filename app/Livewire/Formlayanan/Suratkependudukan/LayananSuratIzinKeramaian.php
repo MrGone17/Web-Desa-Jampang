@@ -14,7 +14,7 @@ class LayananSuratIzinKeramaian extends Component
     use WithFileUploads;
 
     public $warga_id,$nama_pembuat;
-    public $nama_lengkap, $nik, $no_kk, $kepala_kk,$berlaku_dari,$berlaku_sampai,$jenis_keramaian,$keperluan, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $kewarganegaraan, $pekerjaan, $pendidikan, $alamat;
+    public $nama_lengkap, $nik, $no_kk,$status_kawin, $kepala_kk,$berlaku_dari,$berlaku_sampai,$jenis_keramaian,$keperluan, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $kewarganegaraan, $pekerjaan, $pendidikan, $alamat;
     public $pengantar_pdf;
     public bool $showSuccessModal = false;
     public function loaddata(){
@@ -45,6 +45,7 @@ class LayananSuratIzinKeramaian extends Component
             'kewarganegaraan' => 'required|in:WNI,WNA',
             'pekerjaan' => 'required|string|max:255',
             'pendidikan' => 'required|string|max:100',
+            'status_kawin' => 'required|string|max:100',
             'alamat' => 'required|string',
             'berlaku_dari' => 'required|date',
             'berlaku_sampai' => 'required|date',
@@ -69,6 +70,7 @@ class LayananSuratIzinKeramaian extends Component
             'kewarganegaraan' => $this->kewarganegaraan,
             'pekerjaan' => $this->pekerjaan,
             'pendidikan' => $this->pendidikan,
+            'status_kawin' => $this->status_kawin,
             'alamat' => $this->alamat,
             'berlaku_dari' => $this->berlaku_dari,
             'berlaku_sampai' => $this->berlaku_sampai,

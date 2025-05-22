@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('kewarganegaraan', ['WNI', 'WNA']);
             $table->string('pekerjaan');
             $table->string('pendidikan');
+            $table->string('status_kawin');
             $table->text('alamat');
             $table->date('berlaku_dari');
             $table->date('berlaku_sampai');

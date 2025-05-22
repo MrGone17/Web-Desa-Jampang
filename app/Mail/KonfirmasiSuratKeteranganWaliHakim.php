@@ -26,6 +26,6 @@ class KonfirmasiSuratKeteranganWaliHakim extends Mailable
     public function build()
     {
         return $this->subject('Konfirmasi Pengajuan Surat Keterangan Wali Hakim')
-                    ->view('emails.konfirmasi-surat-walihakim');
+                    ->view('emails.konfirmasi-surat-wali');
     }
 }

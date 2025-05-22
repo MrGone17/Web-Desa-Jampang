@@ -326,6 +326,87 @@
                         Isi Form
                     </a>
                 </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Catatan Kriminal</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananSKCK') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Jamkesos</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananjamkesos') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Kehilangan</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanankehilangan') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Penghasilan Orang Tua</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananpenghasilanortu') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Tidak Mampu</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanantidakmampu') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Domisili Usaha</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanandomisiliusaha') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Domisili Usaha Non Warga</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayanandomisiliusahanonwarga') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Jual Beli</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananjualbeli') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-semibold mb-2">Surat Keterangan Usaha</h4>
+                        <p class="text-sm text-gray-600 mb-4">Form untuk mengajukan permohonan surat nikah resmi dari desa.</p>
+                    </div>
+                    <a href="{{ route('FormsuratLayananusaha') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                        Isi Form
+                    </a>
+                </div>
             </div>
         </div>
     </section>

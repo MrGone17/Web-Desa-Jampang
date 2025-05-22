@@ -17,8 +17,11 @@ class SuratIzinKeramaianResource extends Resource
 {
     protected static ?string $model = SuratIzinKeramaian::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $pluralModelLabel = 'Surat Izin Keramaian';
+    public static function getLabel(): string
+    {
+        return 'Surat Izin Keramaian';
+    }   
     public static function form(Form $form): Form
     {
         return $form
@@ -85,6 +88,20 @@ class SuratIzinKeramaianResource extends Resource
                     ->required()
                     ->native(false) // untuk dropdown custom Filament
                     ->searchable(),
+                Forms\Components\Select::make('kewarganegaraan')
+                    ->required()
+                    ->options([
+                        'WNI' => 'Warga Negara Indonesia',
+                        'WNA' => 'Warga Negara Asing',
+                    ]),
+                Forms\Components\Select::make('status_kawin')
+                    ->label('Status Perkawinan')
+                    ->required()
+                    ->options([
+                        'sudah' => 'Sudah Kawin',
+                        'belum' => 'Belum Kawin',
+                    ])
+                    ->placeholder('-- Pilih Salah Satu --'),
                 Forms\Components\Textarea::make('alamat')
                     ->required()
                     ->columnSpanFull(),

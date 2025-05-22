@@ -19,7 +19,7 @@
                         </div>
                         <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Izin Keramaian Berhasil Dikirim</h2>
                         <p class="text-base sm:text-lg text-gray-600 mb-6">data akan diproses terlebih dahulu dan diharapkan mengecheck email secara berkala untuk mengetahui perkembangan proses pembuatan surat</p>
-                        <button wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
+                        <button x-on:click="open = false; setTimeout(() => window.location.reload(), 300);" wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
                             Tutup
                         </button>
                     </div>
@@ -123,10 +123,18 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat</label>
-                            <input type="text" name="alamat" wire:model="alamat" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
+                            <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Status Perkawinan</label>
+                            <select wire:model="status_kawin" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                <option value="">-- Pilih Salah Satu --</option>
+                                <option value="sudah">Sudah Kawin</option>
+                                <option value="belum">Belum Kawin</option>
+                            </select>
                         </div>
                     </div> 
+                    <div>
+                        <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Alamat</label>
+                        <input type="text" name="alamat" wire:model="alamat" rows="2" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Alamat Rumah">
+                    </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Jenis Keramaian</label>

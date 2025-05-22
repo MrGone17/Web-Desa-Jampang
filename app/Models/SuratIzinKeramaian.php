@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SuratIzinKeramaian extends Model
 {
     use HasFactory;
-    use HasFactory;
     protected $fillable = [
         'warga_id',
         'nama_lengkap',
@@ -22,6 +21,7 @@ class SuratIzinKeramaian extends Model
         'pekerjaan',
         'kewarganegaraan',
         'pendidikan',
+        'status_kawin',
         'alamat',
         'berlaku_dari',
         'berlaku_sampai',

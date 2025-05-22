@@ -19,7 +19,7 @@
                         </div>
                         <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Surat Keterangan Permohonan Cerai Berhasil Dikirim</h2>
                         <p class="text-base sm:text-lg text-gray-600 mb-6">data akan diproses terlebih dahulu dan diharapkan mengecheck email secara berkala untuk mengetahui perkembangan proses pembuatan surat</p>
-                        <button wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
+                        <button x-on:click="open = false; setTimeout(() => window.location.reload(), 300);" wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
                             Tutup
                         </button>
                     </div>
