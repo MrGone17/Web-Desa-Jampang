@@ -40,6 +40,7 @@ use App\Filament\Resources\MediaFotoResource;
 use App\Filament\Resources\MedsosResource;
 use App\Filament\Resources\MetodeResource;
 use App\Filament\Resources\NewsResource;
+use App\Filament\Resources\PasswordResetRequestResource;
 use App\Filament\Resources\PetaResource;
 use App\Filament\Resources\PointKurikulumResource;
 use App\Filament\Resources\PpdbResource;
@@ -183,6 +184,10 @@ class AdminPanelProvider extends PanelProvider
                                 ->icon('heroicon-o-user-circle')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.wargas.index'))
                                 ->url(WargaResource::getUrl()),
+                            NavigationItem::make('Reset Password')
+                                ->icon('heroicon-o-user-circle')
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.password-reset-requests.index'))
+                                ->url(PasswordResetRequestResource::getUrl()),
                         ]),
                     NavigationGroup::make('Layanan Kependudukan')
                         ->items([

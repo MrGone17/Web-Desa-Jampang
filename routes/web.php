@@ -2,7 +2,9 @@
 
 
 use App\Livewire\Administrasipenduduk;
+use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\WargaLogin;
 use App\Livewire\Auth\WargaRegister;
 use App\Livewire\Bansos;
@@ -75,6 +77,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/login', Login::class)->name('filament.admin.auth.login');
 Route::get('/login', WargaLogin::class)->name('login');
+Route::get('/reset-password/{token}', ResetPassword::class)->name('reset.password');
+Route::get('/forgot-password', ForgotPassword::class)->name('forgot.password');
 Route::get('/register', WargaRegister::class)->name('register');
 Route::post('/logout', function (Request $request) {
     Auth::guard('warga')->logout();
