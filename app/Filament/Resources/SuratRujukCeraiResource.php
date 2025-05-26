@@ -137,14 +137,21 @@ class SuratRujukCeraiResource extends Resource
                 Tables\Columns\TextColumn::make('warga_id')
                     ->label('Pembuat Surat')
                     ->formatStateUsing(fn ($state, $record) => $record->warga?->name ?? '-'),
-               Tables\Columns\TextColumn::make('pengantar_pdf')
+                Tables\Columns\TextColumn::make('pengantar_pdf')
                     ->label('Download PDF Pengantar')
                     ->url(fn ($record) => asset('storage/' . $record->pengantar_pdf))
                     ->openUrlInNewTab()
                     ->formatStateUsing(fn ($state) => 'Unduh PDF'),
                 Tables\Columns\TextColumn::make('nama_lengkap')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')
+                    ->searchable()
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'diproses' => 'warning',
+                        'selesai' => 'success',
+                        'ditolak' => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -153,7 +160,7 @@ class SuratRujukCeraiResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

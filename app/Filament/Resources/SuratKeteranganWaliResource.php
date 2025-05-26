@@ -125,7 +125,14 @@ class SuratKeteranganWaliResource extends Resource
                 Tables\Columns\TextColumn::make('nama_lengkap')
                     ->searchable()
                     ->label('Nama Wali'),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')
+                    ->searchable()
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'diproses' => 'warning',
+                        'selesai' => 'success',
+                        'ditolak' => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -134,7 +141,7 @@ class SuratKeteranganWaliResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

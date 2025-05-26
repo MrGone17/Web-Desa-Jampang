@@ -236,7 +236,7 @@ class AdminPanelProvider extends PanelProvider
                         ->items([
                             NavigationItem::make('Surat Ahli Waris')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratahliwariss.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratahliwaris.index'))
                                 ->url(SuratahliwarisResource::getUrl()),
                             NavigationItem::make('Surat Tidak Punya Akta Lahir')
                                 ->icon('heroicon-o-document-text')
@@ -252,66 +252,66 @@ class AdminPanelProvider extends PanelProvider
                                 ->url(SuratmatidanlahirResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Kematian')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratkematians.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-kematians.index'))
                                 ->url(SuratKematianResource::getUrl()),
                             NavigationItem::make('Surat Kuasa Pengasuhan Anak')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpengasuhananaks.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-kuasa-pengasuhan-anaks.index'))
                                 ->url(SuratKuasaPengasuhanAnakResource::getUrl()),
                             NavigationItem::make('Surat Pembuatan Akta Kelahiran')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpembuatanaktalahirs.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-pembuatan-akta-lahirs.index'))
                                 ->url(SuratPembuatanAktaLahirResource::getUrl()),
                             NavigationItem::make('Surat Pengakuan Anak')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpembuatanpengakuananaks.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-pembuatan-pengakuan-anaks.index'))
                                 ->url(SuratPembuatanPengakuanAnakResource::getUrl()),
                         ]),
                     NavigationGroup::make('Layanan Pernikahan')
                         ->items([
                             NavigationItem::make('Surat Belum Menikah')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratbelummenikahs.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-belum-menikahs.index'))
                                 ->url(SuratBelumMenikahResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Sudah Menikah')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratketeranganmenikahs.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-keterangan-menikahs.index'))
                                 ->url(SuratKeteranganMenikahResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Numpang Menikah')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratnumpangnikahs.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-numpang-nikahs.index'))
                                 ->url(SuratNumpangNikahResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Rujuk Cerai')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratrujukcerais.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-rujuk-cerais.index'))
                                 ->url(SuratRujukCeraiResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Telah Menikah')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratketerangantelahmenikahs.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-keterangan-telah-menikahs.index'))
                                 ->url(SuratKeteranganTelahMenikahResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Wali')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratketeranganwalis.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-keterangan-walis.index'))
                                 ->url(SuratKeteranganWaliResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Wali Hakim')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratketeranganwalihakims.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-keterangan-wali-hakims.index'))
                                 ->url(SuratKeteranganWaliHakimResource::getUrl()),
                             NavigationItem::make('Surat Pengantar Nikah')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpengantarnikahs.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-pengantar-nikahs.index'))
                                 ->url(SuratPengantarNikahResource::getUrl()),
                             NavigationItem::make('Surat Permohonan Cerai')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratpermohonancerais.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-permohonan-cerais.index'))
                                 ->url(SuratPermohonanCeraiResource::getUrl()),
                             NavigationItem::make('Surat Duplikat Surat Nikah')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratduplikatsuratnikahs.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-duplikat-surat-nikahs.index'))
                                 ->url(SuratDuplikatSuratNikahResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Janda Duda')
                                 ->icon('heroicon-o-document-text')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratketjandadudas.index'))
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.surat-ket-janda-dudas.index'))
                                 ->url(SuratKetJandaDudaResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Lajang')
                                 ->icon('heroicon-o-document-text')

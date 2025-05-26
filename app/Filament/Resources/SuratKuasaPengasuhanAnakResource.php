@@ -17,7 +17,7 @@ class SuratKuasaPengasuhanAnakResource extends Resource
 {
     protected static ?string $model = SuratKuasaPengasuhanAnak::class;
 
-protected static ?string $pluralModelLabel = 'Surat Kuasa Pengasuhan Anak';
+    protected static ?string $pluralModelLabel = 'Surat Kuasa Pengasuhan Anak';
     public static function getLabel(): string
     {
         return 'Surat Kuasa Pengasuhan Anak';
@@ -159,7 +159,13 @@ protected static ?string $pluralModelLabel = 'Surat Kuasa Pengasuhan Anak';
                 Tables\Columns\TextColumn::make('nama_ortu')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'diproses' => 'warning',
+                        'selesai' => 'success',
+                        'ditolak' => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -168,7 +174,7 @@ protected static ?string $pluralModelLabel = 'Surat Kuasa Pengasuhan Anak';
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

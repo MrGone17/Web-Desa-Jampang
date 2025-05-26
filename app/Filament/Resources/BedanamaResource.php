@@ -158,17 +158,22 @@ class BedanamaResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('pengantar_pdf')
                     ->required(),
+                Forms\Components\TextInput::make('catatan')
+                    ->maxLength(255)
+                    ->default(null),
                 Forms\Components\Select::make('status')
-                    ->options([
+                     ->options([
                         'diproses' => 'Diproses',
                         'selesai' => 'Selesai',
                         'ditolak' => 'Ditolak',
                     ])
                     ->default('diproses')
-                    ->required(),
-                Forms\Components\TextInput::make('catatan')
-                    ->maxLength(255)
-                    ->default(null),
+                    ->required()
+                    ->afterStateUpdated(function ($state, $set, $get, $livewire) {
+                    if (in_array($state, ['selesai', 'ditolak'])) {
+                        $livewire->kirimEmailKonfirmasi($state, $get('catatan'));
+                    }
+                }),
             ]);
     }
 
@@ -177,34 +182,23 @@ class BedanamaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('warga_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('perbedaan')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('nama_beda')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('nik_beda')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tempat_lahir_beda')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tanggal_lahir_beda')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('agama_beda')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('pekerjaan_beda')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('Kewarganegaraan_beda'),
-                Tables\Columns\TextColumn::make('telepon_beda')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('jenis_kelamin_beda'),
-                Tables\Columns\TextColumn::make('bukti_pdf')
-                    ->searchable(),
+                    ->label('Nama Warga')
+                    ->formatStateUsing(fn ($state, $record) => $record->warga?->name ?? '-'),
+                Tables\Columns\TextColumn::make('warga.nik')
+                    ->label('NIK'),
                 Tables\Columns\TextColumn::make('pengantar_pdf')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('catatan')
-                    ->searchable(),
+                    ->label('Download PDF Pengantar')
+                    ->url(fn ($record) => asset('storage/' . $record->pengantar_pdf))
+                    ->openUrlInNewTab()
+                    ->formatStateUsing(fn ($state) => 'Unduh PDF'),
+                Tables\Columns\TextColumn::make('status')
+                    ->searchable()
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'diproses' => 'warning',
+                        'selesai' => 'success',
+                        'ditolak' => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -213,7 +207,7 @@ class BedanamaResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

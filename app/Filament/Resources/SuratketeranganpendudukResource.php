@@ -150,7 +150,13 @@ class SuratketeranganpendudukResource extends Resource
                 Tables\Columns\TextColumn::make('keperluan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'diproses' => 'warning',
+                        'selesai' => 'success',
+                        'ditolak' => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -159,7 +165,7 @@ class SuratketeranganpendudukResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
