@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratKetJualUsaha;
+use App\Mail\Notifikasiadmin;
 use App\Models\SuratKetJualBeli;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratJualBeli extends Component
 {
     use WithFileUploads;
-
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_lengkap, $nik,$spesifikasi, $nama_barang, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $kewarganegaraan, $pekerjaan, $alamat;
     public $nama_lengkap_pihaklain, $nik_pihaklain, $tempat_lahir_pihaklain, $tgl_lahir_pihaklain, $jenis_kelamin_pihaklain, $kewarganegaraan_pihaklain, $pekerjaan_pihaklain, $alamat_pihaklain;
@@ -98,10 +100,25 @@ class LayananSuratJualBeli extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Jual & Beli',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratKetJualBeli::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

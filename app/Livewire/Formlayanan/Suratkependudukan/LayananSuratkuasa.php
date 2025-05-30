@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratkuasa;
+use App\Mail\Notifikasiadmin;
 use App\Models\Suratkuasa;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +15,7 @@ use Livewire\WithFileUploads;
 class LayananSuratkuasa extends Component
 {
     use WithFileUploads;
-    
+    public $suratlist;
     public $nama_lengkap,$kewarganegaraan, $pekerjaan, $agama, $jenis_kelamin, $nik, $tgl_lahir,$tempat_lahir, $alamat, $pengantar_pdf;
     public $nama_kuasa,$kewarganegaraan_kuasa, $pekerjaan_kuasa, $jenis_kelamin_kuasa, $nik_kuasa,$alasan_kuasa, $tgl_lahir_kuasa,$tempat_lahir_kuasa, $alamat_kuasa;
     public bool $showSuccessModal = false;
@@ -94,10 +96,25 @@ class LayananSuratkuasa extends Component
                 ])
             );
         }
-        $this->reset();
+       $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_lengkap,
+                    'nama_surat' => 'Surat Keterangan Surat Kuasa',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = Suratkuasa::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

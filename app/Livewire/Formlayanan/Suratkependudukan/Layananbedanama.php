@@ -2,8 +2,11 @@
 
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
+use App\Mail\KonfirmasiSuratBedaNama;
 use App\Mail\KonfirmasiSuratKeteranganBedaNama;
+use App\Mail\Notifikasiadmin;
 use App\Models\Bedanama;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,10 +15,16 @@ use Livewire\WithFileUploads;
 class Layananbedanama extends Component
 {
     use WithFileUploads;
+    
 
     public $nama_lengkap,$kewarganegaraan, $pekerjaan, $agama, $jenis_kelamin, $nik, $tgl_lahir,$tempat_lahir, $alamat, $pengantar_pdf, $bukti_pdf;
-    public $nama_beda,$perbedaan,$kewarganegaraan_beda, $pekerjaan_beda, $agama_beda, $jenis_kelamin_beda, $nik_beda, $tgl_lahir_beda,$tempat_lahir_beda, $alamat_beda;
+    public $nama_beda,$suratbedanamalist,$perbedaan,$kewarganegaraan_beda, $pekerjaan_beda, $agama_beda, $jenis_kelamin_beda, $nik_beda, $tgl_lahir_beda,$tempat_lahir_beda, $alamat_beda;
     public bool $showSuccessModal = false;
+    public function permision (){
+        if (!Auth::guard('warga')->check()) {
+            return redirect()->route('login'); // Jika belum login, redirect ke login
+        }
+    }
     public function loaddata(){
          $user = Auth::guard('warga')->user();
     
@@ -90,14 +99,27 @@ class Layananbedanama extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_lengkap,
+                    'nama_surat' => 'Surat Keterangan Beda Nama',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsuratbedanama(){
+        $this->suratbedanamalist = Bedanama::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
-        if (!Auth::guard('warga')->check()) {
-            return redirect()->route('login'); // Jika belum login, redirect ke login
-        }
+        $this->permision();
         $this->loaddata();
+        $this->loadsuratbedanama();
     }
     public function render()
     {

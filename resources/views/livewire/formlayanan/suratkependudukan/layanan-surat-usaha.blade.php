@@ -186,9 +186,9 @@
                             </div>
                         </div>
                     </div>
-                                             
                     <!-- Tombol Kirim -->
-                    <div class="text-center md:text-end">
+                    <div class="text-center md:text-end flex justify-end gap-4">
+                        <a href="{{ route('Formlayanan') }}" class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-6 rounded-xl transition duration-300">Kembali</a>
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-xl transition duration-300">Kirim Formulir</button>
                     </div>
                     @if (session()->has('message'))
@@ -197,6 +197,84 @@
                         </div>
                     @endif
                 </form>
+            </div>
+            <div class="mt-10 bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
+                <h2 class="text-xl font-bold text-white px-6 py-4 bg-gradient-to-r from-[#0F5C34] to-[#009A4B]">
+                    Riwayat Pengajuan Surat Keterangan Usaha
+                </h2>
+
+                @if ($suratlist->isEmpty())
+                    <div class="px-6 py-4 text-gray-600">Belum ada data pengajuan.</div>
+                @else
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-700">
+                            <thead class="bg-green-50 text-gray-900 font-medium">
+                                <tr>
+                                    <th class="px-4 py-3 sm:px-6 sm:py-4">Nama Pembuat</th>
+                                    <th class="px-4 py-3 sm:px-6 sm:py-4">Nama Lengkap</th>
+                                    <th class="px-4 py-3 sm:px-6 sm:py-4">Alamat</th>
+                                    <th class="px-4 py-3 sm:px-6 sm:py-4">Tanggal Pembuatan</th>
+                                    <th class="px-4 py-3 sm:px-6 sm:py-4">Surat Pengantar</th>
+                                    <th class="px-4 py-3 sm:px-6 sm:py-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 bg-white">
+                                @foreach ($suratlist as $surat)
+                                    <tr class="hover:bg-gray-50 transition duration-200 ease-in-out">
+                                        <td class="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap font-medium text-gray-800">
+                                            {{ optional($surat->warga)->name ?? 'Tidak ditemukan' }}
+                                        </td>
+                                        <td class="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap text-gray-600">
+                                            {{ $surat->nama_lengkap ?? 'Tidak ditemukan' }}
+                                        </td>
+                                        <td class="px-4 py-3 sm:px-6 sm:py-4 text-gray-600">
+                                            {{ optional($surat->warga->profil)->alamat ?? 'Tidak ditemukan' }}
+                                        </td>
+                                        <td class="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap text-gray-600">
+                                            {{ \Carbon\Carbon::parse($surat->created_at)->translatedFormat('d F Y') }}
+                                        </td>
+                                        <td class="px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
+                                            @if ($surat->pengantar_pdf)
+                                                <a href="{{ Storage::url($surat->pengantar_pdf) }}" target="_blank"
+                                                class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition duration-150">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H3a2 2 0 01-2-2V3a2 2 0 012-2h18a2 2 0 012 2v16a2 2 0 01-2 2z"/>
+                                                    </svg>
+                                                    Lihat PDF
+                                                </a>
+                                            @else
+                                                <span class="text-gray-500 italic">Tidak ada PDF</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-3 sm:px-6 sm:py-4">
+                                            @php
+                                                $status = strtolower($surat->status ?? 'tidak diketahui');
+                                                $statusClasses = [
+                                                    'selesai' => 'bg-green-100 text-green-800',
+                                                    'diproses' => 'bg-amber-100 text-amber-800',
+                                                    'ditolak' => 'bg-red-100 text-red-800',
+                                                    'tidak diketahui' => 'bg-gray-100 text-gray-700',
+                                                ];
+                                                $statusIcons = [
+                                                    'selesai' => '<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>',
+                                                    'diproses' => '<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+                                                    'ditolak' => '<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>',
+                                                    'tidak diketahui' => '',
+                                                ];
+                                                $class = $statusClasses[$status] ?? 'bg-gray-100 text-gray-700';
+                                                $icon = $statusIcons[$status] ?? '';
+                                            @endphp
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $class }}">
+                                                {!! $icon !!}
+                                                {{ ucfirst($status) }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

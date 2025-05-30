@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratProsesKtp;
+use App\Mail\Notifikasiadmin;
 use App\Models\Suratprosesktp;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratProsesKtp extends Component
 {
     use WithFileUploads;
-
+    public $suratlist;
     public $nama_lengkap,$kewarganegaraan, $pekerjaan, $agama, $jenis_kelamin, $nik, $tgl_lahir,$tempat_lahir, $alamat, $pengantar_pdf;
     public $pendidikan, $status_hubungan, $keperluan, $no_kk, $kepala_kk;
     public bool $showSuccessModal = false;
@@ -75,10 +77,25 @@ class LayananSuratProsesKtp extends Component
                 ])
             );
         }
-        $this->reset();
+       $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_lengkap,
+                    'nama_surat' => 'Surat Keterangan KTP Dalam Proses',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = Suratprosesktp::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

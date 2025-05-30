@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratPengantarNikah;
+use App\Mail\Notifikasiadmin;
 use App\Models\SuratPengantarNikah;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratPengantarNikah extends Component
 {
     use WithFileUploads;
-
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_lengkap,$kewarganegaraan, $nik, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $pekerjaan, $alamat, $agama;
     public $nama_lengkap_ayah, $nik_ayah, $tempat_lahir_ayah, $tgl_lahir_ayah, $alamat_ayah,$pekerjaan_ayah, $kewarganegaraan_ayah, $agama_ayah;
@@ -128,10 +130,25 @@ class LayananSuratPengantarNikah extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Pengantar Nikah',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratPengantarNikah::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

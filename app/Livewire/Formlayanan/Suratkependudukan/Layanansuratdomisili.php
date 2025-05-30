@@ -4,7 +4,9 @@ namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiStatusSuratDomisili;
 use App\Mail\KonfirmasiSuratDomisili;
+use App\Mail\Notifikasiadmin;
 use App\Models\Suratdomisili;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -17,13 +19,14 @@ class Layanansuratdomisili extends Component
     public $nama_lengkap,$kewarganegaraan, $pekerjaan, $agama, $jenis_kelamin, $nik, $tgl_lahir,$tempat_lahir, $alamat, $pengantar_pdf;
     public $pendidikan, $status_hubungan, $keperluan, $no_kk, $kepala_kk;
     public bool $showSuccessModal = false;
+    public $suratlist;
     public function permision (){
         if (!Auth::guard('warga')->check()) {
             return redirect()->route('login'); // Jika belum login, redirect ke login
         }
     }
     public function loaddata(){
-         $user = Auth::guard('warga')->user();
+        $user = Auth::guard('warga')->user();
     
         if ($user) {
             $this->nama_lengkap = $user->name;
@@ -84,10 +87,25 @@ class Layanansuratdomisili extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_lengkap,
+                    'nama_surat' => 'Surat Keterangan Domsili',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = Suratdomisili::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

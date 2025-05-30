@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratahliwaris;
+use App\Mail\Notifikasiadmin;
 use App\Models\Suratahliwaris;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -13,6 +15,7 @@ class LayananSuratAhliWaris extends Component
 {
     use WithFileUploads;
     
+    public $suratlist;
     public $nama_lengkap,$kewarganegaraan, $pekerjaan, $agama, $jenis_kelamin, $nik, $tgl_lahir,$tempat_lahir, $alamat, $pengantar_pdf;
     public $nama_waris,$kewarganegaraan_waris, $pekerjaan_waris, $jenis_kelamin_waris, $nik_waris,$agama_waris, $tanggal_lahir_waris,$tempat_lahir_waris, $alamat_waris, $tanggal_meninggal ,$tempat_meninggal;
     public bool $showSuccessModal = false;
@@ -96,10 +99,25 @@ class LayananSuratAhliWaris extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_lengkap,
+                    'nama_surat' => 'Surat Keterangan Ahli Waris',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = Suratahliwaris::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

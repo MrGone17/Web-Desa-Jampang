@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratnoaktalahir;
+use App\Mail\Notifikasiadmin;
 use App\Models\Suratnoaktalahir;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -13,6 +15,7 @@ class LayananSuratnoaktalahir extends Component
 {
     use WithFileUploads;
     
+    public $suratlist;
     public $warga_id, $nama_pembuat;
     public $nama_anak, $tempat_lahir_anak, $tgl_lahir_anak, $jenis_kelamin_anak, $kewarganegaraan_anak;
     public $nama_ibu, $tempat_lahir_ibu, $nik_ibu, $pekerjaan_ibu, $tgl_lahir_ibu, $jenis_kelamin_ibu, $kewarganegaraan_ibu;
@@ -105,10 +108,25 @@ class LayananSuratnoaktalahir extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Tidak Punya Akta Lahir',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = Suratnoaktalahir::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

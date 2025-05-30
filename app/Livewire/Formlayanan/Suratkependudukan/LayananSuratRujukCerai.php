@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratRujukCerai;
+use App\Mail\Notifikasiadmin;
 use App\Models\SuratRujukCerai;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratRujukCerai extends Component
 {
     use WithFileUploads;
-
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_lengkap, $bin_bapak, $tempat_lahir, $tgl_lahir, $agama, $pekerjaan, $kewarganegaraan, $alamat;
     public $nama_lengkap_pasangan, $binti_bapak_pasangan, $tempat_lahir_pasangan, $tgl_lahir_pasangan, $agama_pasangan, $pekerjaan_pasangan, $kewarganegaraan_pasangan, $alamat_pasangan;
@@ -93,10 +95,25 @@ class LayananSuratRujukCerai extends Component
                 ])
             );
         }
-        $this->reset();
+       $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Rujuk Cerai',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratRujukCerai::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

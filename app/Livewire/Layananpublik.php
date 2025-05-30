@@ -13,6 +13,7 @@ class Layananpublik extends Component
 
     public $nama, $nomor_wa, $alamat, $tanggal_kejadian, $keterangan, $bukti_foto;
     public $formKey;
+    public bool $showSuccessModal = false;
 
     public function mount()
     {
@@ -24,7 +25,7 @@ class Layananpublik extends Component
         'alamat' => 'required|string|max:100',
         'tanggal_kejadian' => 'required|date',
         'keterangan' => 'required|string|max:1000',
-        'bukti_foto' => 'required|image|max:2048', // max 2MB
+        'bukti_foto' => 'required|image|max:2048', 
     ];
     public function formreset(){
         $this->nama = null;
@@ -43,7 +44,6 @@ class Layananpublik extends Component
         $path = $this->bukti_foto->store('uploads/layananpublik', 'public');
 
         ModelsLayananpublik::create([
-            'id' => Str::uuid(),
             'nama' => $this->nama,
             'nomor_wa' => $this->nomor_wa,
             'alamat' => $this->alamat,
@@ -54,7 +54,7 @@ class Layananpublik extends Component
 
         $this->formreset();
 
-        session()->flash('message', 'Laporan berhasil dikirim.');
+         $this->showSuccessModal = true;
     }
     public function render()
     {

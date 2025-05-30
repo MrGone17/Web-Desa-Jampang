@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratIzinKeramaian;
+use App\Mail\Notifikasiadmin;
 use App\Models\SuratIzinKeramaian;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratIzinKeramaian extends Component
 {
     use WithFileUploads;
-
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_lengkap, $nik, $no_kk,$status_kawin, $kepala_kk,$berlaku_dari,$berlaku_sampai,$jenis_keramaian,$keperluan, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $kewarganegaraan, $pekerjaan, $pendidikan, $alamat;
     public $pengantar_pdf;
@@ -92,10 +94,25 @@ class LayananSuratIzinKeramaian extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Izin Keramaian',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratIzinKeramaian::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

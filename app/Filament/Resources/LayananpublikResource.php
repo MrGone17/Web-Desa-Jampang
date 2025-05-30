@@ -43,9 +43,21 @@ class LayananpublikResource extends Resource
                 Forms\Components\TextInput::make('keterangan')
                     ->required()
                     ->maxLength(1000),
-                Forms\Components\TextInput::make('bukti_foto')
+                Forms\Components\FileUpload::make('bukti_foto')
                     ->required()
-                    ->maxLength(255),
+                    ->image()
+                    ->placeholder('Seret atau klik untuk masukan gambar (maximal 2048kb / 2MB)')
+                    ->imageEditorAspectRatios([
+                        null,
+                        '16:9',
+                        '4:3',
+                        '1:1',
+                    ])
+                    ->maxSize(2048)
+                    ->imageEditor()
+                    ->disk('public')
+                    ->directory('layananpublik')
+                    ->columnSpanFull(),
             ]);
     }
 

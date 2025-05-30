@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratmatidanlahir;
+use App\Mail\Notifikasiadmin;
 use App\Models\Suratmatidanlahir;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratmatidanlahir extends Component
 {
     use WithFileUploads;
-    
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_anak,$waktu_lahir_anak, $anak_ke, $tgl_lahir_anak, $jenis_kelamin_anak, $kewarganegaraan_anak;
     public $nama_ibu, $tempat_lahir_ibu, $nik_ibu, $agama_ibu, $pekerjaan_ibu, $tgl_lahir_ibu, $jenis_kelamin_ibu, $kewarganegaraan_ibu;
@@ -110,10 +112,25 @@ class LayananSuratmatidanlahir extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Lahir & Mati',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = Suratmatidanlahir::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

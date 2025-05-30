@@ -3,7 +3,10 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratKetDomisiliUsaha;
+use App\Mail\Notifikasiadmin;
+use App\Models\Suratdomisili;
 use App\Models\SuratKetDomisiliUsaha;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -13,6 +16,7 @@ class LayananSuratDomisiliUsaha extends Component
 {
     use WithFileUploads;
 
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_lengkap, $nik, $status_kawin,$alamat_usaha,$nama_usaha, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $kewarganegaraan, $pekerjaan, $pendidikan, $alamat;
     public $pengantar_pdf;
@@ -84,10 +88,25 @@ class LayananSuratDomisiliUsaha extends Component
                 ])
             );
         }
-        $this->reset();
+       $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_lengkap,
+                    'nama_surat' => 'Surat Keterangan Ahli Waris',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratKetDomisiliUsaha::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

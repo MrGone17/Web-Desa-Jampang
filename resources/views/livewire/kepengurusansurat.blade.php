@@ -118,9 +118,16 @@
         Buat Surat Online Dapat Melalui Tombol Di Bawah Ini!
       </h2>
       @guest
-        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 w-3/5 m-auto mb-4 rounded" role="alert">
-          <p class="font-bold">Peringatan</p>
-          <p>Jika Anda belum memiliki akun, Anda akan diarahkan ke halaman login sebelum dapat membuat surat.</p>
+        <div class="w-11/12 md:w-3/5 m-auto mb-6">
+          <div class="bg-yellow-50 border border-yellow-400 text-yellow-800 px-6 py-4 rounded-xl shadow-md flex items-start gap-3">
+            <svg class="w-6 h-6 text-yellow-500 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+            </svg>
+            <div>
+              <p class="font-semibold text-lg">Peringatan</p>
+              <p class="text-sm">Jika Anda belum memiliki akun, Anda akan diarahkan ke halaman login sebelum dapat membuat surat.</p>
+            </div>
+          </div>
         </div>
       @endguest
       <a href="{{ route('Formlayanan') }}"

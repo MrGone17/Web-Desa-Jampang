@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratPengakuananak;
+use App\Mail\Notifikasiadmin;
 use App\Models\SuratPembuatanPengakuanAnak;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratPembuatanPengakuanAnak extends Component
 {
     use WithFileUploads;
-
+    public $suratlist;
     public $warga_id,$nama_pembuat;
 
     public $nama_anak, $nik_anak, $tempat_lahir_anak, $tgl_lahir_anak, $jenis_kelamin_anak;
@@ -103,10 +105,25 @@ class LayananSuratPembuatanPengakuanAnak extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Pengakuan Anak',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratPembuatanPengakuanAnak::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

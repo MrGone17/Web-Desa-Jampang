@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratKetDomisiliUsahaNonWarga;
+use App\Mail\Notifikasiadmin;
 use App\Models\SuratKetDomisiliUsahaNonWarga;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratDomisiliUsahaNonWarga extends Component
 {
     use WithFileUploads;
-
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_lengkap, $nik,$alamat_usaha,$nama_usaha, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $kewarganegaraan, $pekerjaan, $alamat;
     public $pengantar_pdf;
@@ -78,10 +80,25 @@ class LayananSuratDomisiliUsahaNonWarga extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Keterangan Domisili Usaha Non Warga',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratKetDomisiliUsahaNonWarga::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

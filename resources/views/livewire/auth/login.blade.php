@@ -1,10 +1,20 @@
 <div class="min-h-screen bg-gradient-to-br from-blue-700 to-blue-900 text-white flex justify-center items-center py-10 px-4">
-    <div class="max-w-screen-xl bg-white/10 border border-white/20 backdrop-blur-lg shadow-2xl rounded-xl flex justify-center flex-1 overflow-hidden">
+    <div wire:loading wire:target="login" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+        <div class="flex flex-col items-center h-full justify-center">
+            <img src="{{ asset('image/bogor.png') }}" alt="Loading..." class="h-32 w-32 animate-pulse mb-4">
+            <div class="flex space-x-2">
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce"></span>
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.2s]"></span>
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.4s]"></span>
+            </div>
+        </div>
+    </div>  
+    <div class="max-w-screen-xl bg-white/10 border border-white/20 backdrop-blur-lg shadow-2xl rounded-xl flex justify-center flex-1 overflow-hidden"> 
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div class="flex justify-center items-center mb-6">
                 <img src="{{ asset('image/bogor.png') }}" class="w-16 h-16 md:w-20 md:h-20" />
             </div>
-
+            
             <div class="flex flex-col items-center">
                 <div class="w-full">
                     <div class="text-center mb-6">

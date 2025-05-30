@@ -3,7 +3,9 @@
 namespace App\Livewire\Formlayanan\Suratkependudukan;
 
 use App\Mail\KonfirmasiSuratKematian;
+use App\Mail\Notifikasiadmin;
 use App\Models\SuratKematian;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -12,6 +14,7 @@ use Livewire\WithFileUploads;
 class LayananSuratKematian extends Component
 {
     use WithFileUploads;
+    public $suratlist;
     public $warga_id,$nama_pembuat;
     public $nama_meninggal, $tempat_lahir_meninggal, $tempat_meninggal, $nik_meninggal, $agama_meninggal, $pekerjaan_meninggal, $tgl_lahir_meninggal,$tgl_meninggal, $jenis_kelamin_meninggal, $kewarganegaraan_meninggal;
     public $nama_bersangkutan, $nik_bersangkutan, $agama_bersangkutan, $pekerjaan_bersangkutan, $tempat_lahir_bersangkutan, $tgl_lahir_bersangkutan, $jenis_kelamin_bersangkutan, $kewarganegaraan_bersangkutan;
@@ -103,10 +106,25 @@ class LayananSuratKematian extends Component
                 ])
             );
         }
-        $this->reset();
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send
+                (new Notifikasiadmin([
+                    'nama_lengkap' => $this->nama_pembuat,
+                    'nama_surat' => 'Surat Kematian',
+                    ])
+                );
+            }
+        }
         $this->showSuccessModal = true;
     }
+    public function loadsurat(){
+        $this->suratlist = SuratKematian::where('warga_id', Auth::guard('warga')->id())->latest()->get()?? collect([]);
+    }
     public function mount (){
+        $this->loadsurat();
         $this->permision();
         $this->loaddata();
     }

@@ -9,9 +9,9 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class KonfirmasiSuratKuasaPengasuhanAnak extends Mailable
+class Notifikasiadmin extends Mailable
 {
-     use Queueable, SerializesModels;
+    use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
@@ -25,7 +25,7 @@ class KonfirmasiSuratKuasaPengasuhanAnak extends Mailable
 
     public function build()
     {
-        return $this->subject('Konfirmasi Pengajuan Surat Pengakuan Anak')
-                    ->view('emails.konfirmasi-surat-buataktalahir');
+        return $this->subject('Pemberitahuan Pembuatan Surat')
+                    ->view('emails.notifikasi-admin');
     }
 }

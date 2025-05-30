@@ -7,7 +7,24 @@
             </div>
         </div>
     </section>
-
+    <div>
+        @if ($showSuccessModal)
+            <div x-data="{ open: true }" x-show="open" x-transition.opacity.duration.300ms class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+                <div x-show="open" x-transition.scale.duration.300ms class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full text-center">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Pembuatan Laporan Desa Berhasil Dikirim</h2>
+                    <p class="text-base sm:text-lg text-gray-600 mb-6">data akan diproses terlebih dahulu oleh admin dan diharapkan menunggu konfirmasi kembali oleh admin </p>
+                    <button x-on:click="open = false;" wire:click="$set('showSuccessModal', false)" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow transition duration-200">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        @endif
+        </div>
     <div class="px-10 md:px-20 bg-white relative">
         <div wire:loading wire:target="submit, bukti_foto" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
             <div class="flex flex-col items-center h-full justify-center">

@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Auth;
 
+use App\Mail\PasswordResetRequestNotification;
 use App\Models\PasswordResetRequest;
+use App\Models\User;
 use App\Models\Warga;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -36,8 +38,13 @@ class ForgotPassword extends Component
             'status' => 'menunggu',
         ]);
 
-        // Kirim notifikasi ke admin (opsional: via email)
-        Mail::to('mrunix32@gmail.com')->send(new \App\Mail\PasswordResetRequestNotification($warga));
+        $admins = User::all();
+
+        foreach ($admins as $admin) {
+            if ($admin->email) {
+                Mail::to($admin->email)->send(new PasswordResetRequestNotification($warga));
+            }
+        }
 
         session()->flash('success', 'Permintaan reset password telah dikirim. Tunggu persetujuan admin.');
         $this->reset('email');

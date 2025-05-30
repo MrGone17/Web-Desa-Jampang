@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Layananpublik extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
     protected $fillable = [
         'nama',
