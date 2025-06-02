@@ -15,6 +15,7 @@ class Warga extends Authenticatable
     protected $table = 'wargas';
 
     protected $fillable = [
+        'is_active',
         'name',
         'email',
         'nik',

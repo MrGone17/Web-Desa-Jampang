@@ -9,6 +9,16 @@
             </div>
         @endfor
     </div>
+    <div wire:loading wire:target="register" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+        <div class="flex flex-col items-center h-full justify-center">
+            <img src="{{ asset('image/bogor.png') }}" alt="Loading..." class="h-32 w-32 animate-pulse mb-4">
+            <div class="flex space-x-2">
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce"></span>
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.2s]"></span>
+                <span class="h-3 w-3 bg-green-500 rounded-full animate-bounce [animation-delay:.4s]"></span>
+            </div>
+        </div>
+    </div>  
 
     <!-- Form dengan efek glass -->
     <div class="backdrop-blur-lg bg-white/10 border border-white/30 rounded-2xl shadow-2xl p-8 w-full max-w-md z-10">
@@ -26,29 +36,29 @@
         <form wire:submit.prevent="register" class="space-y-5">
             <div>
                 <label class="block text-sm font-medium text-white mb-1">Nama Lengkap</label>
-                <input type="text" wire:model.defer="name"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md capitalize" placeholder="Masukan Nama Sesuai Nama Di KTP" />
+                <input type="text" wire:model="name"
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md capitalize" placeholder="Masukan Nama Sesuai Nama Di KTP" required />
                 @error('name') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-white mb-1">Email</label>
-                <input type="email" wire:model.defer="email"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan Email Resmi Yang Anda Punya"/>
+                <input type="email" wire:model="email"
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan Email Resmi Yang Anda Punya" required>
                 @error('email') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-white mb-1">Nomor Induk Kependudukan</label>
-                <input type="nik" wire:model.defer="nik" wire:model.lazy="nik"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan NIK Sesuai KTP Anda" />
+                <input type="nik" wire:model="nik" wire:model.lazy="nik"
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan NIK Sesuai KTP Anda"  required>
                 @error('nik') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-white mb-1">Password</label>
                 <input type="password" wire:model.defer="password"
-                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan Password"/>
+                    class="w-full bg-white/30 text-white placeholder-white/70 border border-white/30 focus:ring-white focus:border-white px-4 py-2 rounded-lg shadow-sm backdrop-blur-md" placeholder="Masukan Password" required>
                 @error('password') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
             </div>
 

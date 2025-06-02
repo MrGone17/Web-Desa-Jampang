@@ -114,6 +114,8 @@ class WargaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ToggleColumn::make('is_active')
+                    ->label('Status Akun'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
@@ -134,6 +136,7 @@ class WargaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

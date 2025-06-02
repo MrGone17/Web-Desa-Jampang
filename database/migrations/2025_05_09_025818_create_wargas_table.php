@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('wargas', function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_active')->default(1);
             $table->string('name');
             $table->string('email')->unique();
             $table->string('nik')->unique();
