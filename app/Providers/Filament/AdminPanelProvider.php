@@ -191,10 +191,6 @@ class AdminPanelProvider extends PanelProvider
                         ]),
                     NavigationGroup::make('Layanan Kependudukan')
                         ->items([
-                            NavigationItem::make('Surat Nikah')
-                                ->icon('heroicon-o-wallet')
-                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.suratnikahs.index'))
-                                ->url(SuratnikahResource::getUrl()),
                             NavigationItem::make('Surat Keterangan Beda Nama')
                                 ->icon('heroicon-o-wallet')
                                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.resources.bedanamas.index'))

@@ -18,15 +18,6 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
                     <div>
-                        <h4 class="text-xl font-semibold mb-2">Surat Nikah</h4>
-                        <p class="text-sm text-gray-600 mb-4">Untuk mengajukan surat nikah resmi dari desa.</p>
-                    </div>
-                    <a href="{{ route('Formsuratnikah') }}" class="mt-auto inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                        Isi Form
-                    </a>
-                </div>
-                <div data-aos="fade-up" data-aos-duration="1000" class="border rounded-lg shadow-lg p-6 flex flex-col justify-between">
-                    <div>
                         <h4 class="text-xl font-semibold mb-2">Surat Keterangan Beda Nama</h4>
                         <p class="text-sm text-gray-600 mb-4">Untuk konfirmasi perbedaan nama pada dokumen resmi.</p>
                     </div>

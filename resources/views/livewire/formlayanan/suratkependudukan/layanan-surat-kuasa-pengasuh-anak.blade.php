@@ -41,7 +41,7 @@
                 <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Anak Berikut</h3>
                 <form wire:submit.prevent="save" class="space-y-4" enctype="multipart/form-data">
                     <!-- Nama Lengkap -->
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama Anak </label>
                             <input type="text" name="nama_anak" wire:model="nama_anak" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama anak">
@@ -55,7 +55,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan NIK Anak </label>
                             <input type="text" name="nik_anak" wire:model="nik_anak" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk anak">
@@ -65,7 +65,7 @@
                             <input type="text" name="no_kk_anak" wire:model="no_kk_anak" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Kartu Keluarga Anak">
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Waktu Lahir</label>
                             <input type="text" wire:model="tempat_lahir_anak" name="tempat_lahir_anak" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Tempat Lahir anak">
@@ -75,7 +75,7 @@
                             <input type="date" name="tgl_lahir_anak" wire:model="tgl_lahir_anak" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Agama</label>
                             <select wire:model="agama_anak" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Pengasuh</h3>   
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama Kepala Keluarga </label>
                             <input type="text" name="nama_ortu" wire:model="nama_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Kepala Keluarga Si Anak">
@@ -106,7 +106,7 @@
                             <input type="text" name="nik_ortu" wire:model="nik_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk Ortu">
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Kartu Keluarga</label>
                             <input type="text" name="no_kk_ortu" wire:model="no_kk_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Kartu Keluarga">
@@ -131,7 +131,7 @@
                         </div>
                     </div>  
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Pengasuh</h3>   
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama Kepala Keluarga </label>
                             <input type="text" name="nama_pengasuh" wire:model="nama_pengasuh" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Kepala KeluargaPengasuh">
@@ -141,7 +141,7 @@
                             <input type="text" name="nik_pengasuh" wire:model="nik_pengasuh" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk pengasuh">
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Kartu Keluarga Pengasuh</label>
                             <input type="text" name="no_kk_pengasuh" wire:model="no_kk_pengasuh" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Kartu Keluarga Pengasuh">

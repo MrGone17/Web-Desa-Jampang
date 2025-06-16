@@ -24,7 +24,7 @@
                         class="absolute right-0 mt-2 w-40 bg-[#2e8156] rounded-md shadow-lg z-50">
                         <a href="{{ route('Profil') }}"
                         class="block px-4 py-2 text-sm hover:text-yellow-400 text-white ">Profil</a>
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <button type="submit"
                                     class="w-full text-left px-4 py-2 text-sm hover:text-yellow-400 text-white ">

@@ -41,7 +41,7 @@
                 <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-6">Lengkapi Data Berikut</h3>
                 <form wire:submit.prevent="save" class="space-y-4" enctype="multipart/form-data">
                     <!-- Nama Lengkap -->
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nama Anak </label>
                             <input type="text" name="nama_anak" wire:model="nama_anak" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama anak">
@@ -51,7 +51,7 @@
                             <input type="text" name="nama_ortu" wire:model="nama_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nama Ibu">
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">NIK Ibu </label>
                             <input type="text" name="nik_ortu" wire:model="nik_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Nomor Induk Ortu">
@@ -61,7 +61,7 @@
                             <input type="text" name="pekerjaan_ortu" wire:model="pekerjaan_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Pekerjaan Ibu">
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Lahir Ibu</label>
                             <input type="text" wire:model="tempat_lahir_ortu" name="tempat_lahir_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required placeholder="Masukan Tempat Lahir Ibu">
@@ -71,7 +71,7 @@
                             <input type="date" name="tgl_lahir_ortu" wire:model="tgl_lahir_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Agama</label>
                             <select wire:model="agama_ortu" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>

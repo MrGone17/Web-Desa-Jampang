@@ -23,8 +23,8 @@ class BeritaResource extends Resource
 {
     protected static ?string $model = Berita::class;
 
-    protected static ?string $recordTitleAttribute = 'title';
-
+    
+    protected static ?string $navigationGroup = 'Berita Desa';
     public static function getLabel(): string
     {
         return 'Berita';
@@ -51,6 +51,10 @@ class BeritaResource extends Resource
                 ]),
 
             Forms\Components\Section::make()
+                ->columns([
+                        'sm' => 1,
+                        'md' => 2,
+                    ])
                 ->schema([
                     Forms\Components\TextInput::make('title')
                         ->label('Judul')
@@ -58,19 +62,16 @@ class BeritaResource extends Resource
                         ->live(onBlur: true)
                         ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                         ->required()
-                        // ->columnSpan(3)
                         ->maxLength(1000),
                     Forms\Components\TextInput::make('slug')
                         ->label('Slug')
                         ->readOnly()
                         ->placeholder('Otomatis sesuai judul')
                         ->required(),
-                    Forms\Components\RichEditor::make('description')
-                        ->placeholder('Masukan Deskripsi (maximal 1000 karakter)')
-                        ->label('Deskripsi'),
                     Forms\Components\FileUpload::make('image')
                         ->label('Gambar')
                         ->image()
+                        ->columnSpanFull()
                         ->placeholder('Seret atau klik untuk masukan gambar (maximal 2048kb / 2MB)')
                         ->imageEditorAspectRatios([
                             null,
@@ -84,6 +85,10 @@ class BeritaResource extends Resource
                         ->imageEditor()
                         ->disk('public')
                         ->directory('berita'),
+                    Forms\Components\RichEditor::make('description')
+                        ->placeholder('Masukan Deskripsi (maximal 1000 karakter)')
+                        ->label('Deskripsi')
+                        ->columnSpanFull(),
                 ])
         ]);
     }
@@ -101,7 +106,6 @@ class BeritaResource extends Resource
                     ->limit(20)
                     ->toolTip(fn($record) => $record->title)
                     ->searchable(),
-                // Tables\Columns\TextColumn::make('slug'),
                 Tables\Columns\TextColumn::make('description')
                     ->label('Deskripsi')
                     ->html()

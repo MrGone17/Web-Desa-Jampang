@@ -45,7 +45,7 @@
                         <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Masukan Nama Lengkap </label>
                         <input type="text" name="nama_lengkap" wire:model="nama_lengkap" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Nomor Induk Keluarga</label>
                             <input type="text" name="nik" wire:model="nik" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
@@ -56,7 +56,7 @@
                             @error('no_kk') <span class="text-red-300 text-sm">{{ $message }}</span> @enderror
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Tempat Lahir</label>
                             <input type="text" name="tempat_lahir" wire:model="tempat_lahir" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
@@ -66,7 +66,7 @@
                             <input type="date" name="tgl_lahir" wire:model="tgl_lahir" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                          <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Jenis Kelamin</label>
                             <select wire:model="jenis_kelamin" class="w-full px-4 py-2 border text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
@@ -84,7 +84,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
                         <div>
                             <label class="block mb-1 text-xs md:text-sm font-medium text-gray-700">Pekerjaan</label>
                             <input type="text" name="pekerjaan" wire:model="pekerjaan" class="w-full px-4 py-2 border capitalize text-xs md:text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
@@ -131,8 +131,13 @@
                         @enderror
                     </div>                                                                                   
                     <!-- Tombol Kirim -->
-                    <div class="text-center md:text-end">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-xl transition duration-300">Kirim Formulir</button>
+                    <div class="flex justify-end gap-3 text-center">
+                        <a href="{{ route('Formlayanan') }}" class="bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-3 md:py-2 md:px-5 rounded-xl transition duration-300 text-sm md:text-base">
+                            Kembali
+                        </a>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-1 px-3 md:py-2 md:px-5 rounded-xl transition duration-300 text-sm md:text-base">
+                            Kirim Formulir
+                        </button>
                     </div>
                     @if (session()->has('message'))
                         <div class="text-green-600 mt-4">
@@ -142,54 +147,55 @@
                 </form>
             </div>
             <div class="mt-10 bg-white shadow-xl rounded-xl overflow-hidden border border-gray-200">
-                <h2 class="text-xl font-bold text-white px-6 py-4 bg-gradient-to-r from-[#0F5C34] to-[#009A4B]">
+                <h2 class="text-lg md:text-xl font-bold text-white px-4 md:px-6 py-3 md:py-4 bg-gradient-to-r from-[#0F5C34] to-[#009A4B]">
                     Riwayat Pengajuan Surat Permohonan Kartu Keluarga
                 </h2>
 
                 @if ($suratlist->isEmpty())
-                    <div class="px-6 py-4 text-gray-600">Belum ada data pengajuan.</div>
+                    <div class="px-4 py-3 text-sm text-gray-600">Belum ada data pengajuan.</div>
                 @else
                     <div class="overflow-x-auto">
-                        <table class="min-w-full text-sm text-left text-gray-700">
+                        <table class="min-w-full text-xs md:text-sm text-left text-gray-700">
                             <thead class="bg-green-50 text-gray-900 font-medium">
                                 <tr>
-                                    <th class="px-6 py-4">Nama</th>
-                                    <th class="px-6 py-4">NIK</th>
-                                    <th class="px-6 py-4">Alamat</th>
-                                    <th class="px-6 py-4">Tanggal Pembuatan</th>
-                                    <th class="px-6 py-4">PDF</th>
-                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-3 md:px-6 py-2 md:py-4">Nama</th>
+                                    <th class="px-3 md:px-6 py-2 md:py-4">NIK</th>
+                                    <th class="px-3 md:px-6 py-2 md:py-4">Alamat</th>
+                                    <th class="px-3 md:px-6 py-2 md:py-4">Tanggal Pembuatan</th>
+                                    <th class="px-3 md:px-6 py-2 md:py-4">Surat Pengantar</th>
+                                    <th class="px-3 md:px-6 py-2 md:py-4">Status</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100 bg-white">
                                 @foreach ($suratlist as $surat)
                                     <tr class="hover:bg-gray-50 transition duration-200 ease-in-out">
-                                        <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-800">
+                                        <td class="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap font-medium text-gray-800">
                                             {{ optional($surat->warga)->name ?? 'Tidak ditemukan' }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-600">
+                                        <td class="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap text-gray-600">
                                             {{ optional($surat->warga)->nik ?? 'Tidak ditemukan' }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-600">
+                                        <td class="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap text-gray-600">
                                             {{ optional($surat->warga->profil)->alamat ?? 'Tidak ditemukan' }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-600">
+                                        <td class="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap text-gray-600">
                                             {{ \Carbon\Carbon::parse($surat->created_at)->translatedFormat('d F Y') }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        <td class="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
                                             @if ($surat->pengantar_pdf)
                                                 <a href="{{ Storage::url($surat->pengantar_pdf) }}" target="_blank"
-                                                class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition duration-150">
+                                                class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition duration-150 text-xs md:text-sm">
                                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H3a2 2 0 01-2-2V3a2 2 0 012-2h18a2 2 0 012 2v16a2 2 0 01-2 2z"/>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H3a2 2 0 01-2-2V3a2 2 0 012-2h18a2 2 0 012 2v16a2 2 0 01-2 2z"/>
                                                     </svg>
                                                     Lihat PDF
                                                 </a>
                                             @else
-                                                <span class="text-gray-500 italic">Tidak ada PDF</span>
+                                                <span class="text-gray-500 italic text-xs md:text-sm">Tidak ada PDF</span>
                                             @endif
                                         </td>
-                                        <td class="px-6 py-4">
+                                        <td class="px-3 md:px-6 py-2 md:py-4">
                                             @php
                                                 $status = strtolower($surat->status ?? 'tidak diketahui');
                                                 $statusClasses = [
@@ -207,7 +213,7 @@
                                                 $class = $statusClasses[$status] ?? 'bg-gray-100 text-gray-700';
                                                 $icon = $statusIcons[$status] ?? '';
                                             @endphp
-                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $class }}">
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-[10px] md:text-xs font-semibold {{ $class }}">
                                                 {!! $icon !!}
                                                 {{ ucfirst($status) }}
                                             </span>
